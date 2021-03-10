@@ -34,9 +34,9 @@ class Database extends Config
 	public $default = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
-		'username' => 'root',
+		'username' => '127.0.0.1',
 		'password' => '',
-		'database' => 'codeigniter',
+		'database' => 'codeigniter.db',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,

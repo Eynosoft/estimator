@@ -52,4 +52,5 @@ class Migrations extends BaseConfig
 	 * @var string
 	 */
 	public $timestampFormat = 'Y-m-d-His_';
+	
 }
