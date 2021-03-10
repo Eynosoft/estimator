@@ -7,7 +7,6 @@ use CodeIgniter\Database\Config;
 /**
  * Database Configuration
  */
-
 class Database extends Config
 {
 	/**
@@ -34,9 +33,9 @@ class Database extends Config
 	public $default = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
-		'username' => '127.0.0.1',
+		'username' => '',
 		'password' => '',
-		'database' => 'codeigniter.db',
+		'database' => '',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
