@@ -7,7 +7,6 @@ class User extends Migration
 {
 	public function up()
 	{
-
 		$this->forge->addField([
 
 			'id'         => [
@@ -61,6 +60,7 @@ class User extends Migration
 
 		$this->forge->addKey('id', true);
 		$this->forge->createTable('user');
+		// this is a user migration table
 
 	}
 	//
