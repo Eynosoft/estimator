@@ -1,9 +1,7 @@
 <?php
 
 namespace Config;
-
 use CodeIgniter\Database\Config;
-
 /**
  * Database Configuration
  */
@@ -16,7 +14,6 @@ class Database extends Config
 	 * @var string
 	 */
 	public $filesPath = APPPATH . 'Database' . DIRECTORY_SEPARATOR;
-
 	/**
 	 * Lets you choose which connection group to
 	 * use if no other is specified.
@@ -24,7 +21,6 @@ class Database extends Config
 	 * @var string
 	 */
 	public $defaultGroup = 'default';
-
 	/**
 	 * The default database connection.
 	 *
@@ -39,7 +35,7 @@ class Database extends Config
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
-		'DBDebug'  => (ENVIRONMENT !== 'production'),
+		'DBDebug'  => (ENVIRONMENT !== 'development'),
 		'charset'  => 'utf8',
 		'DBCollat' => 'utf8_general_ci',
 		'swapPre'  => '',
