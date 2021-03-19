@@ -18,40 +18,35 @@ class User extends Migration
 
 			'first_name'       => [
 				'type'       => 'VARCHAR',
-				'constraint' => '80',
+				'constraint' => 80,
 			],
 
 			'last_name'       => [
 				'type'       => 'VARCHAR',
-				'constraint' => '80',
+				'constraint' => 80,
 			],
 
 			'email'       => [
 				'type'       => 'VARCHAR',
-				'constraint' => '100',
+				'constraint' => 100,
 			],
 
 			'password'       => [
-				'type'       => 'MD5',
-				'constraint' => '20',
-			],
-
-			'status'       => [
-				'type'      => 'SMALLINT',
-				'constraint' => '5',
-				'null'       => 'YES',
-				'default'    =>  '1',
+				'type'       => 'VARCHAR',
+				'constraint' => 50,
 			],
 
 			'creation_date'       => [
 				'type'       => 'DATETIME',
-				'default'    =>  'CURRENT_TIMESTAMP',
+				'null'       => true,
 				//	'constraint' => '100',
 			],
 
+
 			'updation_date'       => [
 				'type'       => 'DATETIME',
-				'default'    =>  'CURRENT_TIMESTAMP',
+				'null'       => true,
+				//'default'    =>  'CURRENT_TIMESTAMP',
 				'ON UPDATE CURRENT_TIMESTAMP' => TRUE,
 				//		'constraint' => '100',
 			],
@@ -62,10 +57,8 @@ class User extends Migration
 		$this->forge->createTable('user');
 		// this is a user migration table
 		// This is another migration request
-
 	}
 	//
-
 	public function down()
 	{
 		$this->forge->dropTable('user');
