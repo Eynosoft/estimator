@@ -1,8 +1,6 @@
 <?php
 namespace App\Database\Migrations;
-
 use CodeIgniter\Database\Migration;
-
 class User extends Migration
 {
 	public function up()
@@ -36,20 +34,8 @@ class User extends Migration
 				'constraint' => 50,
 			],
 
-			'creation_date'       => [
-				'type'       => 'DATETIME',
-				'null'       => true,
-				//	'constraint' => '100',
-			],
-
-
-			'updation_date'       => [
-				'type'       => 'DATETIME',
-				'null'       => true,
-				//'default'    =>  'CURRENT_TIMESTAMP',
-				'ON UPDATE CURRENT_TIMESTAMP' => TRUE,
-				//		'constraint' => '100',
-			],
+			'created_at datetime default current_timestamp',
+    	'updated_at datetime default current_timestamp on update current_timestamp'
 
 		]);
 
@@ -59,9 +45,12 @@ class User extends Migration
 		// This is another migration request
 	}
 	//
+
 	public function down()
 	{
 		$this->forge->dropTable('user');
 		//
 	}
+
+
 }
