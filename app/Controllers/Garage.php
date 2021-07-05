@@ -39,8 +39,9 @@ class Garage extends BaseController
 		}
 		$context = [
 			'username' => user()->username,
-		];
-        $garageModel = new GarageModel();
+		]; 
+		
+    $garageModel = new GarageModel();
 		$context['garage'] = $garageModel->where('id', $id)->findAll();
 		return view('garage_create',$context);
 	}

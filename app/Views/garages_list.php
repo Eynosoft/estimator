@@ -1,7 +1,6 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content');  ?>
 
-
 <div class="container-fluid">
 
 <!-- Page Heading -->
@@ -114,7 +113,6 @@
       $('#garage-list').DataTable();
   });
 </script>
-
 
 
 <?php echo $this->endSection(); ?>

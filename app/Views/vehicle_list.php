@@ -10,7 +10,8 @@
 
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-            <h1 class="h3 mb-0 text-gray-800">Vehicles List</h1>
+          <h1 class="h3 mb-0 text-gray-800">Vehicles List</h1>
+          <a class="btn btn-primary" href="<?php echo base_url('Vehicles/create'); ?>">Add Vehicle</a>
 
           </div>
 
@@ -22,7 +23,7 @@
 
               <div class="table-responsive">
 
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="vehicle-list" width="100%" cellspacing="0">
 
                   <thead>
 
@@ -105,44 +106,23 @@
 
                 </table>
 
-                 <div class="col-sm-12 col-md-7">
-
-                    <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-
-                       <ul class="pagination">
-
-                          <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-
-                          <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-
-                          <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-
-                          <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-
-                          <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-
-                          <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-
-                          <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-
-                          <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-
-                       </ul>
-
-                    </div>
-
-              </div>
-
               </div>
 
             </div>
 
           </div>
 
-
         </div>
 
-        <!-- /.container-fluid -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
+<script>
+   $(document).ready(function() {
+     $('#vehicle-list').DataTable();
+   })
+</script>
+
+<!-- /.container-fluid -->
 
 <?php echo $this->endSection(); ?>
