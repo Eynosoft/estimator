@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-CI_ENVIRONMENT = development
+CI_ENVIRONMENT = development # production, development
 
 #--------------------------------------------------------------------
 # APP
@@ -51,11 +51,11 @@ CI_ENVIRONMENT = development
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
+ database.default.hostname = localhost
+ database.default.database = estimator
+ database.default.username = root
+ database.default.password = 
+ database.default.DBDriver = MySQLi
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
@@ -120,4 +120,4 @@ CI_ENVIRONMENT = development
 # LOGGER
 #--------------------------------------------------------------------
 
-# logger.threshold = 4
+logger.threshold = 3

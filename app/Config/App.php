@@ -1,11 +1,11 @@
 <?php
 
 namespace Config;
-
 use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {
+
 	/**
 	 * --------------------------------------------------------------------------
 	 * Base Site URL
@@ -23,7 +23,9 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://localhost:8080/';
+
+	
+	public $baseURL = 'http://localhost/estimator/';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -36,7 +38,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $indexPage = 'index.php';
+	public $indexPage = '';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -70,7 +72,6 @@ class App extends BaseConfig
 	 * @var string
 	 */
 	public $defaultLocale = 'en';
-
 	/**
 	 * --------------------------------------------------------------------------
 	 * Negotiate Locale
@@ -84,7 +85,6 @@ class App extends BaseConfig
 	 * @var boolean
 	 */
 	public $negotiateLocale = false;
-
 	/**
 	 * --------------------------------------------------------------------------
 	 * Supported Locales
@@ -108,7 +108,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $appTimezone = 'America/Chicago';
+	public $appTimezone = 'Asia/Kolkata';
 
 	/**
 	 * --------------------------------------------------------------------------
