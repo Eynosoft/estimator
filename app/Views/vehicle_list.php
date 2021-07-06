@@ -61,9 +61,19 @@
 
                       <td><?php echo $row['registration_plate']; ?></td>
 
-                      <td><?php echo $row['registration_date']; ?></td>
+                    <?php   
 
-                      <td><?php echo $row['manufacturing_date'] ?></td>
+                    $created = $row['registration_date'];
+                    $newDate = date("d-m-Y", strtotime($created));
+
+                    $created_manufac = $row['manufacturing_date'];
+                    $manufacturing_date = date("d-m-Y",strtotime($created_manufac));
+
+                    ?>
+
+                      <td><?php echo $newDate;  ?></td>
+
+                      <td><?php echo $manufacturing_date; ?></td>
 
                       <td><?php echo $row['vin_number']; ?></td>
 

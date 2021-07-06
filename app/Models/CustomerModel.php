@@ -10,3 +10,5 @@ class CustomerModel extends Model
 	 protected $primaryKey = 'id';
 	 protected $allowedFields = ['client_name','locale','report_password','emails','mobile','land_line','fax','notes']; 
 }
+
+

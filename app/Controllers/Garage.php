@@ -46,6 +46,20 @@ class Garage extends BaseController
 		return view('garage_create',$context);
 	}
 
+	public function view($id = null)
+	{
+     if(!logged_in())
+		 {
+			 return redirect()->to(base_url(route_to('/')));
+		 }
+		 $context = [
+			 'username' => user()->username,
+		 ];
+		 $garageModel = new GarageModel();
+		 $context['garage'] = $garageModel->where('id',$id)->findAll();
+		 return view('view_garage',$context);
+	}
+
 	public function Store(){
 		helper(['form','url']);
 		$validation = \Config\Services::validation();

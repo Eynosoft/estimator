@@ -73,17 +73,14 @@
 
               <td class="actionCol">
 
-                <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2"
-                  href="<?php echo base_url('Garage/create').'/'.$row['id']; ?>">
 
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-
+                <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('Garage/view').'/'.$row['id']; ?>">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
 
                 <a class="btn btn-datatable btn-icon btn-transparent-dark"
                   href="<?php echo base_url('Garage/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o"
                     aria-hidden="true"></i>
-
                 </a>
 
               </td>

@@ -12,6 +12,7 @@
   <!-- Custom fonts for this template-->
 
 <link href="<?php echo base_url(); ?>/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url(); ?>/assets/js/custom.js"/>
 <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 

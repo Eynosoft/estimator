@@ -1,8 +1,6 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
 
-
-
         <!-- Begin Page Content -->
 
         <div class="container-fluid">

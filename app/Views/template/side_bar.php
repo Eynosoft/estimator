@@ -51,7 +51,6 @@
 
       <a class="collapse-item" href="<?php echo base_url('Customer/Create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
 
-
     </div>
 
   </div>
