@@ -57,6 +57,8 @@ CI_ENVIRONMENT = development # production, development
  database.default.password = 
  database.default.DBDriver = MySQLi
 
+ 
+
 # database.tests.hostname = localhost
 # database.tests.database = ci4
 # database.tests.username = root

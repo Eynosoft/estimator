@@ -3,7 +3,6 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
-
 /**
  * Stores the default settings for the ContentSecurityPolicy, if you
  * choose to use it. The values here will be read in and set as defaults
@@ -13,6 +12,7 @@ use CodeIgniter\Config\BaseConfig;
  *
  * @see https://www.html5rocks.com/en/tutorials/security/content-security-policy/
  */
+
 class ContentSecurityPolicy extends BaseConfig
 {
 	//-------------------------------------------------------------------------
@@ -24,6 +24,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $reportOnly = false;
 
 	/**
@@ -60,6 +61,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $scriptSrc = 'self';
 
 	/**
@@ -67,6 +69,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $styleSrc = 'self';
 
 	/**
@@ -74,6 +77,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $imageSrc = 'self';
 
 	/**
@@ -83,6 +87,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]|null
 	 */
+
 	public $baseURI = null;
 
 	/**
@@ -90,6 +95,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $childSrc = 'self';
 
 	/**
@@ -98,6 +104,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $connectSrc = 'self';
 
 	/**
@@ -105,6 +112,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+
 	public $fontSrc = null;
 
 	/**
@@ -112,6 +120,7 @@ class ContentSecurityPolicy extends BaseConfig
 	 *
 	 * @var string|string[]
 	 */
+	
 	public $formAction = 'self';
 
 	/**
