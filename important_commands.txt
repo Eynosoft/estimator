@@ -2,4 +2,4 @@ Codeigniter 4 important migration classes
 
 
 1-- For create a new migration ---- php spark make:migration <class> [options]
-2-- For crateing a new table from migraion ---
+2-- For Migrating the table --- php spark migrate

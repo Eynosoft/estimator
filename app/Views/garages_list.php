@@ -1,4 +1,5 @@
 <?php echo $this->extend('template/layout_main'); ?>
+
 <?php echo $this->section('content');  ?>
 
 <div class="container-fluid">
@@ -48,8 +49,7 @@
 
           </tr>
 
-
-        </thead>
+      </thead>
 
         <tbody>
 
@@ -72,7 +72,6 @@
               <td><?php echo $row['fax']; ?></td>
 
               <td class="actionCol">
-
 
                 <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('Garage/view').'/'.$row['id']; ?>">
                   <i class="fa fa-eye" aria-hidden="true"></i>

@@ -1,6 +1,5 @@
 <!-- Content Column -->
-<button style="text-align: right;" type="button" class="btn btn-info" data-toggle="modal" data-target="#documentsModal">Add Documents</button>
-
+<!-- <button style="text-align: right;" type="button" class="btn btn-info" data-toggle="modal" data-target="#documentsModal">Add Documents</button> -->
 
 <div class="row">
 

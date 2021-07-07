@@ -1,19 +1,42 @@
-$(documnet).ready(function(){
+$(document).ready(function(){ 
+    
+	var currentTab = $("#currentTab").val();
+	console.log('currentTab');
+	window.location.hash = currentTab;
 
-  var currentTab = $('#currentTab').val();
-  windows.location.hash = currentTab;
+	var me = getUrlVars()["tab"];
+	
+	$(".nav-tabs li a[href='"+currentTab+"']").trigger('click');
+	var type = window.location.hash.substr(1);
+	console.log('me='+me);
+	
+	if(type == 'undefined')
+	{
+    window.location.hash = "";
+	   //this.hash.slice(1);
+	   // location.href.replace('#', " ");
+	   history.replaceState(null, null, ' ');
+	}
 
-  $(".nav-tabs li").on('click',function(){
-	  if($(this).find('a').attr('href') == '#') {
-		 showAlert('Please enter "Details" before proceeding',"Alert","error");
+	if(type!='' && type=='Documents') {
+		$(".nav-tabs li a[href='#Documents']").trigger('click');
+	}
+	if(me!='' && (me=='Documents#' || me=='Documents')) {
+		$(".nav-tabs li a[href='#Documents']").trigger('click');
+	}
+
+	   $(".nav-tabs li").on('click',function(){
+		if($(this).find('a').attr('href') == '#') {
+			showAlert('Please enter "Details" before proceeding',"Alert","error");
 			return false;
 		}
 		$(".nav-tabs li").removeClass('active');
 		$(this).addClass('active');
 		console.log($(this).find('a').attr('href'));
 		window.location.hash = $(this).find('a').attr('href');
-
-});
+	});
+	
+	});
 
 jsonObj = [];
 $("#uploadAllFiles").on('click',function(e){

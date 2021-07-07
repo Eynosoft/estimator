@@ -6,7 +6,6 @@ class Users extends Migration
 	/*
 	 * Users
 	 */
-    
     public function up()
     {
     	$this->forge->addField([

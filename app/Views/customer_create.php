@@ -19,7 +19,7 @@
 
 $activeClass = ''; 
 
-$currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : '';
+$currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : 'not defined';
 
 echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
 
