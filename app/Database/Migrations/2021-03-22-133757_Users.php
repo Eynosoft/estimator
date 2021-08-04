@@ -1,5 +1,6 @@
-<?php namespace Auth\Database\Migrations;
+<?php 
 
+namespace Auth\Database\Migrations;
 use CodeIgniter\Database\Migration;
 class Users extends Migration
 {
@@ -8,7 +9,7 @@ class Users extends Migration
 	 */
     public function up()
     {
-    	$this->forge->addField([
+        $this->forge->addField([
         	'id'					=> ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
         	'email'					=> ['type' => 'varchar', 'constraint' => 191],
             'new_email'             => ['type' => 'varchar', 'constraint' => 191, 'null' => true],
@@ -21,13 +22,13 @@ class Users extends Migration
         	'created_at'			=> ['type' => 'bigint', 'null' => true],
             'updated_at'            => ['type' => 'bigint', 'null' => true]
         ]);
-
+        
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('email');
         $this->forge->createTable('users', true);   
     }
 
-    //--------------------------------------------------------------------
+    //-------------------------------------------------------------------
 
     public function down()
     {

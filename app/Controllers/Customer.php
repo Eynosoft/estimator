@@ -7,6 +7,7 @@ use App\Models\CustomerDocModel;
 
 class Customer extends BaseController
 {
+
 	protected $session;
 	function __construct()
     {
@@ -86,7 +87,7 @@ class Customer extends BaseController
 			//$_SESSION['message'] = 'success';
 			$this->session->set('message','success');
 		}
-	}	
+	 }	
 	 return $this->response->redirect(site_url('Customer'));
 	}
 
@@ -102,7 +103,52 @@ class Customer extends BaseController
 			$_SESSION['message'] = 'derror';
 		}
 		return $this->response->redirect(site_url('Customer'));
-  }  
+  }
+	
+	public function insertDocuments()
+	{
+		//$current_url = $this->input->post('current_url');
+		//$claim_id = $this->input->post('claim_id');
+		//$documentsData['document_name'] = $this->input->post('document_name');
+		$this->load->library('upload');
+		$files = $_FILES;
+		$cpt = count($_FILES['files']['name']);
+		for ($i = 0; $i < $cpt; $i++) {
+			$ext = pathinfo($files['files']['name'][$i], PATHINFO_EXTENSION);
+			$_FILES['files']['name'] = time() . $i . '.' . $ext;
+			//$_FILES['upload_file']['name']= time().'.'.$ext.[$i];
+			$_FILES['files']['type'] = $files['files']['type'][$i];
+			$_FILES['files']['tmp_name'] = $files['files']['tmp_name'][$i];
+			$_FILES['files']['error'] = $files['files']['error'][$i];
+			$_FILES['files']['size'] = $files['files']['size'][$i];
+			$this->upload->initialize($this->set_upload_options());
+			$this->upload->do_upload('files');
+			$documentsData['document_type'] = $ext;
+			$documentsData['file_path'] 	= 'assets/uploads/' . $_FILES['files']['name'];
+			$result = $this->Document_model->documentInsert($documentsData);
+		}
+
+		if ($result > 0) {
+			$_SESSION['message'] = 'success';
+		} else {
+			$_SESSION['message'] = 'error';
+		}
+	  return $this->response->redirect(site_url('Customer'));
+	}
+
+	private function set_upload_options()
+	{
+		//upload an image options
+		$config = array();
+		$config['upload_path']   = FCPATH . 'assets/uploads/';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|xlsx|xls|doc|docx';
+		//$config['max_size']      = '0';
+		//$config['overwrite']     = FALSE;
+		// echo "<pre>";
+		// print_r($config);
+		// die();
+		return $config;
+	}
 
 
 	

@@ -3,7 +3,8 @@
 
    <!-- Begin Page Content -->
 
-   <div class="container-fluid">
+
+<div class="container-fluid">
 
 <!-- Page Heading -->
 
@@ -34,8 +35,6 @@
 
       </ul>
 
-
-
       <div class="tab-content">
 
         
@@ -47,7 +46,6 @@
         </div>
 
 
-
         <div id="cusNotifications" class="tab-pane fade">
 
           <?php echo $this->include('garage/garageNotifications'); ?>
@@ -55,13 +53,11 @@
         </div>
 
         
-
         <div id="cusSettings" class="tab-pane fade">
 
           <?php echo $this->include('garage/garageSettings'); ?>
 
         </div>
-
 
 
         <div id="cusNotes" class="tab-pane fade">

@@ -1,7 +1,5 @@
 <?php namespace Myth\Auth\Database\Migrations;
-
 use CodeIgniter\Database\Migration;
-
 class CreateAuthTables extends Migration
 {
     public function up()
@@ -33,9 +31,10 @@ class CreateAuthTables extends Migration
 
         $this->forge->createTable('users', true);
 
-        /*
+          /*
          * Auth Login Attempts
          */
+
         $this->forge->addField([
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'ip_address' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],

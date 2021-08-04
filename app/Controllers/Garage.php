@@ -28,7 +28,7 @@ class Garage extends BaseController
 		];
         $garageModel = new GarageModel();
 		    $context['garage'] = $garageModel->orderBy('id', 'DESC')->findAll();
-		return view('garages_list',$context);
+		    return view('garages_list',$context);
 	}
 	
 	public function create($id = null)
@@ -63,7 +63,6 @@ class Garage extends BaseController
 	public function Store(){
 		helper(['form','url']);
 		$validation = \Config\Services::validation();
-
 		$check = $this->validate(
 			[
        'garage_name' => 'required',
@@ -78,7 +77,7 @@ class Garage extends BaseController
 			if(!$check)
 			{
 				return view('garage_create', ['validation'=>$this->validator]);
-			} else{	
+			} else {	
 
 		$garageModel = new GarageModel();
 		$id = $this->request->getVar('id');
@@ -91,21 +90,23 @@ class Garage extends BaseController
 					'landline'=> $this->request->getVar('landline'),
 					'fax' => $this->request->getVar('fax'), 
 					'notes' => $this->request->getVar('notes'),
+					'active' => $this->request->getVar('active')
 		  ];
 
     if(!empty($id)){
 			$garageModel->update($id, $data);
 			//$_SESSION['message'] = 'success';
-			$this->session->set('message','success');
-			
+			$this->session->set('message','success');	
 		}
+
 		else{
-			$garageModel->insert($data);
-			//$_SESSION['message'] = 'success';
-			$this->session->set('message','success');
+			  $garageModel->insert($data);
+			  //$_SESSION['message'] = 'success';
+		  	$this->session->set('message','success');
 	  	 }
-			 
+
   	 }
+
 		 return $this->response->redirect(site_url('Garage'));
 	}
 
@@ -113,6 +114,36 @@ class Garage extends BaseController
 		$garageModel = new GarageModel();
 		$data['garage'] = $garageModel->where('id', $id)->delete($id);
 		return $this->response->redirect(site_url('Garage'));
-  }  
+  } 
+	
+
+
+	public function getGarages(){
+		$request = service('request');
+		$postData = $request->getPost();
+		$response = array();
+		// Read new token and assign in $response['token']
+		$response['token'] = csrf_hash();
+		$data = array();
+		if(isset($postData['search'])){
+			 $search = $postData['search'];
+			 // Fetch record
+			 $garages = new GarageModel();
+			 $garagelist = $garages->select('garage_name')
+							->like('garage_name',$search)
+							->orderBy('garage_name')
+							->findAll(5);
+			 foreach($garagelist as $garage){
+					 $data[] = array(
+							"value" => $garage['id'],
+							"label" => $garage['garage_name'],
+					 );
+			 }
+		}
+
+		$response['data'] = $data;
+		return $this->response->setJSON($response);
+
+ }
 
 }

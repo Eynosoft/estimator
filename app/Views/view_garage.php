@@ -1,8 +1,6 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
 
-
-
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
@@ -22,8 +20,6 @@
     <div class="col-lg-3 mb-4">
 
       <a href="<?php echo base_url('Garage/create') . '/' . $garage[0]['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
-
-
 
       <!-- Left Other HTML -->
 
@@ -125,12 +121,23 @@
 
                   <td><strong>Active</strong></td>
 
-                  <td><i style="color: green;" class="fa fa-check-circle" aria-hidden="true"></i></td>
+                  <td>
+                    <?php 
+                    if($garage[0]['active'] == 1){ ?>
+                      
+                      <i style="color: green;" class="fa fa-check-circle" aria-hidden="true"></i>
+
+                    <?php } else { ?>
+
+                      <i class="fa fa-close" style="font-size:20px;color:red"></i>
+                    
+                    <?php } ?>
+                    
+                  </td>
 
                 </tr>
 
                 <tr>
-
                   <td><strong>Created</strong></td>
 
                   <?php

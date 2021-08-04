@@ -1,5 +1,6 @@
 <!-- Footer section starts  -->
   <!-- Scroll to Top Button-->
+
   <a class="scroll-to-top rounded" href="#page-top">
 
     <i class="fas fa-angle-up"></i>
@@ -7,9 +8,10 @@
   </a>
 
 
-  <!-- Logout Modal-->
+<!-- Logout Modal-->
 
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     
     <div class="modal-dialog" role="document">
@@ -50,28 +52,70 @@
 
   <!-- Bootstrap core JavaScript-->
 
-  <script src="<?php echo base_url(); ?>/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/custom.js"></script>
+<script src="<?php echo base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<!-- <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
   -->
   <!-- Core plugin JavaScript-->
-  <script src="<?php echo base_url(); ?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
 
-  <script src="<?php echo base_url(); ?>/assets/js/ep-style.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/ep-style.js"></script>
 
- 
   <!-- Page level plugins -->
 
-   <script src="<?php echo base_url(); ?>/assets/js/demo/jquery.validate.js"></script>
-   <script src="<?php echo base_url(); ?>/assets/js/demo/validations.js"></script>
+  <!-- <script src="<?php // echo base_url(); ?>/assets/js/demo/jquery.validate.js"></script>
+  <script src="<?php // echo base_url(); ?>/assets/js/demo/validations.js"></script> -->
 
-   <script src="<?php echo base_url(); ?>/assets/js/demo/dataTables.bootstrap4.min.js"></script>
-   
+
 <script src="<?php echo base_url(); ?>/assets/js/demo/bootstrap-datetimepicker.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Initialize
+    $("#autocompleteuser").autocomplete({
+      source: function(request, response) {
+        // CSRF Hash
+        var csrfName = $('.txt_csrfname').attr('name'); // CSRF Token name
+        var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+        // Fetch data
+        $.ajax({
+          url: "<?= site_url('Garage/getGarages'); ?>",
+          type: 'post',
+          dataType: "json",
+          data: {
+            search: request.term,
+            [csrfName]: csrfHash // CSRF Token
+          },
+          success: function(data) {
+            // Update CSRF Token
+            $('.txt_csrfname').val(data.token);
+            response(data.data);
+          }
+        });
+      },
+      select: function(event, ui) {
+        // Set selection
+        $('#autocompleteuser').val(ui.item.label); // display the selected text
+        // $('#userid').val(ui.item.value); // save selected id to input
+        return false;
+      },
+
+        focus: function(event, ui) {
+        $("#autocompleteuser").val(ui.item.label);
+        // $( "#userid" ).val( ui.item.value );
+        return false;
+      },
+    });
+
+  });
+</script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 

@@ -278,6 +278,9 @@
             <div class='alert alert-danger mt-2'>
               <?= $validation->getError('faxes');?>
             </div>
+          
+            <?php echo form_input(array('type'=>'hidden','id' => 'customer_details_changed','name' => 'customer_details_changed', 'value' => ''));?>      
+           
             <?php
               }
             ?>
@@ -289,6 +292,8 @@
         <div class="col-lg-12 mb-4">
 
           <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
+          
+          <div class="change-message">You have unsaved changes.</div>
 
         </div>
 

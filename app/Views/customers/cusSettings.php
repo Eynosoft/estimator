@@ -1,12 +1,20 @@
-<!-- Content Column -->
-<!-- <button style="text-align: right;" type="button" class="btn btn-info" data-toggle="modal" data-target="#documentsModal">Add Documents</button> -->
+<br>
+<div class="col-md-12">
+    <div class="row">
+
+            <div class="col-md-6" style="text-align: left;">
+                <h4>List Documents</h4>
+            </div>
+        <div class="col-md-6" style="text-align: right;">
+           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#documentsModal">Add Documents</button>
+        </div>
+</div>
+</div><br>
 
 <div class="row">
-
   <div class="col-lg-12 mb-4">
 
     <!-- Project Card Example -->
-
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -21,7 +29,7 @@
 
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-            <tbody>
+            <!-- <tbody>
 
               <tr>
 
@@ -36,7 +44,7 @@
 
                 <td><input type="checkbox"></td>
 
-              </tr>
+              </tr> -->
 
             </tbody>
 
@@ -61,6 +69,7 @@
 </div>
 
 <!-- Modal -->
+
 <style>
 
 .kv-file-upload
@@ -83,43 +92,82 @@
             
             <div class="modal-body">
 
-                <?php
-              
-                $frmAttributes =  array(
-                    'id' => 'customerdoc',
-                    'method' => 'post',
-                    'class' => 'claimcity'
-                );
-
-
-                ?>
-               
-                <?php echo form_open_multipart('Customer/insertDocuments', $frmAttributes); ?>
-
-                <?php echo form_input(array('type' => 'hidden', 'class' => 'form-control', 'id' => 'cid', 'name' => 'cid', 'value' => $cid)); ?>
-
-
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <?php echo form_label('<strong>Upload File</strong>'); ?>
-                        <div class="file-loading">
-                            <?php echo form_input(array('type' => 'file', 'class' => 'file form-control', 'id' => 'file-5', 'name' => 'upload_file[]','multiple'=> '', 'placeholder' => 'Upload File', 'data-upload-url' => '#', 'data-theme' => 'fa')); ?>
+            <div class="form-group">
+                    <div class="dropzone dz-clickable" id="myDrop">
+                        <div class="dz-default dz-message" data-dz-message="">
+                            <span>Click Here for Browse or <br> Drop files here to upload</span>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Save Button row -->
+            </div>
 
-                <div class="form-row">
-                    <div class="col-lg-12 mb-4">
-                        <?php echo form_submit(array('class' => 'btn btn-md btn-primary', 'value' => 'Save')); ?>
-                    </div>
-                </div>
+            <div class="form-group">
+                    <button type="submit" id="add_file" class="btn btn-primary" name="submit"><i class="fa fa-upload"></i> Upload Files</button>        
+            </div>
 
-                <?php echo form_close(); ?>
-                
             </div>
         </div>
     </div>
 </div>
+</div>
+
+<?php 
+
+$method = base_url('Customer/insertDocuments');
+
+?>
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script>
+<script>
+	//Dropzone script
+   $(document).ready(function(){
+       $("#add_file").on('click',function(e){
+           e.preventDefault();
+       })
+   });
+	Dropzone.autoDiscover = false;
+	var myDropzone = new Dropzone("div#myDrop", 
+	 { 
+		 paramName: "files", // The name that will be used to transfer the file
+		 addRemoveLinks: true,
+         timeout: 200000,
+		 uploadMultiple: true,
+		 autoProcessQueue: false,
+		 parallelUploads: 50,
+		 maxFilesize: 1024, // MB
+		 acceptedFiles: ".png, .jpeg, .jpg, .gif, .pdf , .doc, .docx , .xls, .xlsx",
+		 url: "<?php echo $method; ?>",
+	 });
+
+	 /* Add Files Script*/
+	 myDropzone.on("success", function(file, message){
+		//$("#msg").html(message);
+                swal({
+                title: "File Inserted Successfully..!",
+                text: "Message!",
+                type: "success",
+                dangerMode: true,  
+                buttons: true
+                },
+                function(){
+                  $(".close").trigger('click');
+                  window.location.href= document.getElementById("redirectDocUrl").value;
+                }
+                ); 
+	    });
+	 
+	 myDropzone.on("error", function (data) {
+		 $("#msg").html('<div class="alert alert-danger">There is some thing wrong, Please try again!</div>');
+	 });
+	 
+	 myDropzone.on("complete", function(file) {
+		myDropzone.removeFile(file);
+	 });
+	 
+	 $("#add_file").on("click",function (){
+		myDropzone.processQueue();
+	 });
+
+	</script>   
+
 

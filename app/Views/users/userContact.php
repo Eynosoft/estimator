@@ -28,7 +28,7 @@
                       'method' => 'post',
                     ];
 
-                    echo form_open('Users/store', $frmAttribute);
+                    echo form_open_multipart('Users/store', $frmAttribute);
 
                     ?>
 
@@ -38,7 +38,7 @@
 
                     foreach($users as $row)
 
-                      {
+                    {
 
                     ?>
 
@@ -96,7 +96,7 @@
 
                           <?php if (isset($validation)) { ?>
                             <div style="color: red;">
-                              <?= $validation->getError('file'); ?>
+                              <?= $validation->getError('error'); ?>
                             </div>
 
                           <?php
@@ -161,7 +161,6 @@
                           ?>
 
                         </div>
-
 
                         <div class="form-group col-md-6">
 

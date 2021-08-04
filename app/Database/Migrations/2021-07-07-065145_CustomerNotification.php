@@ -11,7 +11,7 @@ class CustomerNotification extends Migration
 			$this->forge->addField([
 					
 				'id' => ['type'=>'int', 'constraints' => '11' , 'unsigned' => true, 'auto_increament' => true],
-				'cid' => ['type'=>'int', 'constraints' => '11', 'unsigned' => true, 'auto_incerament' => true],
+				'cid' => ['type'=>'int', 'constraints' => '11', 'unsigned' => true],
 				'job_type' => ['type'=> 'int', 'contraints' => '11', 'unsigned' => true],
 				'email' => ['type' => 'int', 'constraints' => '11', 'unsigned' => true],
 				'sms' => ['type'=> 'int', 'constraints' => '11', 'unsigned' => true],

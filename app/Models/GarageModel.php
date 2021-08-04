@@ -8,5 +8,5 @@ class GarageModel extends Model
 {
 	 protected $table = 'garage';
 	 protected $primaryKey = 'id';
-	 protected $allowedFields = ['garage_name','owner_name','reports_password','email','mobile','landline','fax','notes']; 
+	 protected $allowedFields = ['garage_name','owner_name','reports_password','email','mobile','landline','fax','notes','active']; 
 }

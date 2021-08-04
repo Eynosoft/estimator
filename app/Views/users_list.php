@@ -1,5 +1,4 @@
 <?php echo  $this->extend('template/layout_main'); ?>
-
 <?php echo  $this->section('content'); ?>
 
 <div class="container-fluid">
@@ -9,6 +8,7 @@
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
     <h1 class="h3 mb-0 text-gray-800">Users List</h1>
+    <a href="<?php echo base_url('Users/create/'); ?>" class="btn btn-primary">Create New User</a>
 
   </div>
 
@@ -57,7 +57,7 @@
             if (!empty($user)) :
 
               $count = 1;
-              foreach ($user as $row) :
+              foreach($user as $row) :
 
             ?>
 
@@ -69,7 +69,7 @@
 
                   <td><?php echo $row['locale']; ?></td>
 
-                  <td><?php echo $row['file']; ?></td>
+                  <td><img src="<?php echo base_url('') ?>/assets/uploads/<?php echo $row['file']; ?>" height="50" width="70"></td>
 
                   <td><?php echo $row['email']; ?></td>
 
@@ -78,7 +78,6 @@
                   <td><?php echo $row['land_line']; ?></td>
 
                   <td><?php echo $row['fax']; ?></td>
-
 
                   <td class="actionCol">
 
@@ -90,7 +89,6 @@
 
                   </td>
 
-
                   <td class="actionCol">
 
                     <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('Users/create') . '/' . $row['id']; ?>">
@@ -99,9 +97,7 @@
 
                     </a>
 
-                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('Users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
-
-                    </a>
+                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('Users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
                   </td>
 
@@ -111,8 +107,6 @@
 
               <?php endforeach; ?>
             <?php endif; ?>
-
-
 
           </tbody>
 
@@ -130,17 +124,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
+
+
 <script>
   $(document).ready(function() {
     $('#user-list').DataTable();
   });
 </script>
 
-
-
 <!-- /.container-fluid -->
-
-
-
 
 <?php echo  $this->endSection(); ?>

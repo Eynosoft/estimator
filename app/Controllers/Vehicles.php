@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\VehicleModel;
+use App\Models\GarageModel;
 
 class Vehicles extends BaseController
 {
@@ -112,7 +113,7 @@ class Vehicles extends BaseController
 		   }
 	}
 
-		return $this->response->redirect(site_url('Vehicles'));
+	return $this->response->redirect(site_url('Vehicles'));
 	}
 
 	public function delete($id = null)
@@ -122,5 +123,26 @@ class Vehicles extends BaseController
 		return $this->response->redirect(site_url('Vehicles'));
 	}
 
+	public function SearchAutoComplete()
+	{
+		$garagemodel = new GarageModel();
+	  $results['garage_data'] =	$garagemodel->like('garage_name', trim($this->input->post('string')), 'both');
+		$results['garage_data'] = $garagemodel->limit(10);  
+		
+		echo "<pre>";
+		print_r($results);
+		die;
+
+		$html = "";
+
+		$i =0;
+		if(count($results)>0)
+		{
+			foreach ($results as $value) {
+			 $html[] = "<li ><a href='javascript:void(0)' onclick = 'pick()'>".$value['listing_title']."</a></li>";
+			}
+		echo implode(" ",$html);
+		}
+	}
 
 }
