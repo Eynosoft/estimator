@@ -1,54 +1,98 @@
-<br>
-<div class="col-md-12">
-    <div class="row">
 
-            <div class="col-md-6" style="text-align: left;">
-                <h4>List Documents</h4>
-            </div>
-        <div class="col-md-6" style="text-align: right;">
-           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#documentsModal">Add Documents</button>
-        </div>
+<br>
+
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-6" style="text-align: left;">
+      <h4>List Documents</h4>
+    </div>
+  </div>
 </div>
-</div><br>
+
+<br>
 
 <div class="row">
-  <div class="col-lg-12 mb-4">
 
+  <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
 
       <div class="card-header py-3">
-
         <h6 class="m-0 font-weight-bold text-primary">Settings</h6>
-
       </div>
 
-      <div class="card-body">
+  <div class="card-body">
 
-        <div class="table-responsive">
+    <div class="table-responsive">
 
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+     <?php 
+      
+      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
 
-            <!-- <tbody>
+      $frmattribute = [
+                'id' => 'customer_doc',
+                'method' => 'post',
+                ];
+
+    echo form_open('Customer/storeDoc',$frmattribute);
+
+    ?>
+         <?php 
+         
+         $customer_id = 5;
+         echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
+ 
+         ?>
+       
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+            <tbody>
 
               <tr>
 
-                <td style="width: 96%;">Images As Attachment </td>
-                <td><input type="checkbox"></td>
+                <td style="width: 80%;">Images As Attachment </td>
+
+                <td>
+
+                <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="image">
+
+                </td>
 
               </tr>
 
               <tr>
 
-                <td>Documents As Attachment</td>
+                <td> Documents As Attachment </td>
 
-                <td><input type="checkbox"></td>
+                <td>
 
-              </tr> -->
+                  <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="document">
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>Timings on Report</td>
+
+                <td style="width: 20px;">  
+                  <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="timing">
+                </td>
+
+              </tr>
 
             </tbody>
 
-          </table>
+        </table>
+
+        <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savedoctype', 'value' => 'Save')) ?>
+  
+        <?php 
+          
+        echo form_close();
+
+        ?>
 
         </div>
 
@@ -56,15 +100,9 @@
 
     </div>
 
-  </div>
+</div>
 
-  <!-- Save Button row -->
-
-  <div class="col-lg-12 mb-4">
-
-    <button type="button" class="btn btn-md btn-primary">Save</button>
-
-  </div>
+<!-- Save Button row -->
 
 </div>
 
@@ -72,102 +110,8 @@
 
 <style>
 
-.kv-file-upload
-{
+  .kv-file-upload {
     display: none !important;
-}
+  }
 
 </style>
-
-<div id="documentsModal" class="modal fade" role="dialog">
-
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title">Add Documents</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>      
-            
-            <div class="modal-body">
-
-            <div class="form-group">
-                    <div class="dropzone dz-clickable" id="myDrop">
-                        <div class="dz-default dz-message" data-dz-message="">
-                            <span>Click Here for Browse or <br> Drop files here to upload</span>
-                        </div>
-                    </div>
-            </div>
-
-            <div class="form-group">
-                    <button type="submit" id="add_file" class="btn btn-primary" name="submit"><i class="fa fa-upload"></i> Upload Files</button>        
-            </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<?php 
-
-$method = base_url('Customer/insertDocuments');
-
-?>
-
-<link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script>
-<script>
-	//Dropzone script
-   $(document).ready(function(){
-       $("#add_file").on('click',function(e){
-           e.preventDefault();
-       })
-   });
-	Dropzone.autoDiscover = false;
-	var myDropzone = new Dropzone("div#myDrop", 
-	 { 
-		 paramName: "files", // The name that will be used to transfer the file
-		 addRemoveLinks: true,
-         timeout: 200000,
-		 uploadMultiple: true,
-		 autoProcessQueue: false,
-		 parallelUploads: 50,
-		 maxFilesize: 1024, // MB
-		 acceptedFiles: ".png, .jpeg, .jpg, .gif, .pdf , .doc, .docx , .xls, .xlsx",
-		 url: "<?php echo $method; ?>",
-	 });
-
-	 /* Add Files Script*/
-	 myDropzone.on("success", function(file, message){
-		//$("#msg").html(message);
-                swal({
-                title: "File Inserted Successfully..!",
-                text: "Message!",
-                type: "success",
-                dangerMode: true,  
-                buttons: true
-                },
-                function(){
-                  $(".close").trigger('click');
-                  window.location.href= document.getElementById("redirectDocUrl").value;
-                }
-                ); 
-	    });
-	 
-	 myDropzone.on("error", function (data) {
-		 $("#msg").html('<div class="alert alert-danger">There is some thing wrong, Please try again!</div>');
-	 });
-	 
-	 myDropzone.on("complete", function(file) {
-		myDropzone.removeFile(file);
-	 });
-	 
-	 $("#add_file").on("click",function (){
-		myDropzone.processQueue();
-	 });
-
-	</script>   
-
-

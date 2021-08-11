@@ -42,35 +42,55 @@
 
                 <td>Estimation Job Completed</td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                 <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
               </tr>
+
 
               <tr>
 
                 <td>Estimation Job Work Order</td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
               </tr>
+
 
               <tr>
 
                 <td>Estimation Request External Created</td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                </td>
 
               </tr>
 

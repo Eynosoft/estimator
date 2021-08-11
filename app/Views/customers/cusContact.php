@@ -12,18 +12,21 @@
 
       <?php 
       
-        $lblAttributes = ['class' => 'fieldLabel mb-1']; 
-        $frmattribute = [
+      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
+      $frmattribute = [
               'id' => 'customer_create',
               'method' => 'post',
-            ];
-        
-       echo form_open('Customer/Store',$frmattribute);
+              ];
+      
+      echo form_open('Customer/Store',$frmattribute);
 
-       if(!empty($customer))
+      if(!empty($customer))
        {
+
          foreach($customer as $cdata)
-         {
+
+        {
+
           $id =  $cdata['id'] ;
           $client_name =$cdata['client_name'];
           $locale = $cdata['locale'];
@@ -34,6 +37,7 @@
           $fax = $cdata['fax'];
 
         ?>
+
 
       <div class="card-body">
 
@@ -145,7 +149,6 @@
 
       <?php } }  else  { ?>
 
-
       <div class="card-body">
 
         <div class="form-row">
@@ -250,7 +253,7 @@
         </div>
 
         <div class="form-row">
-
+          
           <div class="form-group col-md-6">
 
             <?php echo form_label('Land Lines','land lines', $lblAttributes); ?>
@@ -267,22 +270,27 @@
 
           </div>
 
-
           <div class="form-group col-md-6">
 
             <?php echo form_label('Faxes','faxes', $lblAttributes); ?>
             <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'faxes', 'name'=> 'faxes', 'placeholder' => 'Enter Faxes', 'value' => '')); ?>
 
             <span class="noteText">Seperate multiple faxes numbers with comma.</span>
-            <?php if(isset($validation)) {?>
+
+            <?php if(isset($validation)) { ?>
+
             <div class='alert alert-danger mt-2'>
+
               <?= $validation->getError('faxes');?>
+
             </div>
           
-            <?php echo form_input(array('type'=>'hidden','id' => 'customer_details_changed','name' => 'customer_details_changed', 'value' => ''));?>      
+          <?php echo form_input(array('type'=>'hidden','id' => 'customer_details_changed','name' => 'customer_details_changed', 'value' => ''));?>      
            
-            <?php
-              }
+          <?php
+
+            }
+
             ?>
 
           </div>
@@ -291,15 +299,18 @@
 
         <div class="col-lg-12 mb-4">
 
-          <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
+        <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
           
           <div class="change-message">You have unsaved changes.</div>
 
         </div>
 
       </div>
-
+      
       <?php } ?>
+
+
+    <?php echo form_close(); ?>
 
 
     </div>

@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Database\Migrations;
-
 use CodeIgniter\Database\Migration;
-
 class Requestor extends Migration
 {
 	public function up()
@@ -33,8 +31,8 @@ class Requestor extends Migration
 					 'null' => true,
 				 ],
 
-				 'created_at datetime default current_timestamp',
-				 'updated_at datetime default current_timestamp on update current_timestamp',
+			'created_at datetime default current_timestamp',
+			'updated_at datetime default current_timestamp on update current_timestamp',
 
 		 ]);
 

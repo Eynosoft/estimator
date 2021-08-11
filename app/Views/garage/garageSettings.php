@@ -28,7 +28,9 @@
 
                 <td style="width: 96%;">Images As Attachment </td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="image">
+                </td>
 
               </tr>
 
@@ -36,7 +38,19 @@
 
                 <td>Documents As Attachment</td>
 
-                <td><input type="checkbox"></td>
+                <td>
+                <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="document">
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>Timings on Report</td>
+
+                <td style="width: 20px;">  
+                  <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="timing">
+                </td>
 
               </tr>
 

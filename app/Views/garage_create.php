@@ -8,7 +8,6 @@
 
 <!-- Page Heading -->
 
-
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
   <h1 class="h3 mb-0 text-gray-800">Add Garage</h1>
@@ -18,6 +17,16 @@
 <!-- Content Row -->
 
 <div class="row">
+
+      <?php 
+
+    $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : '';
+
+    echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
+
+    unset($_SESSION['currentTab']);
+
+      ?>
 
   <div class="col-lg-12 mb-4">
 
@@ -36,8 +45,6 @@
       </ul>
 
       <div class="tab-content">
-
-        
 
         <div id="cusContact" class="tab-pane fade in active">
 

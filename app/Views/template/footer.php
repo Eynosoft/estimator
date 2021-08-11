@@ -1,5 +1,5 @@
-<!-- Footer section starts  -->
-  <!-- Scroll to Top Button-->
+<!-- Footer section starts -->
+<!-- Scroll to Top Button-->
 
   <a class="scroll-to-top rounded" href="#page-top">
 
@@ -7,9 +7,7 @@
 
   </a>
 
-
 <!-- Logout Modal-->
-
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -30,15 +28,15 @@
 
         </div>
 
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
 
         <div class="modal-footer">
 
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-          <a class="btn btn-primary" href="<?php echo base_url(route_to('logout')); ?>">Logout</a>
+        <a class="btn btn-primary" href="<?php echo base_url(route_to('logout')); ?>">Logout</a>
 
-        </div>
+      </div>
 
       </div>
 
@@ -56,17 +54,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <!-- <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
   -->
-  <!-- Core plugin JavaScript-->
+<!-- Core plugin JavaScript-->
 <script src="<?php echo base_url(); ?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
-
 <script src="<?php echo base_url(); ?>/assets/js/ep-style.js"></script>
-
   <!-- Page level plugins -->
-
   <!-- <script src="<?php // echo base_url(); ?>/assets/js/demo/jquery.validate.js"></script>
   <script src="<?php // echo base_url(); ?>/assets/js/demo/validations.js"></script> -->
 

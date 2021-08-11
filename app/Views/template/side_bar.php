@@ -158,7 +158,7 @@
 
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Requests'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <a class="collapse-item" href="<?php echo base_url('Requests/requestors/'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
         List</a>
 
       <a class="collapse-item" href="<?php echo base_url('Requests/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> New

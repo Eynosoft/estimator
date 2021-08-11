@@ -29,7 +29,7 @@
 
 
 
-              <a href="" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
+            <a href="<?php echo base_url('Requests/create'); ?>" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
 
 
 

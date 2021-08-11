@@ -14,9 +14,70 @@ $(document).ready(function() {
       $(activeTab).fadeIn(); //Fade in the active content
       return false;
   });
+
 });
 
 // Active tab bars for the all modules ends
+
+
+// For Redirecting to the next tab after insertion of the data 
+
+	$(document).ready(function() {
+
+    var currentTab = $("#currentTab").val();
+    window.location.hash = currentTab;
+    var me = getUrlVars()["tab"];
+    $(".nav-tabs li a[href='"+currentTab+"']").trigger('click');
+    var type = window.location.hash.substr(1);
+    console.log('me='+me);
+    if(type == 'undefined')
+    {
+      window.location.hash = "";
+      //this.hash.slice(1);
+      // location.href.replace('#', " ");
+      history.replaceState(null, null,' ');
+    }
+  
+    if(type!='' && type=='cusNotifications') {
+      $(".nav-tabs li a[href='#cusNotifications']").trigger('click');
+    }
+    
+    if(me!='' && (me=='cusNotifications#' || me=='cusNotificationsuments')) {
+      $(".nav-tabs li a[href='#cusNotifications']").trigger('click');
+    }
+
+    $(".nav-tabs li").on('click',function() {
+
+     if($(this).find('a').attr('href') == '#') {
+        showAlert('Please enter "Details" before proceeding',"Alert","error");
+        return false;
+      }
+
+      $(".nav-tabs li").removeClass('active');
+      $(this).addClass('active');
+      console.log($(this).find('a').attr('href'));
+      window.location.hash = $(this).find('a').attr('href');
+
+      });
+
+  });
+
+// for redirectinn to the next tab after insertion of the data 
+// Get var url 
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+// get var url 
 
 
 

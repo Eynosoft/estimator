@@ -7,7 +7,6 @@ use App\Models\RequestorModel;
 
 class Requests extends BaseController
 {
-
 	protected $customer_model = null;
 	protected $request_model = null;
 
@@ -21,34 +20,55 @@ class Requests extends BaseController
 
 	public function index()
 	{
+
 		if(!logged_in())
 		{
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
         'username' => user()->username,
 		];
 		return view('requests_list', $context);
+
 	}
 
 	public function create()
 	{
+
 	  if(!logged_in())
 		{
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 	  $data['context'] = [
 			'username' => user()->username,
 	  ];
-		$this->Customer_model = new CustomerModel();
 		$data['customer'] = $this->customer_model->setCustomerDropdown();
 	  return view('new_estimation_request',$data);
 	}
 
+
+	public function update($id)
+	{
+
+		if(!logged_in())
+		{
+			return redirect()->to(base_url(route_to('/')));
+		}
+
+		$data['context'] = [
+			'username' => user()->username,
+		];
+
+		$data['requestor'] = $this->request_model->requestorGetAllDataById($id);
+		return view('new_estimation_request',$data);
+
+	}
+
 	public function store() {
-	
-		helper(['form','url']);
-		$validation = \Config\Services::validation();
+		// helper(['form','url']);
+		// $validation = \Config\Services::validation();
 		$check = $this->validate(
 			[
 				'customer' => 'required',
@@ -57,44 +77,58 @@ class Requests extends BaseController
 			]);
 
 		if(!$check)
-		{
-			return view('new_estimation_request',['validation'=>$this->validator]);
-		} 
-		else {
-			
-			$this->Requestor = new RequestorModel();
+			{
+				return view('new_estimation_request',['validation'=>$this->validator]);
+			} 
+
+		else{
+
 			$id = $this->request->getPost('id');
+			
 			$data = [
 				'customer' => $this->request->getVar('customer'),
 				'requested_date' => $this->request->getVar('requested_date'),
-				'requestor' => $this->request->getVar('requestor'), 
+				'requestor' => $this->request->getVar('requestor'),
 			];
 
-			if(!empty($id)){
-				$result = $this->RequestorModel->insertrequestor($data);
+			if(!empty($id)) {
+				$result = $this->request_model->insertrequestor($data,$id);
 				//$_SESSION['message'] = 'success';
-				if($result){
-				$this->session->set('message','success');
-				}
-				else{
-					$this->session->set('error','error');
-				}
 			}
 
-				else{
-					$result = $this->RequestorModel->insertrequestor($data);
-					if($result){
+		  else{
+				 // echo "<pre>";
+				 // print_r($data);
+				 // die('########');
+				  $result = $this->request_model->insertrequestor($data);
+					}
+    
+		if($result){
 					$this->session->set('message','success');
 					}
-					else{
-						$this->session->set('error','error');
-					}
+			else{
+					$this->session->set('error','error');
 				}
-
 		 }
 
-		return $this->response->redirect(site_url('Customer'));
+		return $this->response->redirect(site_url('Requests/requestors'));
 
+	}
+
+	public function requestors(){
+	
+			if(!logged_in())
+			{
+				 return redirect()->to(base_url(route_to('/')));
+			}
+	
+			$data['context'] = [
+				'username' => user()->username,
+			];
+
+			$data['requestor'] = $this->request_model->requestorGetAllData();
+			return view('jobs_estimation_list',$data);
+	
 	}
 
 }

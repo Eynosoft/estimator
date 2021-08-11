@@ -1,17 +1,13 @@
 <?php echo $this->extend('template/layout_main'); ?>
-
 <?php echo $this->section('content'); ?>
   
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
-
 <!-- Page Heading -->
-
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
 <!-- <h1 class="h3 mb-0 text-gray-800">Add Customer</h1> -->
-
 </div>
 
 <?php 
@@ -19,7 +15,6 @@
 $activeClass = ''; 
 
 $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : ' ';
-
 echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
 
 unset($_SESSION['currentTab']);
@@ -36,23 +31,35 @@ unset($_SESSION['currentTab']);
 
       <ul class="nav nav-tabs">
   
-       <?php if(!empty($currentTab) && ($currentTab == '#cusContact')) {
+      <?php if(!empty($currentTab) && ($currentTab == '#cusContact')) {
+
           $activeClass = 'active';
+
         } else { 
-           $activeClass = '';
+
+          $activeClass = '';
+
         }  ?>
 
       <li class="<?php echo $activeClass; ?>">
+
       <a data-id="customerContactTab" data-toggle="tab" href="#cusContact">Contact</a></li>
 
-        <?php if(!empty($currentTab) && ($currentTab == '#cusNotifications')) {
+       <?php if(!empty($currentTab) && ($currentTab == '#cusNotifications')) {
+
           $activeClass = 'active';
-        } else {
-          $activeClass = '';
+
+       } else {
+
+        $activeClass = '';
+
         } ?>
 
-        <li class="<?php echo $activeClass; ?>">
-        <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a></li>
+      <li class="<?php echo $activeClass; ?>">
+
+      <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
+        
+      </li>
         
         <?php if(!empty($currentTab) && ($currentTab == '#cusSettings')) {
           $activeClass = 'active';
@@ -60,9 +67,11 @@ unset($_SESSION['currentTab']);
           $activeClass = '';
         } ?>
 
-        
       <li class="<?php echo $activeClass; ?>">
-      <a data-id="customerSettingTab" data-toggle="tab" href="#cusSettings">Settings</a></li>
+
+      <a data-id="customerSettingTab" data-toggle="tab" href="#cusSettings">Settings</a>
+
+      </li>
 
         <?php if(!empty($currentTab) && ($currentTab == '#cusNotes')) {
           $activeClass = 'active';
@@ -111,6 +120,5 @@ unset($_SESSION['currentTab']);
 </div>
 
 </div>
-
 
 <?php echo $this->endSection(); ?>

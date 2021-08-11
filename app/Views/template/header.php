@@ -17,12 +17,10 @@
 <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
  <!-- jQuery UI CSS -->
-   <!-- jQuery -->
-  
-   <!-- <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script> -->
+<!-- jQuery -->
+  <!-- <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script> -->
   <!-- Custom styles for this template-->
 <link href="<?php echo base_url(); ?>/assets/css/ep-style.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>/assets/css/ep-main.css" rel="stylesheet">
