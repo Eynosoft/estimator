@@ -1,33 +1,33 @@
 //Active tab bars for the all modules 
-$(document).ready(function() {
-  //Default Action
-  $(".tab_content").hide(); //Hide all content
-  $("ul.nav-tabs li:first").addClass("active").show(); //Activate first tab
-  $(".tab-pane:first").show(); //Show first tab content
+// $(document).ready(function() {
 
-  //On Click Event
-    $("ul.nav-tabs li").click(function() {
-      $("ul.nav-tabs li").removeClass("active"); //Remove any "active" class
-      $(this).addClass("active"); //Add "active" class to selected tab
-      $(this).attr('id').show(); //Hide all tab content
-      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-      $(activeTab).fadeIn(); //Fade in the active content
-      return false;
-  });
+//   //Default Action
+//   $(".tab_content").hide(); //Hide all content
+//   $("ul.nav-tabs li:first").addClass("active").show(); //Activate first tab
+//   $(".tab-pane:first").show(); //Show first tab content
 
-});
+//   // On Click Event
+//     $("ul.nav-tabs li").click(function() {
+//       $("ul.nav-tabs li").removeClass("active"); //Remove any "active" class
+//       $(this).addClass("active"); //Add "active" class to selected tab
+//       $(this).attr('id').show(); //Hide all tab content
+//       var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+//       $(activeTab).fadeIn(); //Fade in the active content
+//       return false;
+//   });
+
+// });
 
 // Active tab bars for the all modules ends
-
 
 // For Redirecting to the next tab after insertion of the data 
 
 	$(document).ready(function() {
-
     var currentTab = $("#currentTab").val();
+    console.log('current Tab='+ currentTab);
     window.location.hash = currentTab;
     var me = getUrlVars()["tab"];
-    $(".nav-tabs li a[href='"+currentTab+"']").trigger('click');
+    $(".nav li a[href='"+currentTab+"']").trigger('click');
     var type = window.location.hash.substr(1);
     console.log('me='+me);
     if(type == 'undefined')
@@ -37,19 +37,26 @@ $(document).ready(function() {
       // location.href.replace('#', " ");
       history.replaceState(null, null,' ');
     }
-  
-    if(type!='' && type=='cusNotifications') {
+    if(type!='' && type=='#cusNotifications') {
       $(".nav-tabs li a[href='#cusNotifications']").trigger('click');
     }
     
-    if(me!='' && (me=='cusNotifications#' || me=='cusNotificationsuments')) {
+    if(me!='' && (me=='#cusNotifications' || me=='cusNotificationsuments')) {
       $(".nav-tabs li a[href='#cusNotifications']").trigger('click');
     }
 
-    $(".nav-tabs li").on('click',function() {
+    if(type!= '' && type== '#cusSettings'){
+      $(".nav-tabs li a[href='#cusSettings']").trigger('click');
+    }
 
-     if($(this).find('a').attr('href') == '#') {
-        showAlert('Please enter "Details" before proceeding',"Alert","error");
+    if(type!= '' && (me == '#cusSettings' || me == '#cusSettings')){
+      $(".nav-tabs li a[href='#cusSettings']").trigger('click');
+    }
+
+
+    $(".nav-tabs li").on('click',function() {
+      if($(this).find('a').attr('href') == '#') {
+         showAlert('Please enter "Details" before proceeding',"Alert","error");
         return false;
       }
 
@@ -58,11 +65,12 @@ $(document).ready(function() {
       console.log($(this).find('a').attr('href'));
       window.location.hash = $(this).find('a').attr('href');
 
-      });
-
+    }); 
+     
   });
-
+  
 // for redirectinn to the next tab after insertion of the data 
+
 // Get var url 
 
 function getUrlVars()
@@ -79,6 +87,23 @@ function getUrlVars()
 }
 // get var url 
 
+// Summer Note Starts
+
+$(document).ready(function() {
+  $('#sysnotes_description').summernote({
+    //placeholder: 'Hello Bootstrap 4',
+    tabsize: 2,
+    height: 100
+    });
+  });
+
+// Summner Notes Ends
+
+$(document).on('click', "#assignjobestimation",function(){
+  alert('hello');
+  ('#about_requests').hide();
+  ('#assign').show();
+});
 
 
 

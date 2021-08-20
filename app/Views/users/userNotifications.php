@@ -1,11 +1,8 @@
-
 <!-- Content Column -->
 <div class="row">
 
   <div class="col-lg-12 mb-4">
-
     <!-- Project Card Example -->
-
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -13,6 +10,25 @@
         <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
 
       </div>
+
+      <?php
+
+      $lblAttributes = ['class' => 'fieldLabel mb-1'];
+
+      $frmattribute = [
+        'id' => 'users_notification',
+        'method' => 'post',
+      ];
+
+      echo form_open('users/storeNotifications', $frmattribute);
+
+      ?>
+
+      <?php
+
+      echo form_input(array('type' => 'hidden', 'name' => 'uid', 'value' => $uid));
+
+      ?>
 
       <div class="card-body">
 
@@ -28,8 +44,6 @@
 
                 <th>Email</th>
 
-                <th>Sms</th>
-
                 <th>Push</th>
 
               </tr>
@@ -43,15 +57,16 @@
                 <td>Estimation Job Completed</td>
 
                 <td>
-                 <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_email" name="usernotifications[]">
+
                 </td>
 
-                <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
-                </td>
 
                 <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_push" name="usernotifications[]">
+
                 </td>
 
               </tr>
@@ -62,15 +77,11 @@
                 <td>Estimation Job Work Order</td>
 
                 <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_email" name="usernotifications[]">
                 </td>
 
                 <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
-                </td>
-
-                <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_push" name="usernotifications[]">
                 </td>
 
               </tr>
@@ -81,15 +92,11 @@
                 <td>Estimation Request External Created</td>
 
                 <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_email" name="usernotifications[]">
                 </td>
 
                 <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
-                </td>
-
-                <td>
-                <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="timing">
+                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_push" name="usernotifications[]">
                 </td>
 
               </tr>
@@ -102,16 +109,19 @@
 
       </div>
 
+      <div class="col-lg-12 mb-4">
+
+        <?php echo form_input(array('type'=>'submit','value'=>'Save','name' => 'usernotification','class' => 'btn btn-md btn-primary', 'id'=>'usernotification')
+        ) ?>
+
+      </div>
+
+      <?php echo form_close(); ?>
+
     </div>
 
   </div>
 
   <!-- Save Button row -->
-
-  <div class="col-lg-12 mb-4">
-
-    <button type="button" class="btn btn-md btn-primary">Save</button>
-
-  </div>
 
 </div>

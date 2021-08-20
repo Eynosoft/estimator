@@ -55,7 +55,9 @@ if(isset($_SESSION['message']) && !empty($_SESSION['message']))
       $swtype = 'error';
       $swsubmessage = 'Something Went Wrong';
     break;
+
   }
+
 }
 
 unset($_SESSION['message']);

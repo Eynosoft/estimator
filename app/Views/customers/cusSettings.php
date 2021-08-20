@@ -25,24 +25,22 @@
 
     <div class="table-responsive">
 
-     <?php 
+    <?php 
       
       $lblAttributes = ['class' => 'fieldLabel mb-1']; 
-
       $frmattribute = [
                 'id' => 'customer_doc',
                 'method' => 'post',
                 ];
-
-    echo form_open('Customer/storeDoc',$frmattribute);
+      echo form_open('Customer/storeDoc',$frmattribute);
 
     ?>
-         <?php 
+
+      <?php 
          
-         $customer_id = 5;
-         echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
+        echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
  
-         ?>
+      ?>
        
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 

@@ -1,9 +1,9 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
 
-        <!-- Begin Page Content -->
+      <!-- Begin Page Content -->
 
-        <div class="container-fluid">
+      <div class="container-fluid">
 
           <!-- Page Heading -->
 
@@ -19,7 +19,7 @@
 
             <div class="col-lg-3 mb-4">
 
-              <a href="<?php echo base_url('Requests/create/'); ?>" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
+              <a href="<?php echo base_url('requests/create/'); ?>" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
 
               <!-- Left Other HTML -->
 
@@ -69,30 +69,6 @@
 
                 <div class="card-body">
 
-                  <!-- <div class="row mb-3">
-
-                    <div class="col">
-
-                      <div class="searchHeadBar">
-
-                        <div class="input-group md-form form-sm form-2 pl-0">
-
-                          <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
-
-                          <div class="input-group-append">
-
-                            <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div> -->
-
                   <div class="table-responsive">
 
                     <table class="table table-bordered" id="requestors" width="100%" cellspacing="0">
@@ -123,10 +99,9 @@
 
                       <?php
                         
-                       foreach ($requestor as $rows) 
-                       {
+                      foreach ($requestor as $rows) 
+                      {
                         
-
                       ?>
 
                         <tr>
@@ -145,11 +120,11 @@
 
                           <td class="actionCol">
 
-                            <a class="mr-2" href="view-estimation-requests.php">
+                        <a class="mr-2" href="<?php echo base_url('requests/view_estimations'); ?>">
 
-                              <i class="fa fa-eye" aria-hidden="true"></i>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
 
-                            </a>
+                          </a>
 
                           </td>
 

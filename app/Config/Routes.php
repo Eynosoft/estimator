@@ -29,11 +29,13 @@ $routes->setAutoRoute(true);
  * Route Definitions
  * --------------------------------------------------------------------
  */
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
 $routes->get('/', '\Myth\Auth\Controllers\AuthController::login');
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
+
 
 /*
  * --------------------------------------------------------------------

@@ -11,7 +11,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
           <h1 class="h3 mb-0 text-gray-800">Vehicles List</h1>
-          <a class="btn btn-primary" href="<?php echo base_url('Vehicles/create'); ?>">Add Vehicle</a>
+          <a class="btn btn-primary" href="<?php echo base_url('vehicles/create'); ?>">Add Vehicle</a>
 
           </div>
 

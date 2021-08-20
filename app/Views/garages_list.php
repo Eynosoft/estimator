@@ -9,14 +9,13 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
   <h1 class="h3 mb-0 text-gray-800">Garages</h1>
-  <a class="btn btn-primary" href="<?php echo base_url('Garage/create'); ?>">Add Garage</a>
+  <a class="btn btn-primary" href="<?php echo base_url('garage/create'); ?>">Add Garage</a>
 
 </div>
 
 <!-- DataTales Example -->
-
 <div class="card shadow mb-4">
-
+  
   <div class="card-header py-3">
 
     <h6 class="m-0 font-weight-bold text-primary">Garages List</h6>
@@ -51,9 +50,9 @@
 
       </thead>
 
-        <tbody>
+      <tbody>
 
-            <?php if($garage): ?>
+          <?php if($garage): ?>
 
             <?php foreach($garage as $row): ?>
 
@@ -73,13 +72,12 @@
 
               <td class="actionCol">
 
-                <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('Garage/view').'/'.$row['id']; ?>">
+                <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('garage/view').'/'.$row['id']; ?>">
                   <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
 
                 <a class="btn btn-datatable btn-icon btn-transparent-dark"
-                  href="<?php echo base_url('Garage/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o"
-                    aria-hidden="true"></i>
+                  href="<?php echo base_url('garage/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
                 </a>
 
               </td>
@@ -87,6 +85,7 @@
             </tr>
 
             <?php endforeach; ?>
+
             <?php endif; ?>
 
           </tbody>
@@ -105,9 +104,11 @@
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
   
 <script>
+
     $(document).ready(function() {
       $('#garage-list').DataTable();
-  });
+    });
+
 </script>
 
 

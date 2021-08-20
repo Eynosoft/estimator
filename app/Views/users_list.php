@@ -8,7 +8,7 @@
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
     <h1 class="h3 mb-0 text-gray-800">Users List</h1>
-    <a href="<?php echo base_url('Users/create/'); ?>" class="btn btn-primary">Create New User</a>
+    <a href="<?php echo base_url('users/create/'); ?>" class="btn btn-primary">Create New User</a>
 
   </div>
 
@@ -97,7 +97,8 @@
 
                     </a>
 
-                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('Users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('Users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </a>
 
                   </td>
 
@@ -107,6 +108,7 @@
 
               <?php endforeach; ?>
             <?php endif; ?>
+            
 
           </tbody>
 

@@ -8,22 +8,39 @@ use App\Models\GarageModel;
 
 class Vehicles extends BaseController
 {
+
+  protected $vehicle_model = null;
+
+	public function __construct()
+	{
+		$this->session = \Config\Services::session();
+		$this->session->start();
+		$this->vehicle_model = new VehicleModel();
+	}
+
+
+//------------------------------------------------------------------------//
+// Home Page for the Vehicle Starts //
+
 	public function index()
 	{
 		if(!logged_in())
 		{
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
-       'username' => user()->username,
+      'username' => user()->username,
 		];
-
-		$vehicleModel = new VehicleModel();
-		$context['vehicle'] = $vehicleModel->orderBy('id', 'DESC')->findAll();
+		$context['vehicle'] = $this->vehicle_model->getVehicleData();
 		return view('vehicle_list',$context);
-
 	}
+
+// Home Page For The Vehicle Ends
+// -------------------------------------------------------------------------// 
+
+
+// -------------------------------------------------------------------------//
+// Create Page Controller Starts //
 
 	public function create($id = null)
 	{
@@ -34,26 +51,36 @@ class Vehicles extends BaseController
 		$context = [
         'username' => user()->username,
 		];
-
-		$vehicleModel = new vehicleModel();
-		$context['vehicle'] = $vehicleModel->where('id', $id)->findAll();
+		$context['vehicle'] = $this->vehicle_model->getVehicleDataById($id);
 		return view('vehicle_create',$context);
 	}
 
-	public function View($id = null)
-	{
-       if(!logged_in())
-			 {
-				 return redirect()->to(base_url(route_to('/')));
-			 }
-			 $context = [
-				 'username' => user()->username,
-			 ];
+// Create Page Controller Ends //
+// --------------------------------------------------------------------------//
 
-			 $vehicleModel = new vehicleModel();
-			 $context['vehicle'] = $vehicleModel->where('id',$id)->findAll();
-			 return view('popups/vehicle_view',$context);
+
+// --------------------------------------------------------------------------//
+// View page controller for the vehcile Starts
+
+	public function view($id = null)
+	{
+      if(!logged_in())
+			{
+				return redirect()->to(base_url(route_to('/')));
+			}
+			$context = [
+				'username' => user()->username,
+			];
+			$context['vehicle'] = $this->vehicle_model->getVehicleDataById($id);
+			return view('popups/vehicle_view',$context);
 	}
+
+// View Page Controller For the vehicle Ends
+// -------------------------------------------------------------------------//
+
+
+// -----------------------------------------------------------------------------//
+// Store and Update Controller for the Vehcile Starts
 
 	public function store()
 	{
@@ -81,11 +108,9 @@ class Vehicles extends BaseController
 			{
 				return view('vehicle_create', ['validation'=>$this->validator]);
 			} else{	
+		$id = $this->request->getVar('id');
 
-     $vehicleModel = new VehicleModel();
-		 $id = $this->request->getVar('id');
-
-		 $data = [
+		$data = [
 			 'registration_plate' => $this->request->getVar('registration_plate'), 
 			 'manufacturing_date' => $this->request->getVar('manufacture_date'),
        'vin_number' => $this->request->getVar('vin_number'),
@@ -101,45 +126,49 @@ class Vehicles extends BaseController
 			 'pcode' => $this->request->getVar('pcode'),
 		 ];
 
-		 if(!empty($id)){
-			$vehicleModel->update($id, $data);
-			//$_SESSION['message'] = 'success';
-		 //	$this->session->set('message','success');	
+		if(!empty($id)){
+		 $result = $this->vehicle_model->insertVehicle($data,$id);
+		 }
+		else{
+			$result = $this->vehicle_model->insertVehicle($data);
 		}
-		else {
-			$vehicleModel->insert($data);
-			//$_SESSION['message'] = 'success';
-		//	$this->session->set('message','success');
-		   }
-	}
+	 }
 
 	return $this->response->redirect(site_url('Vehicles'));
+
 	}
+
+// Store and update controller for the vehicle Ends 
+// ---------------------------------------------------------------------------//
+
+
+// -----------------------------------------------------------------------------//
+// Delete vehicle by Id Starts
 
 	public function delete($id = null)
 	{
-    $vehicleModel = new VehicleModel();
-		$data['vehicle'] = $vehicleModel->where('id',$id)->delete($id);
-		return $this->response->redirect(site_url('Vehicles'));
+		$data['vehicle'] = $this->vehicle_model->deleteVehicleById($id);
+		return $this->response->redirect(site_url('vehicles'));
 	}
+
+// Delete Vehicle By id ends 
+// -------------------------------------------------------------------------------//
+
 
 	public function SearchAutoComplete()
 	{
-		$garagemodel = new GarageModel();
-	  $results['garage_data'] =	$garagemodel->like('garage_name', trim($this->input->post('string')), 'both');
-		$results['garage_data'] = $garagemodel->limit(10);  
-		
-		echo "<pre>";
-		print_r($results);
-		die;
+
+	$garagemodel = new GarageModel();
+	$results['garage_data'] =	$garagemodel->like('garage_name', trim($this->input->post('string')), 'both');
+	$results['garage_data'] = $garagemodel->limit(10);  
 
 		$html = "";
 
-		$i =0;
+	$i =0;
 		if(count($results)>0)
 		{
 			foreach ($results as $value) {
-			 $html[] = "<li ><a href='javascript:void(0)' onclick = 'pick()'>".$value['listing_title']."</a></li>";
+			$html[] = "<li ><a href='javascript:void(0)' onclick = 'pick()'>".$value['listing_title']."</a></li>";
 			}
 		echo implode(" ",$html);
 		}

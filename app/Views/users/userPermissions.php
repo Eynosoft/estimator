@@ -1,12 +1,7 @@
-
-      <!-- Content Column -->
-
-        <div class="row">
-
-            <div class="col-lg-12 mb-4">
-
+     <!-- Content Column -->
+      <div class="row">
+          <div class="col-lg-12 mb-4">
               <!-- Project Card Example -->
-
               <div class="card shadow">
 
                 <div class="card-header py-3">
@@ -33,7 +28,9 @@
 
                           <td><input type="text" placeholder="Search..." class="form-control"></td>
 
-                          <td style="width: 40px;"><input type="checkbox"></td>
+                          <td style="width: 40px;">
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="contact" name = "permissions[]">
+                        </td>
 
                         </tr>
 
@@ -41,9 +38,9 @@
 
                     </table>  
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                      <tbody>
+                    <tbody>
 
                         <tr>
 

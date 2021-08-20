@@ -1,308 +1,287 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
 
-        <!-- Begin Page Content -->
+<!-- Begin Page Content -->
 
-        <div class="container-fluid">
+<div class="container-fluid">
 
+  <!-- Page Heading -->
 
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-          <!-- Page Heading -->
+    <h1 class="h3 mb-0 text-gray-800">Requests</h1>
 
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  </div>
 
-            <h1 class="h3 mb-0 text-gray-800">Requests</h1>
+  <div class="row">
+
+    <!-- Left Column -->
+    <div class="col-lg-3 mb-4">
+
+      <a href="<?php echo base_url('Requests/create'); ?>" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
+
+      <!-- Left Other HTML -->
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Statistics</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="vertical-menu iconNone">
+
+            <a href="#">External <span class="badge badge-primary">0</span></a>
+
+            <a href="#">Unassigned <span class="badge badge-primary">5</span></a>
+
+            <a href="#">Assigned <span class="badge badge-primary">5</span></a>
+
+            <a href="#">Withdrawn <span class="badge badge-primary">5</span></a>
+
+            <a href="#"><strong>Total <span class="badge badge-primary">5</span></strong></a>
 
           </div>
 
+        </div>
 
+      </div>
+
+    </div>
+
+    <!-- Right Column -->
+
+    <div class="col-lg-9 mb-4">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Requests</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="row mb-3">
+
+            <div class="col">
+
+              <div class="searchHeadBar">
+
+                <div class="input-group md-form form-sm form-2 pl-0">
+
+                  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+
+                  <div class="input-group-append">
+
+                    <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
 
           <div class="row">
 
+            <div class="col">
 
+              Showing 1 to 50 of 391 entries
 
-            <!-- Left Column -->
+            </div>
 
+            <div class="col">
 
+              <div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
 
-            <div class="col-lg-3 mb-4">
+                <ul class="pagination">
 
+                  <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
 
+                  <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                  
+                  <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
 
-            <a href="<?php echo base_url('Requests/create'); ?>" class="btn btn-md btn-warning btn-block  mb-4">Create</a>
+                  <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
 
+                  <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
 
+                  <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
 
-              <!-- Left Other HTML -->
+                  <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
 
-              <div class="card shadow mb-4">
+                  <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
 
-                <div class="card-header py-3">
-
-                  <h6 class="m-0 font-weight-bold text-primary">Statistics</h6>
-
-                </div>
-
-                <div class="card-body">
-
-                  <div class="vertical-menu iconNone">
-
-                    <a href="#">External <span class="badge badge-primary">0</span></a>
-
-                    <a href="#">Unassigned <span class="badge badge-primary">5</span></a>
-
-                    <a href="#">Assigned <span class="badge badge-primary">5</span></a>
-
-                    <a href="#">Withdrawn <span class="badge badge-primary">5</span></a>
-
-                    <a href="#"><strong>Total <span class="badge badge-primary">5</span></strong></a>
-
-                  </div>
-
-                </div>
+                </ul>
 
               </div>
 
             </div>
 
+          </div>
 
+          <div class="table-responsive">
 
-            <!-- Right Column -->
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-            <div class="col-lg-9 mb-4">
+              <thead>
 
-              <div class="card shadow mb-4">
+                <tr>
 
-                <div class="card-header py-3">
+                  <th>Customer</th>
 
-                  <h6 class="m-0 font-weight-bold text-primary">Requests</h6>
+                  <th>Created</th>
 
-                </div>
+                  <th>Number</th>
 
-                <div class="card-body">
+                  <th>Vehicles</th>
 
-                  <div class="row mb-3">
+                  <th>Type</th>
 
-                    <div class="col">
+                  <th>Status</th>
 
-                      <div class="searchHeadBar">
+                  <th style="width: 20px;">&nbsp;</th>
 
-                        <div class="input-group md-form form-sm form-2 pl-0">
+                </tr>
 
-                          <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+              </thead>
 
-                          <div class="input-group-append">
+              <tbody>
 
-                            <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <tr>
 
-                          </div>
+                  <td>Eurosure</td>
 
-                        </div>
+                  <td>14/03/2020 9:40:15 am</td>
 
-                      </div>
+                  <td>ASESR0001908</td>
 
-                    </div>
+                  <td>MBK993</td>
 
-                  </div>
+                  <td><span class="badge badge-primary">Estimation</span></td>
 
-                  <div class="row">
+                  <td><span class="badge badge-success">Assigned</span></td>
 
-                    <div class="col">
+                  <td class="actionCol">
 
-                      Showing 1 to 50 of 391 entries
+                    <a class="mr-2" href="view-estimation-requests.php">
 
-                    </div>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
 
-                    <div class="col">
+                    </a>
 
-                      <div class="dataTables_paginate paging_simple_numbers float-right" id="dataTable_paginate">
+                  </td>
 
-                         <ul class="pagination">
+                </tr>
 
-                            <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                <tr>
 
-                            <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                  <td>Eurosure</td>
 
-                            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                  <td>14/03/2020 9:40:15 am</td>
 
-                            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                  <td>ASESR0001908</td>
 
-                            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                  <td>MBK993</td>
 
-                            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                  <td><span class="badge badge-primary">Estimation</span></td>
 
-                            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                  <td><span class="badge badge-success">Assigned</span></td>
 
-                            <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                  <td class="actionCol">
 
-                         </ul>
+                    <a class="mr-2" href="view-estimation-requests.php">
 
-                      </div>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
 
-                    </div>
+                    </a>
 
-              </div>
+                  </td>
 
+                </tr>
 
 
-                  <div class="table-responsive">
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tr>
 
-                      <thead>
+                  <td>Eurosure</td>
 
-                        <tr>
+                  <td>14/03/2020 9:40:15 am</td>
 
-                          <th>Customer</th>
+                  <td>ASESR0001908</td>
 
-                          <th>Created</th>
+                  <td>MBK993</td>
 
-                          <th>Number</th>
+                  <td><span class="badge badge-primary">Estimation</span></td>
 
-                          <th>Vehicles</th>
+                  <td><span class="badge badge-success">Assigned</span></td>
 
-                          <th>Type</th>
+                  <td class="actionCol">
 
-                          <th>Status</th>
+                    <a class="mr-2" href="view-estimation-requests.php">
 
-                          <th style="width: 20px;">&nbsp;</th>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
 
-                        </tr>
+                    </a>
 
-                      </thead>
+                  </td>
 
-                      <tbody>
+                </tr>
 
-                        <tr>
+                <tr>
 
-                          <td>Eurosure</td>
+                  <td>Eurosure</td>
 
-                          <td>14/03/2020 9:40:15 am</td>
+                  <td>14/03/2020 9:40:15 am</td>
 
-                          <td>ASESR0001908</td>
+                  <td>ASESR0001908</td>
 
-                          <td>MBK993</td>
+                  <td>MBK993</td>
 
-                          <td><span class="badge badge-primary">Estimation</span></td>
+                  <td><span class="badge badge-primary">Estimation</span></td>
 
-                          <td><span class="badge badge-success">Assigned</span></td>
+                  <td><span class="badge badge-success">Assigned</span></td>
 
-                          <td class="actionCol">
+                  <td class="actionCol">
 
-                             <a class="mr-2" href="view-estimation-requests.php">
+                    <a class="mr-2" href="view-estimation-requests.php">
 
-                              <i class="fa fa-eye" aria-hidden="true"></i>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
 
-                            </a>
+                    </a>
 
-                          </td>
+                  </td>
 
-                        </tr>
+                </tr>
 
 
 
-                        <tr>
+              </tbody>
 
-                          <td>Eurosure</td>
+            </table>
 
-                          <td>14/03/2020 9:40:15 am</td>
+          </div>
 
-                          <td>ASESR0001908</td>
+        </div>
 
-                          <td>MBK993</td>
-
-                          <td><span class="badge badge-primary">Estimation</span></td>
-
-                          <td><span class="badge badge-success">Assigned</span></td>
-
-                          <td class="actionCol">
-
-                             <a class="mr-2" href="view-estimation-requests.php">
-
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-
-                            </a>
-
-                          </td>
-
-                        </tr>
-
-
-
-                        <tr>
-
-                          <td>Eurosure</td>
-
-                          <td>14/03/2020 9:40:15 am</td>
-
-                          <td>ASESR0001908</td>
-
-                          <td>MBK993</td>
-
-                          <td><span class="badge badge-primary">Estimation</span></td>
-
-                          <td><span class="badge badge-success">Assigned</span></td>
-
-                          <td class="actionCol">
-
-                             <a class="mr-2" href="view-estimation-requests.php">
-
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-
-                            </a>
-
-                          </td>
-
-                        </tr>
-
-
-
-                        <tr>
-
-                          <td>Eurosure</td>
-
-                          <td>14/03/2020 9:40:15 am</td>
-
-                          <td>ASESR0001908</td>
-
-                          <td>MBK993</td>
-
-                          <td><span class="badge badge-primary">Estimation</span></td>
-
-                          <td><span class="badge badge-success">Assigned</span></td>
-
-                          <td class="actionCol">
-
-                             <a class="mr-2" href="view-estimation-requests.php">
-
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-
-                            </a>
-
-                          </td>
-
-                        </tr>
-
-                        
-
-                      </tbody>
-
-                    </table>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-        <!-- /.container-fluid -->
       </div>
 
-      <!-- End of Main Content -->
+    </div>
 
 
-<?php echo $this->endSection(); ?>
+
+    <!-- /.container-fluid -->
+  </div>
+
+  <!-- End of Main Content -->
+
+
+  <?php echo $this->endSection(); ?>

@@ -25,7 +25,6 @@ class RequestorModel extends Model
     //$this->documentation_model = new DocumentationModel();
   }
 
-
   public function insertrequestor($data = null, $id = null)
   {
     try {
@@ -52,12 +51,10 @@ class RequestorModel extends Model
     {
       $requestors = new RequestorModel();
       $customer = new CustomerModel();
+
       $returndata = [];
 	    try {
 			$data = $requestors->findAll();
-      // echo "<pre>";
-      // print_r($data);
-      // die('###');
         if(!empty($data))
         {
           $i=0;
@@ -70,7 +67,7 @@ class RequestorModel extends Model
             $i++;
           }
         }
-      return $returndata;
+       return $returndata;
 		  }
 		  catch (\Exception $e) {
 		    die($e->getMessage());

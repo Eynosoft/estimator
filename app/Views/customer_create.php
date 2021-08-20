@@ -1,6 +1,5 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
-  
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
@@ -55,9 +54,9 @@ unset($_SESSION['currentTab']);
 
         } ?>
 
-      <li class="<?php echo $activeClass; ?>">
+    <li class="<?php echo $activeClass; ?>">
 
-      <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
+    <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
         
       </li>
         

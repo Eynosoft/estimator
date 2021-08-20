@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Test extends Model
+class JobestimationModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'tests';
+	protected $table                = 'jobestimations';
 	protected $primaryKey           = 'id';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
@@ -17,6 +17,7 @@ class Test extends Model
 	protected $allowedFields        = [];
 
 	// Dates
+
 	protected $useTimestamps        = false;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
@@ -39,4 +40,31 @@ class Test extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+
+
+function __construct()
+{
+  parent::__construct();
+}
+
+
+// ------------------------------------------------------------//
+// Get all Job Data starts
+
+public function getAllJobData()
+{
+	try {
+   return true;
+	}catch(\Exception $e){
+    die($e->getMessage());
+	}
+	return false;
+}
+
+
+// Get all job Data ends
+// ------------------------------------------------------------//
+
+
 }

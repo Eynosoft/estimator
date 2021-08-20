@@ -17,9 +17,9 @@
 
     <!-- Left Column -->
 
-    <div class="col-lg-3 mb-4">
+  <div class="col-lg-3 mb-4">
 
-      <a href="<?php echo base_url('Garage/create') . '/' . $garage[0]['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+    <a href="<?php echo base_url('garage/update') . '/' . $garage[0]['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 

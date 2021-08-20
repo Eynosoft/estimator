@@ -1,7 +1,4 @@
-
-
 <!-- Content Column -->
-
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -15,6 +12,26 @@
         <h6 class="m-0 font-weight-bold text-primary">Settings</h6>
 
       </div>
+
+
+      <?php
+      
+      $lblAttributes = ['class' => 'fieldLabel mb-1'];
+
+      $frmattribute = [
+        'id' => 'garage_docs',
+        'method' => 'post',
+      ];
+      
+      echo form_open('garage/storeDocsType', $frmattribute);
+
+      ?>
+
+      <?php 
+        
+        echo form_input(array('type'=>'hidden','name'=>'gid','value'=>$gid));
+
+      ?>
 
       <div class="card-body">
 
@@ -61,17 +78,21 @@
         </div>
 
       </div>
+      
+    </div>
+
+    <div class="col-md-12">
+
+    <?php echo form_input(array('type'=>'submit','name'=>'save','value'=>'Save','class'=>'btn btn-md btn-primary')); ?>
 
     </div>
+
+    <?php echo form_close(); ?>
 
   </div>
 
   <!-- Save Button row -->
 
-  <div class="col-lg-12 mb-4">
-
-    <button type="button" class="btn btn-md btn-primary">Save</button>
-
-  </div>
+ 
 
 </div>

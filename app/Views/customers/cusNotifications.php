@@ -14,7 +14,7 @@
       </div>
 
       <?php
-
+      
       $lblAttributes = ['class' => 'fieldLabel mb-1'];
 
       $frmattribute = [
@@ -26,11 +26,11 @@
 
       ?>
 
-    <?php 
-     
-     echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>5));
+      <?php 
+        
+        echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
 
-    ?>
+      ?>
 
       <div class="card-body">
 
@@ -46,8 +46,6 @@
 
                 <th>Email</th>
 
-                <th>Sms</th>
-
                 <th>Push</th>
 
               </tr>
@@ -56,18 +54,12 @@
 
             <tbody>
 
-
-
               <tr>
 
                 <td>Estimation Job Completed</td>
 
                 <td>
                   <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="email" name="notification[]">
-                </td>
-
-                <td>
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="sms" name="notification[]">
                 </td>
 
                 <td>
@@ -96,8 +88,6 @@
 
   </div>
 
-  <!-- Save Button row -->
-
-
+<!-- Save Button row -->
 
 </div>

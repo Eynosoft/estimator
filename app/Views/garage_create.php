@@ -34,40 +34,40 @@
 
       <ul class="nav nav-tabs">
 
-        <li class="active"><a data-toggle="tab" href="#cusContact">Contact</a></li>
+        <li class="active"><a data-toggle="tab" href="#garageContact">Contact</a></li>
 
-        <li><a data-toggle="tab" href="#cusNotifications">Notifications</a></li>
+        <li><a data-toggle="tab" href="#garageNotifications">Notifications</a></li>
 
-        <li><a data-toggle="tab" href="#cusSettings">Settings</a></li>
+        <li><a data-toggle="tab" href="#garageSettings">Settings</a></li>
 
-        <li><a data-toggle="tab" href="#cusNotes">Notes</a></li>
+        <li><a data-toggle="tab" href="#garageNotes">Notes</a></li>
 
       </ul>
 
       <div class="tab-content">
 
-        <div id="cusContact" class="tab-pane fade in active">
+        <div id="garageContact" class="tab-pane fade in active">
 
           <?php echo $this->include('garage/garageContact'); ?>
 
         </div>
 
 
-        <div id="cusNotifications" class="tab-pane fade">
+        <div id="garageNotifications" class="tab-pane fade">
 
           <?php echo $this->include('garage/garageNotifications'); ?>
 
         </div>
 
         
-        <div id="cusSettings" class="tab-pane fade">
+        <div id="garageSettings" class="tab-pane fade">
 
           <?php echo $this->include('garage/garageSettings'); ?>
 
         </div>
 
 
-        <div id="cusNotes" class="tab-pane fade">
+        <div id="garageNotes" class="tab-pane fade">
 
           <?php echo $this->include('garage/garageNotes'); ?>
 

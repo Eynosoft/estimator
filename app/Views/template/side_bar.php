@@ -38,7 +38,7 @@
 
     <i class="fa fa-users" aria-hidden="true"></i>
 
-    <span>Customers</span>
+  <span>Customers</span>
 
   </a>
 
@@ -46,10 +46,10 @@
 
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Customer'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <a class="collapse-item" href="<?php echo base_url('customer'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
         List</a>
 
-      <a class="collapse-item" href="<?php echo base_url('Customer/Create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+      <a class="collapse-item" href="<?php echo base_url('customer/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i>Create</a>
 
     </div>
 
@@ -73,10 +73,10 @@
 
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Garage'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <a class="collapse-item" href="<?php echo base_url('garage'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
         List</a>
 
-      <a class="collapse-item" href="<?php echo base_url('Garage/create/') ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+      <a class="collapse-item" href="<?php echo base_url('garage/create/') ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
 
     </div>
 
@@ -90,8 +90,7 @@
 
 <li class="nav-item">
 
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-    aria-controls="collapseTwo">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 
     <i class="fa fa-car" aria-hidden="true"></i>
 
@@ -103,10 +102,11 @@
 
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Vehicles'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
-        List</a>
+      <a class="collapse-item" href="<?php echo base_url('vehicles'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+        List
+      </a>
 
-      <a class="collapse-item" href="<?php echo base_url('Vehicles/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+      <a class="collapse-item" href="<?php echo base_url('vehicles/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
 
     </div>
 
@@ -118,26 +118,24 @@
 
 <li class="nav-item">
 
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
-    aria-controls="collapseThree">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 
-    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-
-    <span>Users</span>
+<i class="fa fa-users" aria-hidden="true"></i>
+  <span>Users</span>
 
   </a>
 
-  <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-
+<div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+  
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Users'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i> List</a>
+      <a class="collapse-item" href="<?php echo base_url('users'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i> List</a>
 
-      <a class="collapse-item" href="<?php echo base_url('Users/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+      <a class="collapse-item" href="<?php echo base_url('users/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
 
     </div>
 
-  </div>
+</div>
 
 </li>
 
@@ -145,12 +143,11 @@
 
 <li class="nav-item">
 
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
-    aria-controls="collapseFour">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
 
     <i class="fa fa-file-text-o" aria-hidden="true"></i>
 
-    <span>Requests</span>
+  <span>Requests</span>
 
   </a>
 
@@ -158,10 +155,10 @@
 
     <div class="py-2 collapse-inner">
 
-      <a class="collapse-item" href="<?php echo base_url('Requests/requestors/'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <a class="collapse-item" href="<?php echo base_url('requests/'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>
         List</a>
 
-      <a class="collapse-item" href="<?php echo base_url('Requests/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> New
+      <a class="collapse-item" href="<?php echo base_url('requests/create/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> New
         estimation request</a>
 
     </div>
@@ -171,6 +168,7 @@
 </li>
 
 <!-- Nav Item - Pages Collapse Menu -->
+
 <li class="nav-item">
 
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true"
@@ -225,7 +223,7 @@
 
 <li class="nav-item active">
 
-  <a class="nav-link" href="<?php echo base_url('Reports'); ?>">
+  <a class="nav-link" href="<?php echo base_url('reports'); ?>">
 
     <i class="fa fa-files-o" aria-hidden="true"></i>
 
