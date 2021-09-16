@@ -230,8 +230,6 @@ border-radius: 4px;
 
 }
 
-
-
 .vertical-menu a:before { content: '\f105'; font-family:'FontAwesome'; padding-right: 6px; }
 
 .vertical-menu a:hover { color: #4e73df; }
@@ -242,12 +240,8 @@ border-radius: 4px;
 
 .vertical-menu a span.badge { float: right; position: relative; top: 4px; }
 
-
-
 .page-link {
-
-     padding: 0.25rem 0.4rem;
-
+  padding: 0.25rem 0.4rem;
   }
 
 .card-body {
@@ -270,6 +264,17 @@ border-radius: 4px;
 }
 
 .toggle.btn {
-  min-width: 4.7rem;
+  min-width: 3.8rem;
+  width: 96px !important;
   min-height: 2.15rem;
+}
+
+
+.centered-form {
+  margin-top: 100px;
+}
+
+.centered-form .panel {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }

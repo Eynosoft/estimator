@@ -49,10 +49,12 @@
 </body>
 
   <!-- Bootstrap core JavaScript-->
+  
+<?php echo $this->include('template/salert'); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
 <script src="<?php echo base_url(); ?>/assets/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
@@ -64,13 +66,13 @@
   <!-- <script src="<?php // echo base_url(); ?>/assets/js/demo/jquery.validate.js"></script>
   <script src="<?php // echo base_url(); ?>/assets/js/demo/validations.js"></script> -->
 
-
 <script src="<?php echo base_url(); ?>/assets/js/demo/bootstrap-datetimepicker.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 
 <script>
   $(document).ready(function() {

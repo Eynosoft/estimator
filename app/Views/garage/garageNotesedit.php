@@ -1,3 +1,4 @@
+            <br>
             <!-- Content Column -->
             <div class="row">
 
@@ -17,9 +18,8 @@
 
                     <?php
 
-                    if (!empty($garage_notes)) {
-                      $gid = $garage_notes['gid'];
-                      $notes = $garage_notes['notes'];
+                    if (!empty($garage)) {
+                      $notes = $garage['notes'];
                     }
 
                     ?>
@@ -28,16 +28,7 @@
 
                     $lblAttributes = ['class' => 'fieldLabel mb-1'];
 
-                    $frmattribute = [
-                      'id' => 'notes_update',
-                      'method' => 'post',
-                    ];
-
-                    echo form_open('garage/updateNotes' . '/' . $gid, $frmattribute);
-
-                    ?>
-
-                    <?php echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid)) ?>
+                  ?>
 
                     <div class="form-row">
 
@@ -67,14 +58,12 @@
 
                   </div>
 
-                  <?php echo form_close(); ?>
-
                   </div>
 
                 </div>
 
-              </div>
+            </div>
 
               <!-- Save Button row -->
 
-            </div>
+          </div>

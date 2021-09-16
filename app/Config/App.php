@@ -368,8 +368,9 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $CSRFCookieName = 'csrf_cookie_name';
 
+	public $CSRFCookieName = 'csrf_cookie_name';
+	
 	/**
 	 * --------------------------------------------------------------------------
 	 * CSRF Expire

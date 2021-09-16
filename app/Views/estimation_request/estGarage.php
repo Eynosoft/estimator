@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -19,23 +20,13 @@
 
             <label class="fieldLabel mb-1">Garage</label>
 
-            <input type="text" name="" class="form-control" placeholder="Search Garage" id="autocompleteuser">
+            <input type="text" name="garage" class="form-control" placeholder="Search Garage" id="autocompleteuser">
 
           </div>
 
         </div>
 
         <!-- Save Button row -->
-
-        <div class="row">
-
-          <div class="col-lg-12 mb-4">
-
-            <button type="button" class="btn btn-md btn-primary">Save</button>
-
-          </div>
-
-        </div>
 
       </div>
 

@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -10,102 +11,6 @@
       </div>
 
       <div class="card-body">
-
-        <?php
-
-        $formattribute = [
-          'method' => 'post',
-          'id' => 'request',
-          'class' => 'addrequest',
-        ]
-
-        ?>
-
-        <?php echo form_open('Requests/store', $formattribute); ?>
-
-
-        <?php
-
-        if (!empty($requestor)) {
-
-          foreach ($requestor as $request) {
-
-            $id = $request['id'];
-            $customer = $request['customer'];
-            $requested_date = $request['requested_date'];
-            $requestor = $request['requestor'];
-
-        ?>
-
-            <div class="form-row">
-
-              <div class="form-group col-md-12">
-
-                <label class="fieldLabel mb-1">Customer</label>
-
-                <?php
-
-                $options = $customer;
-                echo form_dropdown('customer', $options, '', 'class="form-control" id="customer"');
-
-                ?>
-
-              </div>
-
-            </div>
-
-            <div class="form-row">
-
-              <div class="form-group col-md-12">
-
-                <?php echo form_label('Requested', 'requested'); ?>
-                <?php echo form_input(array('name' => 'requested_date', 'type' => 'date', 'class' => 'form-control', 'id' => 'requested',)); ?>
-
-              </div>
-
-            </div>
-
-            <div class="form-row">
-
-              <div class="form-group col-md-12">
-
-                <?php echo form_label('Requested By', 'requested by'); ?>
-
-                <?php
-
-                $requestor = [
-                  '' => 'Select Requestor',
-                  'Maria' => 'Maria',
-                  'John' => 'John',
-                  'Mary' => 'Mary'
-                ];
-
-                ?>
-
-                <?php echo form_dropdown('requestor', $requestor, '', 'class="form-control" id="requestor"'); ?>
-
-              </div>
-
-            </div>
-
-            <!-- Save Button row -->
-
-            <div class="row">
-
-              <div class="col-lg-12 mb-4">
-
-                <?php
-
-                echo  form_submit(array('name' => 'save', 'class' => "btn btn-md btn-primary", 'value' => 'Save'))
-
-                ?>
-
-              </div>
-
-            </div>
-
-          <?php }
-        } else {  ?>
 
           <div class="form-row">
 
@@ -161,27 +66,11 @@
 
           <!-- Save Button row -->
 
-          <div class="row">
-
-            <div class="col-lg-12 mb-4">
-
-              <?php
-
-              echo  form_submit(array('name' => 'save', 'class' => "btn btn-md btn-primary", 'value' => 'Save'))
-
-              ?>
-
-
-            <?php } ?>
-
-            <?php echo form_close(); ?>
-
-            </div>
-
-          </div>
-
       </div>
+
+
     </div>
+    
   </div>
 
 </div>

@@ -1,4 +1,5 @@
 <?php echo $this->extend('template/layout_main'); ?>
+
 <?php echo $this->section('content'); ?>
 
 <!-- Begin Page Content -->
@@ -9,7 +10,7 @@
 
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-    <h1 class="h3 mb-0 text-gray-800">Garage "<?php echo $garage[0]['garage_name']; ?>" <small>About</small> </h1>
+    <h1 class="h3 mb-0 text-gray-800">Garage "<?php echo $garage['garage_name']; ?>" <small>About</small> </h1>
 
   </div>
 
@@ -17,9 +18,9 @@
 
     <!-- Left Column -->
 
-  <div class="col-lg-3 mb-4">
+    <div class="col-lg-3 mb-4">
 
-    <a href="<?php echo base_url('garage/update') . '/' . $garage[0]['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a href="<?php echo base_url('garage/update') . '/' . $garage['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -53,7 +54,6 @@
 
       </div>
 
-
       <div class="card primary mb-4">
 
         <div class="card-header py-3">
@@ -74,7 +74,6 @@
 
       </div>
 
-
       <div class="card primary mb-4">
 
         <div class="card-header py-3">
@@ -87,7 +86,7 @@
 
           <div class="vertical-menu iconNone">
 
-            <p>Notes Content Dummy text</p>
+            <?php echo $garage['notes'] ?>
 
           </div>
 
@@ -119,20 +118,21 @@
 
                 <tr>
 
-                  <td><strong>Active</strong></td>
+                  <td><strong>Status</strong></td>
 
                   <td>
-                    <?php 
-                    if($garage[0]['active'] == 1){ ?>
-                      
-                      <i style="color: green;" class="fa fa-check-circle" aria-hidden="true"></i>
+                    <?php
+
+                    if (!empty($garage['status'])) { ?>
+
+                      <i style="color: green;font-size:25px;" class="fa fa-check-circle" aria-hidden="true"></i>
 
                     <?php } else { ?>
 
-                      <i class="fa fa-close" style="font-size:20px;color:red"></i>
-                    
+                      <i class="fa fa-times-circle" style="font-size:25px;color:red"></i>
+
                     <?php } ?>
-                    
+
                   </td>
 
                 </tr>
@@ -141,9 +141,11 @@
                   <td><strong>Created</strong></td>
 
                   <?php
-                  $created = $garage[0]['created_at'];
-                  $newDate = date("d-m-Y", strtotime($created));
+
+                  $created = $garage['created_at'];
+                  $newDate = date("d/m/Y h:i:sa", strtotime($created));
                   ?>
+
                   <td><?php echo $newDate; ?></td>
 
                 </tr>
@@ -152,7 +154,7 @@
 
                   <td><strong>Garage Name</strong></td>
 
-                  <td><?php echo $garage[0]['garage_name']; ?></td>
+                  <td><?php echo $garage['garage_name']; ?></td>
 
                 </tr>
 
@@ -160,7 +162,7 @@
 
                   <td><strong>Repair Time Rate</strong></td>
 
-                  <td></td>
+                  <td><?php echo $garage['repair_rate']; ?></td>
 
                 </tr>
 
@@ -168,7 +170,7 @@
 
                   <td><strong>Emails</strong></td>
 
-                  <td><?php echo $garage[0]['email']; ?></td>
+                  <td><?php echo $garage['emails']; ?></td>
 
                 </tr>
 
@@ -176,7 +178,7 @@
 
                   <td><strong>Land Lines</strong></td>
 
-                  <td><?php echo $garage[0]['landline']; ?></td>
+                  <td><?php echo $garage['land_line']; ?></td>
 
                 </tr>
 
@@ -184,7 +186,7 @@
 
                   <td><strong>Mobiles</strong></td>
 
-                  <td><?php echo $garage[0]['mobile']; ?></td>
+                  <td><?php echo $garage['mobile']; ?></td>
 
                 </tr>
 
@@ -192,7 +194,7 @@
 
                   <td><strong>Faxes</strong></td>
 
-                  <td><?php echo $garage[0]['fax']; ?></td>
+                  <td><?php echo $garage['fax']; ?></td>
 
                 </tr>
 
@@ -200,7 +202,23 @@
 
                   <td><strong>Locale</strong></td>
 
-                  <td></td>
+                  <td><?php echo $garage['locale']; ?></td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>City</strong></td>
+
+                  <td><?php echo $garage['city']; ?></td>
+
+                </tr>
+
+                <tr>
+
+                  <td><strong>Address</strong></td>
+
+                  <td><?php echo $garage['address']; ?></td>
 
                 </tr>
 
@@ -216,10 +234,10 @@
 
     </div>
 
-    <!-- /.container-fluid -->
+  <!-- /.container-fluid -->
+  
   </div>
 
   <!-- End of Main Content -->
-
 
   <?php echo $this->endSection(); ?>

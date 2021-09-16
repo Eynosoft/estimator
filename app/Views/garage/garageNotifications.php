@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -6,25 +7,6 @@
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
       </div>
-
-      <?php
-      
-      $lblAttributes = ['class' => 'fieldLabel mb-1'];
-
-      $frmattribute = [
-        'id' => 'garage_notification',
-        'method' => 'post',
-      ];
-
-      echo form_open('garage/storeNotifications', $frmattribute);
-
-      ?>
-
-      <?php 
-        
-        echo form_input(array('type'=>'hidden','name'=>'gid','value'=>$gid));
-
-      ?>
 
       <div class="card-body">
 
@@ -69,16 +51,6 @@
         </div>
 
       </div>
-
-      <div class="col-lg-12 mb-4">
-
-
-      <?php echo form_input(array('type'=>'submit','name'=>'save','value'=>'Save','class'=>'btn btn-md btn-primary')); ?>
-
-      </div>
-
-
-    <?php echo form_close(); ?>
 
     </div>
 

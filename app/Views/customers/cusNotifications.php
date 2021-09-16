@@ -1,10 +1,11 @@
 <!-- Content Column -->
+<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
 
     <!-- Project Card Example -->
-
+    
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -12,19 +13,6 @@
         <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
 
       </div>
-
-      <?php
-      
-      $lblAttributes = ['class' => 'fieldLabel mb-1'];
-
-      $frmattribute = [
-        'id' => 'customer_notification',
-        'method' => 'post',
-      ];
-
-      echo form_open('Customer/storeNotification', $frmattribute);
-
-      ?>
 
       <?php 
         
@@ -72,11 +60,7 @@
 
           </table>
 
-          <?php
-
-          echo form_input(array('type' => 'submit', 'value' => 'Save', 'class' => 'btn btn-md btn-primary'));
-
-          ?>
+        
 
         </div>
 

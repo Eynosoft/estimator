@@ -72,14 +72,14 @@
               <td class="actionCol">
 
                 <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2"
-                  href="<?php echo base_url('Customer/edit').'/'.$row['id']; ?>">
+                  href="<?php echo base_url('customer/edit').'/'.$row['id']; ?>">
                   
                   <i class="fa fa-pencil" aria-hidden="true"></i>
 
                 </a>
 
                 <a class="btn btn-datatable btn-icon btn-transparent-dark"
-                  href="<?php echo base_url('Customer/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                  href="<?php echo base_url('customer/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
                 </a>
 
               </td>

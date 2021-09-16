@@ -3,120 +3,112 @@
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-<!-- <h1 class="h3 mb-0 text-gray-800">Add Customer</h1> -->
-</div>
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <!-- <h1 class="h3 mb-0 text-gray-800">Add Customer</h1> -->
+  </div>
 
-<?php 
+  <?php
 
-$activeClass = ''; 
+  $activeClass = '';
 
-$currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : ' ';
-echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
+  $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : ' ';
+  echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
+  unset($_SESSION['currentTab']);
 
-unset($_SESSION['currentTab']);
-
-?>
+  ?>
 
 <!-- Content Row -->
 
-<div class="row">
+  <div class="row">
 
-  <div class="col-lg-12 mb-4">
+    <div class="col-lg-12 mb-4">
 
-    <div class="tabbable-wrapper">
+      <div class="tabbable-wrapper">
 
-      <ul class="nav nav-tabs">
-  
-      <?php if(!empty($currentTab) && ($currentTab == '#cusContact')) {
+        <ul class="nav nav-tabs">
 
-          $activeClass = 'active';
+          <li class="active">
 
-        } else { 
+            <a data-id="customerContactTab" data-toggle="tab" href="#cusContact">Contact</a>
 
-          $activeClass = '';
+          </li>
 
-        }  ?>
+          <li>
 
-      <li class="<?php echo $activeClass; ?>">
+            <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
 
-      <a data-id="customerContactTab" data-toggle="tab" href="#cusContact">Contact</a></li>
+          <li>
 
-       <?php if(!empty($currentTab) && ($currentTab == '#cusNotifications')) {
+            <a data-id="customerSettingTab" data-toggle="tab" href="#cusSettings">Settings</a>
 
-          $activeClass = 'active';
+          </li>
 
-       } else {
+          <!-- <li class="<?php // echo $activeClass; 
+          ?>"><a data-toggle="tab" href="#cusNotes">Notes</a></li> -->
 
-        $activeClass = '';
+          <!-- <div>
 
-        } ?>
+          <button id="previous" class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbspPrevious</button>
 
-    <li class="<?php echo $activeClass; ?>">
+          <button id="next" class="btn btn-primary">Next&nbsp<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 
-    <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
+          </div> -->
         
-      </li>
-        
-        <?php if(!empty($currentTab) && ($currentTab == '#cusSettings')) {
-          $activeClass = 'active';
-        } else {
-          $activeClass = '';
-        } ?>
+        </ul>
 
-      <li class="<?php echo $activeClass; ?>">
+      <?php 
+      
+      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
+      $frmattribute = [
+              'id' => 'customer_create',
+              'method' => 'post',
+              ];
+      
+      echo form_open('customer/insert_all_data',$frmattribute);
 
-      <a data-id="customerSettingTab" data-toggle="tab" href="#cusSettings">Settings</a>
+      ?>
 
-      </li>
 
-        <?php if(!empty($currentTab) && ($currentTab == '#cusNotes')) {
-          $activeClass = 'active';
-        } else {
-          $activeClass = '';
-        } ?>
+        <div class="tab-content">
 
-        <!-- <li class="<?php // echo $activeClass; ?>"><a data-toggle="tab" href="#cusNotes">Notes</a></li> -->
-        
-      </ul>
 
-      <div class="tab-content">
-        
-        <div id="cusContact" class="tab-pane fade in active">
+          <div id="cusContact" class="tab-pane fade in active">
 
-          <?php echo $this->include('customers/cusContact'); ?>
+            <?php echo $this->include('customers/cusContact'); ?>
+
+          </div>
+
+
+          <div id="cusNotifications" class="tab-pane fade">
+
+            <?php echo $this->include('customers/cusNotifications');  ?>
+
+          </div>
+
+          <div id="cusSettings" class="tab-pane fade">
+
+            <?php echo $this->include('customers/cusSettings'); ?>
+
+          </div>
+
+          <div id="cusNotes" class="tab-pane fade">
+
+            <?php echo $this->include('customers/cusNotes'); ?>
+
+          </div>
 
         </div>
 
-
-        <div id="cusNotifications" class="tab-pane fade">
-
-          <?php echo $this->include('customers/cusNotifications');  ?>
-
-        </div>
-
         
-        <div id="cusSettings" class="tab-pane fade">
-
-          <?php echo $this->include('customers/cusSettings'); ?>
-    
-        </div>
-
-        <div id="cusNotes" class="tab-pane fade">
-
-          <?php echo $this->include('customers/cusNotes'); ?>
-
-        </div>
+        <?php echo form_close(); ?>
 
       </div>
 
     </div>
 
   </div>
-
-</div>
 
 </div>
 

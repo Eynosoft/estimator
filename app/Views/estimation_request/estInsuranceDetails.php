@@ -1,5 +1,5 @@
 <!-- Content Column -->
-
+<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -16,17 +16,13 @@
 
       <div class="card-body">
 
-        <form>
-
-
-
           <div class="form-row">
 
             <div class="form-group col-md-6">
 
               <label class="fieldLabel mb-1">Insured's Reference</label>
 
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name='insured_reference'>
 
             </div>
 
@@ -34,13 +30,11 @@
 
               <label class="fieldLabel mb-1">Date of accident</label>
 
-              <input class="form-control" type="datetime-local">
+              <input class="form-control" type="datetime-local" name = 'date_accident'>
 
             </div>
 
           </div>
-
-
 
           <div class="form-row">
 
@@ -48,7 +42,7 @@
 
               <label class="fieldLabel mb-1">Policy number</label>
 
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name = 'policy_number'>
 
             </div>
 
@@ -56,7 +50,7 @@
 
               <label class="fieldLabel mb-1">Claim number</label>
 
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name= 'claim_number'>
 
             </div>
 
@@ -70,13 +64,13 @@
 
               <label class="fieldLabel mb-1">Inspection</label>
 
-              <select class="form-control">
+              <select name='inspection' class="form-control">
 
-                <option>Unknown</option>
+                <option value="Unknown">Unknown</option>
 
-                <option>Insured Vehicle</option>
+                <option value="Insured Vehicle">Insured Vehicle</option>
 
-                <option>Third Party Vehicle</option>
+                <option value="Third Party Vehicle">Third Party Vehicle</option>
 
               </select>
 
@@ -86,7 +80,7 @@
 
               <label class="fieldLabel mb-1">Insured amount</label>
 
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name='insured_amount'>
 
             </div>
 
@@ -94,12 +88,11 @@
 
               <label class="fieldLabel mb-1">Exemption amount</label>
 
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name='exemption_amount'>
 
             </div>
 
           </div>
-
 
 
           <div class="form-row">
@@ -108,13 +101,13 @@
 
               <label class="fieldLabel mb-1">Responsibility</label>
 
-              <select class="form-control">
+              <select name='responsibility' class="form-control">
 
-                <option>Unknown</option>
+                <option value="Unknown">Unknown</option>
 
-                <option>Yes</option>
+                <option value="Yes">Yes</option>
 
-                <option>No</option>
+                <option value="No">No</option>
 
               </select>
 
@@ -124,29 +117,14 @@
 
               <label class="fieldLabel mb-1">Liability</label>
 
-              <input class="form-control" type="text" placeholder="Enter In %">
+              <input class="form-control" type="text" name="liability" placeholder="Enter In %">
 
             </div>
 
           </div>
-
-
 
           <!-- Save Button row -->
 
-          <div class="row">
-
-            <div class="col-lg-12 mb-4">
-
-              <button type="button" class="btn btn-md btn-primary">Save</button>
-
-            </div>
-
-          </div>
-
-
-
-        </form>
 
       </div>
 

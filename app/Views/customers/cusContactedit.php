@@ -1,5 +1,15 @@
+<?php
+
+$lblAttributes = [
+  'class' => 'label-control',
+];
+
+?>
+
+<br>
 
 <div class="row">
+
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
@@ -10,57 +20,47 @@
 
       </div>
 
-    <?php 
-      
-      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
+      <?php
 
-      $frmattribute = [
-              'id' => 'customer_create',
-              'method' => 'post',
-              ];
-      
-      echo form_open('Customer/updateCustomer',$frmattribute);
+      if (!empty($customer)) {
 
-      if(!empty($customer))
-      {
-        
-        foreach($customer as $cdata)
-        {
+        $id =  $customer['id'];
+        $client_name = $customer['client_name'];
+        $locale = $customer['locale'];
+        $report_password = $customer['report_password'];
+        $emails = $customer['emails'];
+        $mobile = $customer['mobile'];
+        $land_line = $customer['land_line'];
+        $fax = $customer['fax'];
 
-          $id =  $cdata['id'] ;
-          $client_name =$cdata['client_name'];
-          $locale = $cdata['locale'];
-          $report_password = $cdata['report_password'];
-          $emails = $cdata['emails'];
-          $mobile = $cdata['mobile'] ;
-          $land_line = $cdata['land_line'] ;
-          $fax = $cdata['fax'];
+      }
 
+      ?>
+
+      <div class="card-body">
+
+        <?php //$validation = \Config\Services::validation(); 
         ?>
 
-       <div class="card-body">
-
-       <?php //$validation = \Config\Services::validation(); ?>
-
-       <div class="form-row">
+        <div class="form-row">
 
           <?php
 
-              $data = [
-                    'type'  => 'hidden',
-                    'name' => 'id',
-                    'value' => $id
-                  ];
+          $data = [
+            'type'  => 'hidden',
+            'name' => 'id',
+            'value' => $id
+          ];
 
-              echo form_input($data);
+          echo form_input($data);
 
-              ?>
+          ?>
 
           <div class="form-group col-md-12">
 
             <?php echo form_label('Client name', 'Client name', $lblAttributes); ?>
 
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'client_name', 'name' => 'client_name', 'placeholder' => 'Enter Client Name','value' =>$client_name)); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'client_name', 'name' => 'client_name', 'placeholder' => 'Enter Client Name', 'value' => $client_name)); ?>
 
           </div>
 
@@ -70,7 +70,7 @@
 
           <div class="form-group col-md-12">
 
-            <?php echo form_label('Locale', 'locale' , $lblAttributes); ?>
+            <?php echo form_label('Locale', 'locale', $lblAttributes); ?>
 
             <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'locale', 'name' => 'locale', 'placeholder' => 'Enter Locale', 'value' => $locale)) ?>
 
@@ -85,8 +85,8 @@
 
           <div class="form-group col-md-12">
 
-            <?php echo form_label('Report Password','Report Password', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'password', 'class' => 'form-control','id' => 'report_pass', 'name' => 'report_pass', 'placeholder' => 'Report Password', 'value' => $report_password)); ?>
+            <?php echo form_label('Report Password', 'Report Password', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'password', 'class' => 'form-control', 'id' => 'report_pass', 'name' => 'report_pass', 'placeholder' => 'Report Password', 'value' => $report_password)); ?>
 
             <span class="noteText">Password used to protect the report generated.</span>
 
@@ -107,8 +107,8 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Mobile','mobile',$lblAttributes); ?>
-            <?php  echo form_input(array('type' => 'tel', 'class'=> 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile', 'value' => $mobile)); ?>
+            <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'tel', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile', 'value' => $mobile)); ?>
 
             <span class="noteText">Seperate multiple mobile numbers with comma.</span>
 
@@ -120,8 +120,8 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Land Lines','land lines', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'tel', 'class' => 'form-control', 'id' => 'land_line', 'name'=> 'land_line', 'placeholder'=> 'Enter Land Line', 'value' => $land_line)); ?>
+            <?php echo form_label('Land Lines', 'land lines', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'tel', 'class' => 'form-control', 'id' => 'land_line', 'name' => 'land_line', 'placeholder' => 'Enter Land Line', 'value' => $land_line)); ?>
 
             <span class="noteText"></span>
 
@@ -130,34 +130,20 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Faxes','faxes', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'faxes', 'name'=> 'faxes', 'placeholder' => 'Enter Faxes', 'value' => $fax)); ?>
+            <?php echo form_label('Faxes', 'faxes', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'faxes', 'name' => 'faxes', 'placeholder' => 'Enter Faxes', 'value' => $fax)); ?>
 
             <span class="noteText">Seperate multiple faxes numbers with comma.</span>
 
           </div>
 
-        </div>
-
-        <div class="col-lg-12 mb-4">
-
-        <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
 
         </div>
 
       </div>
 
-      <?php 
-       
-       echo form_close();
-
-      ?>
-     
-      <?php } } ?>
-     
     </div>
 
   </div>
 
 </div>
-

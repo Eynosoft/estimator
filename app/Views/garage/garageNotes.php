@@ -1,10 +1,9 @@
+            <br>
             <!-- Content Column -->
             <div class="row">
 
               <div class="col-lg-12 mb-4">
-
                 <!-- Project Card Example -->
-
                 <div class="card shadow">
 
                   <div class="card-header py-3">
@@ -19,21 +18,7 @@
 
                     $lblAttributes = ['class' => 'fieldLabel mb-1'];
 
-                    $frmattribute = [
-                      'id' => 'garage_notes',
-                      'method' => 'post',
-                    ];
-
-                    echo form_open('garage/storeGarageNotes', $frmattribute);
-
                     ?>
-
-                    <?php
-
-                    echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid));
-
-                    ?>
-
 
                     <div class="form-row">
 
@@ -49,6 +34,7 @@
                           'cols'        => '10',
                           'class'       => 'form-control'
                         ];
+                        
                         echo form_textarea($options);
 
                         ?>
@@ -61,16 +47,15 @@
 
                   <div class="col-lg-12 mb-4">
 
-                  <?php echo form_input(array('type'=>'submit','name'=>'savenotes','value'=>'Save','id'=>'savenotes','class'=>'btn btn-md btn-primary')); ?>
+                  <?php echo form_input(array('type' => 'submit', 'name' => 'savegarage', 'value' => 'Save', 'id' => 'savegarage', 'class' => 'btn btn-md btn-primary')); ?>
 
                   </div>
 
-                  <?php echo form_close(); ?>
-
+                
                 </div>
 
-            </div>
+              </div>
 
-              <!-- Save Button row -->
-              
-        </div>
+            <!-- Save Button row -->
+
+            </div>

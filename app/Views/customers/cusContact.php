@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -18,7 +19,7 @@
               'method' => 'post',
               ];
       
-      echo form_open('Customer/store',$frmattribute);
+      echo form_open('customer/store',$frmattribute);
 
       ?>
 
@@ -138,7 +139,9 @@
               <?= $validation->getError('land_line');?>
             </div>
             <?php
+
               }
+
             ?>
 
           </div>
@@ -159,7 +162,7 @@
             </div>
           
           <?php echo form_input(array('type'=>'hidden','id' => 'customer_details_changed','name' => 'customer_details_changed', 'value' => ''));?>      
-           
+          
           <?php
 
             }
@@ -170,13 +173,13 @@
 
         </div>
 
-        <div class="col-lg-12 mb-4">
+        <!-- <div class="col-lg-12 mb-4">
 
-        <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
+        <?php  //echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savecustomer', 'value' => 'Save')) ?>
           
           <div class="change-message">You have unsaved changes.</div>
 
-        </div>
+        </div> -->
 
       </div>
 

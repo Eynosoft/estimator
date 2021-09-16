@@ -9,7 +9,7 @@ class CustomerModel extends Model
 {
 	protected $table = 'customer';
 	protected $primaryKey = 'id';
-	protected $allowedFields = ['client_name', 'locale', 'report_password', 'emails', 'mobile', 'land_line', 'fax', 'notes', 'created_at', 'updated_at'];
+	protected $allowedFields = ['client_name', 'locale', 'report_password', 'emails', 'mobile', 'land_line', 'fax', 'notifications','doc_type','created_at', 'updated_at'];
 	protected $skipValidation   =    false;
 	protected $allowCallbacks       = true;
 	protected $beforeInsert         = [];
@@ -116,7 +116,21 @@ class CustomerModel extends Model
 	{
 		try {
 			$customer_data = $this->where('id', $id)->findAll();
-			return $customer_data;
+			if(!empty($customer_data)){
+				foreach ($customer_data as $data) {
+					$customer['id'] = $data['id'];
+					$customer['client_name'] = $data['client_name'];
+					$customer['locale'] = $data['locale'];
+					$customer_data['report_password'] = $data['report_password'];
+					$customer['emails'] = $data['emails'];
+					$customer['mobile'] = $data['mobile'];
+					$customer['land_line'] = $data['land_line'];
+					$customer['fax'] = $data['fax'];
+					$customer['doc_type'] = json_decode($data['doc_type']);
+					$customer['notifications'] = json_decode($data['notifications']);
+				}
+			}
+			return $customer;
 		} catch (\Exception $e) {
 			die($e->getMessage());
 		}

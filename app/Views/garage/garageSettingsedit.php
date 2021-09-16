@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -15,15 +16,15 @@
 
       <?php
 
-      if (!empty($garage_doctype)) {
-        $gid = $garage_doctype['gid'];
-        if (!empty($garage_doctype['doc_type'])) {
-          for ($i = 0; $i < count($garage_doctype['doc_type']); $i++) {
-            if (isset($garage_doctype['doc_type'][$i]) && ($garage_doctype['doc_type'][$i] == 'image')) {
+      if (!empty($garage)) {
+        $gid = $garage['id'];
+        if (!empty($garage['doc_type'])) {
+          for ($i = 0; $i < count($garage['doc_type']); $i++) {
+            if (isset($garage['doc_type'][$i]) && ($garage['doc_type'][$i] == 'image')) {
               $image = 'checked';
-            } elseif (isset($garage_doctype['doc_type'][$i]) && ($garage_doctype['doc_type'][$i] == 'document')) {
+            } elseif (isset($garage['doc_type'][$i]) && ($garage['doc_type'][$i] == 'document')) {
               $document = 'checked';
-            } elseif (isset($garage_doctype['doc_type'][$i]) && ($garage_doctype['doc_type'][$i] == 'timing')) {
+            } elseif (isset($garage['doc_type'][$i]) && ($garage['doc_type'][$i] == 'timing')) {
               $timing = 'checked';
             }
           }
@@ -40,21 +41,7 @@
 
           $lblAttributes = ['class' => 'fieldLabel mb-1'];
 
-          $frmattribute = [
-            'id' => 'garage_doc',
-            'method' => 'post',
-          ];
-
-          echo form_open('garage/updateDoc' . '/' . $gid, $frmattribute);
-
           ?>
-
-          <?php
-
-          echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid));
-
-          ?>
-
 
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
@@ -97,15 +84,6 @@
         </div>
 
       </div>
-
-
-    <div class="col-lg-12 mb-4">
-
-      <?php echo form_input(array('type'=>'submit','name'=>'updatedoc','id'=>'updatedoc','name'=>'updatedoc','value'=>'Save','class'=>'btn btn-md btn-primary')); ?>
-
-    </div>
-
-    <?php echo form_close(); ?>
 
     </div>
 

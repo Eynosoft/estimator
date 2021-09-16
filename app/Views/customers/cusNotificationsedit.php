@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -12,40 +13,26 @@
 
       <?php
 
-      if(!empty($customer_notification)) {
-
-        $customer_id = $customer_notification['customer_id'];
-        if(!empty($customer_notification['notifications']))
-        {
-          for($i=0; $i < count($customer_notification['notifications']); $i++) {
-            if(isset($customer_notification['notifications'][$i]) && ($customer_notification['notifications'][$i] == 'email'))
-            {
-             $email = 'checked'; 
-            }
-            else{
+      if (!empty($customer)) {
+        $customer_id = $customer['id'];
+        if (!empty($customer['notifications'])) {
+          for ($i = 0; $i < count($customer['notifications']); $i++) {
+            if (isset($customer['notifications'][$i]) && ($customer['notifications'][$i] == 'email')) {
+              $email = 'checked';
+            } else {
               $push = 'checked';
             }
           }
         }
       }
 
-      $lblAttributes = ['class' => 'fieldLabel mb-1'];
-      $frmattribute = [
+      ?>
 
-        'id' => 'customer_notification',
-        'method' => 'post',
-        
-      ];
+      <?php
 
-     echo form_open('customer/updateNotification'.'/'.$customer_id, $frmattribute);
+      echo form_input(array('type' => 'hidden', 'name' => 'customer_id', 'value' => $customer_id));
 
-     ?>
-
-    <?php
-
-    echo form_input(array('type' => 'hidden', 'name' => 'customer_id', 'value' => $customer_id));
-
-    ?>
+      ?>
 
       <div class="card-body">
 
@@ -71,7 +58,7 @@
 
               <tr>
 
-              <td>Estimation Job Completed</td>
+                <td>Estimation Job Completed</td>
 
                 <td>
 
@@ -91,20 +78,14 @@
 
           </table>
 
-        <?php
-
-        echo form_input(array('type' => 'submit', 'value' => 'Save', 'class' => 'btn btn-md btn-primary'));
-
-        ?>
-
         </div>
+
+      </div>
 
     </div>
 
-    <?php echo form_close(); ?>
-
   </div>
 
-</div>
   <!-- Save Button row -->
+
 </div>

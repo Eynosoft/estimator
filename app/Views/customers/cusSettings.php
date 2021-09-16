@@ -1,18 +1,5 @@
-
 <br>
-
-<div class="col-md-12">
-  <div class="row">
-    <div class="col-md-6" style="text-align: left;">
-      <h4>List Documents</h4>
-    </div>
-  </div>
-</div>
-
-<br>
-
 <div class="row">
-
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
@@ -21,28 +8,11 @@
         <h6 class="m-0 font-weight-bold text-primary">Settings</h6>
       </div>
 
-  <div class="card-body">
+      <div class="card-body">
+        
+        <div class="table-responsive">
 
-    <div class="table-responsive">
-
-    <?php 
-      
-      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
-      $frmattribute = [
-                'id' => 'customer_doc',
-                'method' => 'post',
-                ];
-      echo form_open('Customer/storeDoc',$frmattribute);
-
-    ?>
-
-      <?php 
-         
-        echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
- 
-      ?>
-       
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
             <tbody>
 
@@ -52,7 +22,7 @@
 
                 <td>
 
-                <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="image">
+                  <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="image">
 
                 </td>
 
@@ -74,7 +44,7 @@
 
                 <td>Timings on Report</td>
 
-                <td style="width: 20px;">  
+                <td style="width: 20px;">
                   <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" name="files[]" data-offstyle="danger" value="timing">
                 </td>
 
@@ -82,15 +52,10 @@
 
             </tbody>
 
-        </table>
+          </table>
 
-        <?php echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savedoctype', 'value' => 'Save')) ?>
-  
-        <?php 
-          
-        echo form_close();
-
-        ?>
+          <?php // echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savedoctype', 'value' => 'Save'))  
+          ?>
 
         </div>
 
@@ -98,18 +63,21 @@
 
     </div>
 
-</div>
+  </div>
 
-<!-- Save Button row -->
+  <div class="col-lg-12 mb-4">
+
+  <?php echo form_submit(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'savecustomer', 'value' => 'Save')) ?>
+
+  </div>
+
+  <!-- Save Button row -->
 
 </div>
 
 <!-- Modal -->
-
 <style>
-
   .kv-file-upload {
     display: none !important;
   }
-
 </style>

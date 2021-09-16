@@ -15,11 +15,8 @@
 //       $(activeTab).fadeIn(); //Fade in the active content
 //       return false;
 //   });
-
 // });
-
 // Active tab bars for the all modules ends
-
 // For Redirecting to the next tab after insertion of the data 
 
 	$(document).ready(function() {
@@ -53,10 +50,10 @@
       $(".nav-tabs li a[href='#cusSettings']").trigger('click');
     }
 
-
     $(".nav-tabs li").on('click',function() {
+
       if($(this).find('a').attr('href') == '#') {
-         showAlert('Please enter "Details" before proceeding',"Alert","error");
+        showAlert('Please enter "Details" before proceeding',"Alert","error");
         return false;
       }
 
@@ -66,9 +63,9 @@
       window.location.hash = $(this).find('a').attr('href');
 
     }); 
-     
   });
-  
+
+
 // for redirectinn to the next tab after insertion of the data 
 
 // Get var url 
@@ -97,15 +94,93 @@ $(document).ready(function() {
     });
   });
 
+
 // Summner Notes Ends
 
-$(document).on('click', "#assignjobestimation",function(){
-  alert('hello');
-  ('#about_requests').hide();
-  ('#assign').show();
+// Add Intems into the data base dynamiclly 
+var items = 0;
+function addItem() {
+    items++;
+    var html = getHtml(items);
+    var row = document.getElementById("tbody").insertRow();
+    row.innerHTML = html;
+}
+
+function deleteRow(button) {
+button.parentElement.parentElement.remove();
+// first parentElement will be td and second will be tr.
+}
+// Add Items into the Database Dynamically 
+function getHtml(items){
+  var optionspersontypeHtml = '<option value="">Select Options</option><option value="Owner">Owner</option><option value="Driver">Driver</option><option value="Passenger">Passenger</option>';
+
+  var htmls = "<tr><td><select name='person_type[]' class='form-control'>"+optionspersontypeHtml+"</select></td><td><input type='text' class='form-control' name='person_name[]'></td><td><input type='text' name='person_number[]' class='form-control'></td><td><button type='button' onclick='deleteRow(this)' class='btn btn-danger';><i class='fa fa-trash'></i></button></td></tr>";
+  return htmls;
+}
+
+$(document).ready(function() {
+
+  $('#persons').click(function(){
+   $('#person').show();
+   $('#about_requests').hide();
+   $('#document').hide();
+   $('#assign').hide();
+    });
+
+    $('#about').click(function(){
+      $('#about_requests').show();
+      $('#person').hide();
+      $('#document').hide();
+      $('#assign').hide();
+     });
+
+     $('#docs').click(function(){
+      $('#document').show();
+      $('#about_requests').hide();
+      $('#person').hide();
+      $('#assign').hide();
+     });
+
+     $('#assignjobestimation').click(function(){
+      $('#assign').show();
+      $('#document').hide();
+      $('#about_requests').hide();
+      $('#person').hide();
+      });
+
+  });
+  
+
+$(document).ready(function() {
+    $('#person_data').DataTable();
+});
+
+$(document).ready(function(){
+  $('#request_documents').DataTable();
 });
 
 
+// Show Notes Section into the toggel class into the assign notes section
 
+$(document).ready(function(){
+$('#notes').on('click',function() {
+   $('#icon').toggleClass('fa fa fa-plus');
+   $('#assign_notes').toggle();
+  }, function() {
+    $('#icon').addClass('fa fa-plus');
+    $('#icon').toggleClass('fa fa fa-minus');
+    $('#assign_notes').toggle();
+});
+});
 
+// Show and hide the notes section into the toggle notes section into the assign job areas..!!!
 
+// Show the date into the input box
+$( function() {
+  $("#datepicker").datepicker();
+});
+// Show the date into the input box
+
+$(function() {
+  $("#datepicker1").datepicker();
+});

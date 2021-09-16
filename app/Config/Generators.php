@@ -3,7 +3,6 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
-
 class Generators extends BaseConfig
 {
 	/**
@@ -22,7 +21,6 @@ class Generators extends BaseConfig
 	 * end up disrupting the scaffolding process and throw errors.
 	 *
 	 * YOU HAVE BEEN WARNED!
-	 *
 	 * @var array<string, string>
 	 */
 	public $views = [

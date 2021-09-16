@@ -5,19 +5,19 @@
 
 <div class="container-fluid">
 
-<!-- Page Heading -->
+  <!-- Page Heading -->
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-  <h1 class="h3 mb-0 text-gray-800">Update Garage</h1>
+    <h1 class="h3 mb-0 text-gray-800">Update Garage</h1>
 
-</div>
+  </div>
 
-<!-- Content Row -->
+  <!-- Content Row -->
 
-<div class="row">
+  <div class="row">
 
-  <?php 
+    <?php
 
     $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : '';
 
@@ -25,61 +25,77 @@
 
     unset($_SESSION['currentTab']);
 
-  ?>
+    ?>
 
-  <div class="col-lg-12 mb-4">
+    <div class="col-lg-12 mb-4">
 
-    <div class="tabbable-wrapper">
+      <div class="tabbable-wrapper">
 
-      <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs">
 
-        <li class="active"><a data-toggle="tab" href="#garageContactedit">Contact</a></li>
+          <li class="active"><a data-toggle="tab" href="#garageContactedit">Contact</a></li>
 
-        <li><a data-toggle="tab" href="#garageNotificationsedit">Notifications</a></li>
+          <li><a data-toggle="tab" href="#garageNotificationsedit">Notifications</a></li>
 
-        <li><a data-toggle="tab" href="#garagecusSettingsedit">Settings</a></li>
+          <li><a data-toggle="tab" href="#garagecusSettingsedit">Settings</a></li>
 
-        <li><a data-toggle="tab" href="#garageNotesedit">Notes</a></li>
+          <li><a data-toggle="tab" href="#garageNotesedit">Notes</a></li>
 
-      </ul>
+        </ul>
 
-      <div class="tab-content">
+        <?php
+
+        $frmattribute = [
+          'id' => 'garage_create',
+          'method' => 'post',
+
+        ];
+
+        echo form_open('garage/updateGarage', $frmattribute);
+
+        ?>
+
+        <div class="tab-content">
 
 
-        <div id="garageContactedit" class="tab-pane fade in active">
+          <div id="garageContactedit" class="tab-pane fade in active">
 
-          <?php echo $this->include('garage/garageContactedit'); ?>
+            <?php echo $this->include('garage/garageContactedit'); ?>
+
+          </div>
+
+
+          <div id="garageNotificationsedit" class="tab-pane fade">
+
+            <?php echo $this->include('garage/garageNotificationsedit'); ?>
+
+          </div>
+
+
+          <div id="garagecusSettingsedit" class="tab-pane fade">
+
+            <?php echo $this->include('garage/garageSettingsedit'); ?>
+
+          </div>
+
+
+          <div id="garageNotesedit" class="tab-pane fade">
+
+            <?php echo $this->include('garage/garageNotesedit'); ?>
+
+          </div>
 
         </div>
 
-
-      <div id="garageNotificationsedit" class="tab-pane fade">
-
-        <?php echo $this->include('garage/garageNotificationsedit'); ?>
-
-      </div>
-
-        
-        <div id="garagecusSettingsedit" class="tab-pane fade">
-
-          <?php echo $this->include('garage/garageSettingsedit'); ?>
-
-        </div>
-
-
-        <div id="garageNotesedit" class="tab-pane fade">
-
-        <?php echo $this->include('garage/garageNotesedit'); ?>
-
-        </div>
+      
+      <?php echo form_close(); ?>
+      
 
       </div>
 
     </div>
 
   </div>
-
-</div>
 
 </div>
 <!-- /.container-fluid -->

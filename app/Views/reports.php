@@ -1,48 +1,264 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content'); ?>
 
- <!-- Begin Page Content -->
+<!-- Begin Page Content -->
 
- <div class="container-fluid">
- 
-<!-- Page Heading -->
+<div class="container-fluid">
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-  <h1 class="h3 mb-0 text-gray-800">Reports</h1>
+    <h1 class="h3 mb-0 text-gray-800">Reports</h1>
 
-</div>
+  </div>
 
+  <div class="row">
 
+    <!-- Left Column -->
 
-<div class="row">
-
-
-
-  <!-- Left Column -->
-
-
-  <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mb-4">
 
 
 
-    <!-- Left Other HTML -->
+      <!-- Left Other HTML -->
 
-    <div class="card shadow mb-4">
+      <div class="card shadow mb-4">
 
-      <div class="card-header py-3">
+        <div class="card-header py-3">
 
-        <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="vertical-menu">
+
+            <a href="#" class="active">Estimations</a>
+
+            <a href="#">Estimations without quotation</a>
+
+          </div>
+
+        </div>
 
       </div>
 
-      <div class="card-body">
 
-        <div class="vertical-menu">
 
-          <a href="#" class="active">Estimations</a>
+    </div>
 
-          <a href="#">Estimations without quotation</a>
+
+
+    <!-- Right Column -->
+
+    <div class="col-lg-8 mb-4">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Estimations</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <form>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-12">
+
+                <label class="fieldLabel mb-1">Customer</label>
+
+                <?php 
+                
+                $frmattribute = [
+                  'class' => 'form-control',
+                ];
+
+                ?>
+
+                <?php $options = $customer; ?>
+
+                <?php echo form_dropdown('customer', $options, '',$frmattribute); ?>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="form-row">
+
+              <div class="form-group col-md-12">
+
+                <label class="fieldLabel mb-1">Data Filter</label>
+
+                <select class="form-control">
+
+                  <option>Requested</option>
+
+                  <option>Unrequested</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="form-row">
+
+              <div class="form-group col-md-6">
+
+                <label class="fieldLabel mb-1">From</label>
+
+                <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+
+              </div>
+
+              <div class="form-group col-md-6">
+
+                <label class="fieldLabel mb-1">To</label>
+
+                <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-12">
+
+                <label class="fieldLabel mb-1">Setting</label>
+
+                <div class="table-responsive">
+
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <tbody>
+
+                      <tr>
+
+                        <td>Show unassigned requests</td>
+
+                        <td style="width: 40px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status">
+                        </td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td>Show estimators analysis</td>
+
+                        <td style="width: 40px;"><input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="form-row">
+
+              <div class="form-group col-md-12">
+
+                <label class="fieldLabel mb-1">Permissions</label>
+
+                <div class="table-responsive">
+
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <tbody>
+
+                      <tr>
+
+                        <td><input type="text" placeholder="Search..." class="form-control"></td>
+
+                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+
+
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <tbody>
+
+                      <tr>
+
+                        <td>Complete</td>
+
+                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td>Finish</td>
+
+                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td>In progress</td>
+
+                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                      <tr>
+
+                        <td>Pending</td>
+
+                        <td style="width: 40px;"><input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Save Button row -->
+
+            <div class="row">
+
+              <div class="col-lg-12 mb-4">
+
+                <button type="button" class="btn btn-md btn-primary">Submit</button>
+
+              </div>
+
+            </div>
+
+          </form>
 
         </div>
 
@@ -52,232 +268,14 @@
 
 
 
-  </div>
 
 
 
-  <!-- Right Column -->
-
-  <div class="col-lg-8 mb-4">
-
-    <div class="card shadow mb-4">
-
-      <div class="card-header py-3">
-
-        <h6 class="m-0 font-weight-bold text-primary">Estimations</h6>
-
-      </div>
-
-      <div class="card-body">
-
-       <form>
-
-        <div class="form-row">
-
-          <div class="form-group col-md-12">
-
-              <label class="fieldLabel mb-1">Customer</label>
-
-              <select class="form-control">
-
-                <option>Eurosure</option>
-
-                <option>Eurosure</option>
-
-                <option>Eurosure</option>
-
-              </select>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="form-row">
-
-          <div class="form-group col-md-12">
-
-              <label class="fieldLabel mb-1">Data Filter</label>
-
-              <select class="form-control">
-
-                <option>Requested</option>
-
-                <option>Unrequested</option>
-
-              </select>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="form-row">
-
-          <div class="form-group col-md-6">
-
-              <label class="fieldLabel mb-1">From</label>
-
-              <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
-
-          </div>
-
-          <div class="form-group col-md-6">
-
-              <label class="fieldLabel mb-1">To</label>
-
-              <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
-
-          </div>
-
-        </div>
-
-        <div class="form-row">
-
-          <div class="form-group col-md-12">
-
-              <label class="fieldLabel mb-1">Setting</label>
-
-              <div class="table-responsive">
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                  <tbody>
-
-                    <tr>
-
-                      <td>Show unassigned requests</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                    <tr>
-
-                      <td>Show estimators analysis</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                  </tbody>
-
-                </table>
-
-              </div>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="form-row">
-
-          <div class="form-group col-md-12">
-
-              <label class="fieldLabel mb-1">Permissions</label>
-
-              <div class="table-responsive">
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                  <tbody>
-
-                    <tr>
-
-                      <td><input type="text" placeholder="Search..." class="form-control"></td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                  </tbody>
-
-                </table>  
-
-
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                  <tbody>
-
-                    <tr>
-
-                      <td>Complete</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                    <tr>
-
-                      <td>Finish</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                    <tr>
-
-                      <td>In progress</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                    <tr>
-
-                      <td>Pending</td>
-
-                      <td style="width: 40px;"><input type="checkbox"></td>
-
-                    </tr>
-
-                  </tbody>
-
-                </table>
-
-              </div>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- Save Button row -->
-
-        <div class="row">
-
-          <div class="col-lg-12 mb-4">
-
-            <button type="button" class="btn btn-md btn-primary">Submit</button>
-
-          </div>
-
-        </div>
-
-      </form>
-
-      </div>
-
-    </div>
 
   </div>
 
+  <!-- /.container-fluid -->
 
 
 
-
-
-
-</div>
-
-<!-- /.container-fluid -->
-
-
-
-<?php echo $this->endSection(); ?>
+  <?php echo $this->endSection(); ?>

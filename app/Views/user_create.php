@@ -1,90 +1,96 @@
-<?php echo $this->extend('template/layout_main'); ?>
-<?php echo $this->section('content'); ?>
+  <?php echo $this->extend('template/layout_main'); ?>
+  <?php echo $this->section('content'); ?>
 
-<!-- Begin Page Content -->
+  <!-- Begin Page Content -->
 
-<div class="container-fluid">
+  <div class="container-fluid">
 
-  <!-- Page Heading -->
+    <!-- Page Heading -->
 
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-    <h1 class="h3 mb-0 text-gray-800">Add User</h1>
+      <h1 class="h3 mb-0 text-gray-800">Add User</h1>
 
-  </div>
-  
-  <!-- Content Row -->
+    </div>
 
-  <div class="row">
+    <!-- Content Row -->
 
-    <div class="col-lg-12 mb-4">
+    <div class="row">
 
-      <div class="tabbable-wrapper">
+      <?php
 
-        <ul class="nav nav-tabs">
+      $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : '';
 
-          <li class="active"><a data-toggle="tab" href="#userContact">Contact</a></li>
+      echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
 
-          <li><a data-toggle="tab" href="#userNotifications">Notifications</a></li>
+      unset($_SESSION['currentTab']);
 
-          <li><a data-toggle="tab" href="#userAccount">Account</a></li>
+      ?>
 
-          <li><a data-toggle="tab" href="#userPermissions">Permissions</a></li>
+      <div class="col-lg-12 mb-4">
 
-        </ul>
+        <div class="tabbable-wrapper">
 
-        <div class="tab-content">
+          <ul class="nav nav-tabs">
+
+            <li class="active"><a data-toggle="tab" href="#userContact">Contact</a></li>
+
+            <li><a data-toggle="tab" href="#userNotifications">Notifications</a></li>
+
+            <li><a data-toggle="tab" href="#userAccount">Account</a></li>
+
+            <li><a data-toggle="tab" href="#userPermissions">Permissions</a></li>
+
+          </ul>
+
+          <?php
+
+          $frmattribute = [
+            'id' => 'user_create',  //imageupload
+            'method' => 'post',
+            'enctype' => 'multipart/form-data',
+            //'class' => 'dropzone',
+          ];
+
+          echo form_open('users/store', $frmattribute);
+          ?>
+
+          <div class="tab-content">
+
+            <div id="userContact" class="tab-pane fade in active">
+              <?php echo $this->include('users/userContact'); ?>
+
+            </div>
+
+            <div id="userNotifications" class="tab-pane fade">
+              <?php echo $this->include('users/userNotifications'); ?>
+
+            </div>
+
+            <div id="userAccount" class="tab-pane fade">
+              <?php echo $this->include('users/userAccount'); ?>
+            </div>
 
 
+            <div id="userPermissions" class="tab-pane fade">
 
-          <div id="userContact" class="tab-pane fade in active">
+              <?php echo $this->include('users/userPermissions'); ?>
 
-            <?php echo $this->include('users/userContact'); ?>
+            </div>
 
           </div>
 
 
-
-          <div id="userNotifications" class="tab-pane fade">
-
-            <?php echo $this->include('users/userNotifications'); ?>
-
-          </div>
-
-
-
-          <div id="userAccount" class="tab-pane fade">
-
-            <?php echo $this->include('users/userAccount'); ?>
-
-          </div>
-
-
-
-          <div id="userPermissions" class="tab-pane fade">
-
-            <?php echo $this->include('users/userPermissions'); ?>
-
-          </div>
-
-
-
+          <?php echo form_close(); ?>
+          
         </div>
 
       </div>
 
     </div>
 
-
-
   </div>
 
+  <!-- /.container-fluid -->
 
-
-</div>
-
-<!-- /.container-fluid -->
-
-
-
-<?php echo $this->endSection(); ?>
+  <?php echo $this->endSection(); ?>

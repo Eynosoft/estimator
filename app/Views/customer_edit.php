@@ -12,7 +12,6 @@
 <?php 
 
 $activeClass = ''; 
-
 $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : ' ';
 echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
 
@@ -28,59 +27,42 @@ unset($_SESSION['currentTab']);
 
     <div class="tabbable-wrapper">
 
-      <ul class="nav nav-tabs">
-  
-      <?php if(!empty($currentTab) && ($currentTab == '#cusContact')) {
+    <ul class="nav nav-tabs">
 
-          $activeClass = 'active';
+    <li class="active">
 
-        } else { 
+      <a data-id="customerContactTab" data-toggle="tab" href="#cusContact">Contact</a>
 
-          $activeClass = '';
+    </li>
 
-        }  ?>
-
-      <li class="<?php echo $activeClass; ?>">
-
-      <a data-id="customerContactTab" data-toggle="tab" href="#cusContact">Contact</a></li>
-
-       <?php if(!empty($currentTab) && ($currentTab == '#cusNotifications')) {
-
-          $activeClass = 'active';
-
-       } else {
-
-        $activeClass = '';
-
-        } ?>
-
-    <li class="<?php echo $activeClass; ?>">
+    <li>
 
     <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
         
-      </li>
-        
-        <?php if(!empty($currentTab) && ($currentTab == '#cusSettings')) {
-          $activeClass = 'active';
-        } else {
-          $activeClass = '';
-        } ?>
+    </li>
+      
 
-      <li class="<?php echo $activeClass; ?>">
+    <li>
 
       <a data-id="customerSettingTab" data-toggle="tab" href="#cusSettings">Settings</a>
 
-      </li>
+    </li>
 
-        <?php if(!empty($currentTab) && ($currentTab == '#cusNotes')) {
-          $activeClass = 'active';
-        } else {
-          $activeClass = '';
-        } ?>
+  <!-- <li class="<?php // echo $activeClass; ?>"><a data-toggle="tab" href="#cusNotes">Notes</a></li> -->
 
-        <!-- <li class="<?php // echo $activeClass; ?>"><a data-toggle="tab" href="#cusNotes">Notes</a></li> -->
-        
-      </ul>
+  </ul>
+  
+      <?php 
+      
+      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
+      $frmattribute = [
+              'id' => 'customer_create',
+              'method' => 'post',
+              ];
+      
+      echo form_open('customer/updateCustomer',$frmattribute);
+
+      ?>
 
       <div class="tab-content">
         
@@ -111,6 +93,8 @@ unset($_SESSION['currentTab']);
         </div>
 
       </div>
+
+    <?php echo form_close(); ?>
 
     </div>
 

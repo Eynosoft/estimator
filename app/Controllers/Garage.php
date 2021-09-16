@@ -4,24 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\GarageModel;
-use App\Models\GarageNotificationsModel;
-use App\Models\garageDocTypeModel;
-use App\Models\GarageNotesModel;
+
 
 class Garage extends BaseController
 {
 	protected $garage_model = null;
-	protected $garage_notification = null;
-	protected $garageDoctype = null;
-	protected $garageNotes = null;
 	protected $session;
+
 
 	function __construct()
 	{
 		$this->garage_model = new GarageModel();
-		$this->garage_notification = new GarageNotificationsModel();
-		$this->garageDoctype = new GarageDocTypeModel();
-		$this->garageNotes = new GarageNotesModel();
 		$this->session = \Config\Services::session();
 		$this->session->start();
 	}
@@ -46,7 +39,6 @@ class Garage extends BaseController
 //-----------------------------------------------------------------------------------------------//
 
 
-
 // ----------------------------------------------------------------------------------------------//
 // Create Garage Starts
 
@@ -64,6 +56,7 @@ class Garage extends BaseController
 		return view('garage_create', $context);
 	}
 
+
 // Create Garage Ends
 //-----------------------------------------------------------------------------------------------//
 
@@ -80,9 +73,6 @@ class Garage extends BaseController
 			'username' => user()->username,
 		];
 		$context['garage'] = $this->garage_model->getGarageDataById($id);
-		$context['garage_notification'] = $this->garage_notification->getGarageNotificationById($id);
-		$context['garage_doctype'] = $this->garageDoctype->getGarageDocDatabyId($id);
-		$context['garage_notes'] = $this->garageNotes->getGarageNotesDatabyId($id);
 		return view('garage_edit', $context);
 	}
 
@@ -109,7 +99,6 @@ class Garage extends BaseController
 // --------------------------------------------------------------------------------------------//
 
 
-
 // -------------------------------------------------------------------------------------------//
 // Store Garage Data Starts
 
@@ -121,11 +110,14 @@ class Garage extends BaseController
 				'garage_name' => 'required',
 				'owner_name' => 'required',
 				'repair_rate' => 'required',
-				'reports_password' => 'required',
 				'email' => 'required',
 				'mobile' => 'required',
 				'landline' => 'required',
-				'fax' => 'required'
+				'fax' => 'required',
+				'locale' => 'required',
+				'city' => 'required',
+				'address' => 'required',
+				'status' => 'required',
 			]
 		);
 
@@ -133,21 +125,24 @@ class Garage extends BaseController
 			'garage_name' => $this->request->getVar('garage_name'),
 			'owner_name' => $this->request->getVar('owner_name'),
 			'repair_rate' => $this->request->getVar('repair_rate'),
-			'reports_password' => $this->request->getVar('reports_password'),
 			'email' => $this->request->getVar('email'),
 			'mobile' => $this->request->getVar('mobile'),
 			'landline' => $this->request->getVar('landline'),
 			'fax' => $this->request->getVar('fax'),
+			'locale' => $this->request->getVar('locale'),
+			'city' => $this->request->getVar('city'),
+			'address' => $this->request->getVar('address'),
+			'notifications' => json_encode($this->request->getVar('notifications')),
+      'doc_type' => json_encode($this->request->getVar('doc_type')),
 			'notes' => $this->request->getVar('notes'),
-			'active' => $this->request->getVar('active')
+			'status' => $this->request->getVar('status'),
 		];
+
 		if (!$check) {
 			return view('garage_create', ['validation' => $this->validator]);
-		} else {
+		}  else {
 			$result = $this->garage_model->insertgarage($data);
-			unset($_SESSION['currentTab']);
-			$_SESSION['currentTab'] = '#garageNotifications';
-			$url = base_url() . '/garage/create/' . $result . '/#garageNotifications';
+			$url = base_url() . '/garage';
 			return redirect()->to($url);
 		}
 	}
@@ -155,13 +150,13 @@ class Garage extends BaseController
 // Store Garage Data Ends
 //----------------------------------------------------------------------------------------------//
 
-
 //--------------------------------------------------------------------------------------------//
 // Update Garage data Starts
 
 	public function updateGarage()
 	{
 		$id = $this->request->getVar('id');
+
 		$data = [
 			'garage_name' => $this->request->getVar('garage_name'),
 			'owner_name' => $this->request->getVar('owner_name'),
@@ -172,21 +167,25 @@ class Garage extends BaseController
 			'landline' => $this->request->getVar('landline'),
 			'fax' => $this->request->getVar('fax'),
 			'notes' => $this->request->getVar('notes'),
-			'active' => $this->request->getVar('active')
+			'status' => $this->request->getVar('status'),
+			'locale' => $this->request->getVar('locale'),
+			'city' => $this->request->getVar('city'),
+			'address' => $this->request->getVar('address'),
+			'notifications' => json_encode($this->request->getVar('notifications')),
+      'doc_type' => json_encode($this->request->getVar('doc_type')),
 		];
 
-		if (!empty($id)) {
+		if(!empty($id)){
 			$result = $this->garage_model->insertgarage($data, $id);
-			unset($_SESSION['currentTab']);
-			$_SESSION['currentTab'] = '#garageContactedit';
-			$url = base_url() . '/garage/update/' . $id . '/#garageContactedit';
+			$url = base_url() . '/garage/view' .'/'.$id;
 			return redirect()->to($url);
 		}
+
 	}
+
 
 // Update Garage Data ends
 // ----------------------------------------------------------------------------------------------//
-
 
 
 // ----------------------------------------------------------------------------------------------//
@@ -229,144 +228,5 @@ class Garage extends BaseController
 // Get Garage data ends 
 //----------------------------------------------------------------------------------------------//
 
-
-//---------------------------------------------------------------------------------------------// 
-// Store Notifications for the garage starts
-
-	public function storeNotifications()
-	{
-		$data['notifications'] = json_encode($this->request->getVar('notifications'));
-		$data['gid'] = $this->request->getVar('gid');
-		$result = $this->garage_notification->insertNofication($data);
-
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garageSettings';
-		$url = base_url() . '/garage/create/' . $data['gid'] . '/#garageSettings';
-		return redirect()->to($url);
-	}
-
-//Store Notifications For the Garage Ends
-//---------------------------------------------------------------------------------------------//
-
-
-//---------------------------------------------------------------------------------------------//
-// Update Garage Notification Starts
-
-	public function updateNotification($id = null)
-	{
-		$data['notifications'] = json_encode($this->request->getVar('notifications'));
-		$result = $this->garage_notification->updateNotificationdata($data, $id);
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garageNotificationsedit';
-		$url = base_url() . '/garage/update/' . $id . '/#garageNotificationsedit';
-		return redirect()->to($url);
-	}
-
-// Update Garage Notfication Ends
-//---------------------------------------------------------------------------------------------//
-
-
-
-//----------------------------------------------------------------------------------------------//
-// Store Garage Documents Starts
-
-	public function storeDocsType()
-	{
-		$data['doc_type'] = json_encode($this->request->getVar('files'));
-		$data['gid'] = $this->request->getVar('gid');
-		$result = $this->garageDoctype->insertGarageDoc($data);
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garageNotes';
-		$url = base_url() . '/garage/create/' . $data['gid'] . '/#garageNotes';
-		return redirect()->to($url);
-	}
-
-// Store Garage Documents Ends
-//----------------------------------------------------------------------------------------------//
-
-
-//---------------------------------------------------------------------------------------------//
-//Update Docs Type into the garage Starts
-
-	public function updateDoc($id)
-	{
-		$data['doc_type'] = json_encode($this->request->getVar('files'));
-		$result = $this->garageDoctype->updateDocdata($data, $id);
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garagecusSettingsedit';
-		$url = base_url() . '/garage/update/' . $id . '/#garagecusSettingsedit';
-		return redirect()->to($url);
-	}
-
-//Update docs type into the garage Ends
-//-----------------------------------------------------------------------------------------------//
-
-
-//----------------------------------------------------------------------------------------------//
-//Store Garage Notes Starts
-
-	public function storeGarageNotes()
-	{
-		$data['gid'] = $this->request->getVar('gid');
-		$data['notes'] = $this->request->getVar('notes');
-		$result = $this->garageNotes->insertGarageNotes($data);
-
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garageNotes';
-		$url = base_url() . '/garage/create/' . $data['gid'] . '/#garageNotes';
-		return redirect()->to($url);
-	}
-
-// Store Garage Notes Ends
-//---------------------------------------------------------------------------------------------//
-
-
-//---------------------------------------------------------------------------------------------//
-//Update Notes of the garage Starts
-
-	public function updateNotes($id = null)
-	{
-		$data['notes'] = $this->request->getVar('notes');
-		$result = $this->garageNotes->updateNotesData($data, $id);
-
-		if ($result) {
-			$_SESSION['message'] = 'success';
-		} else {
-			$_SESSION['message'] = 'error';
-		}
-
-		unset($_SESSION['currentTab']);
-		$_SESSION['currentTab'] = '#garageNotes';
-		$url = base_url() . '/garage/update/' . $id . '/#garageNotesedit';
-		return redirect()->to($url);
-	}
-
-// Update notes of the garage ends
-//----------------------------------------------------------------------------------------------//
 
 }

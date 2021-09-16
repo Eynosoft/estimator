@@ -52,12 +52,12 @@
 
           <tbody>
 
-            <?php
+          <?php
 
-            if (!empty($user)) :
+          if(!empty($user)) :
 
-              $count = 1;
-              foreach($user as $row) :
+            $count = 1;
+            foreach($user as $row) :
 
             ?>
 
@@ -69,7 +69,7 @@
 
                   <td><?php echo $row['locale']; ?></td>
 
-                  <td><img src="<?php echo base_url('') ?>/assets/uploads/<?php echo $row['file']; ?>" height="50" width="70"></td>
+                  <td><img src="<?php echo base_url('') ?>/assets/uploads/<?php echo $row['contact_signature']; ?>" height="70" width="100"></td>
 
                   <td><?php echo $row['email']; ?></td>
 
@@ -91,13 +91,14 @@
 
                   <td class="actionCol">
 
-                    <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('Users/create') . '/' . $row['id']; ?>">
+                    <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('users/update_user') . '/' . $row['id']; ?>">
 
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
 
                     </a>
 
-                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('Users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('users/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                    
                   </a>
 
                   </td>

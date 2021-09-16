@@ -6,7 +6,6 @@
 <div class="container-fluid">
 
 
-
   <!-- Page Heading -->
 
   <div class="d-sm-flex align-items-center justify-content-between mb-3">
@@ -44,9 +43,19 @@
         </ul>
 
 
+        <?php
+
+        $formattribute = [
+          'method' => 'post',
+          'class' => 'addrequest',
+        ]
+
+        ?>
+
+        <?php echo form_open('requests/request_store', $formattribute); ?>
+
 
         <div class="tab-content">
-
 
 
           <div id="estRequest" class="tab-pane fade in active">
@@ -64,13 +73,11 @@
           </div>
 
 
-
           <div id="estGarage" class="tab-pane fade">
 
             <?php echo $this->include('estimation_request/estGarage'); ?>
 
           </div>
-
 
 
           <div id="estInsuranceDetails" class="tab-pane fade">
@@ -98,6 +105,9 @@
 
 
         </div>
+
+
+      <?php echo form_close(); ?>
 
       </div>
 

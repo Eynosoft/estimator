@@ -1,4 +1,5 @@
 <!-- Content Column -->
+<br>
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -14,17 +15,6 @@
 
       ?>
 
-      <?php
-
-      $frmattribute = [
-        'id' => 'garage_create',
-        'method' => 'post',
-      ];
-
-      echo form_open('garage/store', $frmattribute);
-
-      ?>
-
       <div class="card-body">
 
         <div class="form-row">
@@ -32,16 +22,19 @@
           <div class="form-group col-md-12">
 
             <?php echo form_label('Garage name', 'garage_name', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'garage_name', 'name' => 'garage_name', 'placeholder' => 'Enter Garage Name', 'value' => '')); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'garage_name', 'name' => 'garage_name', 'placeholder' => 'Enter Garage Name', 'value' => ''));
+            ?>
 
-            <?php if (isset($validation)) { ?>
+            <?php if (isset($validation)) {  ?>
               <div class='alert alert-danger mt-2'>
                 <?= $validation->getError('garage_name'); ?>
               </div>
 
-              <?php
-              }
-              ?>
+            <?php
+
+            }
+
+            ?>
 
           </div>
 
@@ -57,9 +50,11 @@
             <span class="noteText">The language that reports will be generated with</span>
 
             <?php if (isset($validation)) { ?>
+
               <div class='alert alert-danger mt-2'>
                 <?= $validation->getError('owner_name'); ?>
               </div>
+
             <?php
 
             }
@@ -67,40 +62,19 @@
             ?>
 
           </div>
-       
+
           <div class="form-group col-md-6">
 
-          <?php echo form_label('Repair Time Rate', 'repair_time_rate', $lblAttributes); ?>
+            <?php echo form_label('Repair Time Rate', 'repair_time_rate', $lblAttributes); ?>
 
-           <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'reapir_time_rate', 'name' => 'repair_rate', 'placeholder' => 'Enter Repair Time Rate', 'value' => ''));  ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'reapir_time_rate', 'name' => 'repair_rate', 'placeholder' => 'Enter Repair Time Rate', 'value' => ''));  ?>
 
-           <?php if (isset($validation)) { ?>
+            <?php if (isset($validation)) { ?>
 
               <div class='alert alert-danger mt-2'>
                 <?= $validation->getError('repair_rate'); ?>
               </div>
-              
-            <?php
 
-            }
-
-            ?>
-
-          </div>
-
-        </div>
-
-        <div class="form-row">
-
-          <div class="form-group col-md-12">
-
-            <?php echo form_label('Reports Password', 'reports_password', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'password', 'class' => 'form-control', 'id' => 'reports_password', 'name' => 'reports_password', 'placeholder' => 'Enter Reports Password', 'value' => '')); ?>
-            <span class="noteText">Password used to protect the report generated.</span>
-            <?php if (isset($validation)) { ?>
-              <div class='alert alert-danger mt-2'>
-                <?= $validation->getError('reports_password'); ?>
-              </div>
             <?php
 
             }
@@ -116,10 +90,12 @@
           <div class="form-group col-md-6">
 
             <?php echo form_label('Emails', 'email', $lblAttributes); ?>
+
             <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email Address', 'value' => '')); ?>
 
             <span class="noteText">Seperate multiple emails with comma.</span>
             <?php if (isset($validation)) { ?>
+
               <div class='alert alert-danger mt-2'>
                 <?= $validation->getError('email'); ?>
               </div>
@@ -196,17 +172,87 @@
 
         </div>
 
-        <div class="col-lg-12 mb-4">
+        <div class="form-row">
 
-          <?php echo form_submit(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'savegarage', 'value' => 'Save')) ?>
+          <div class="form-group col-md-6">
+
+            <?php echo form_label('Locale', 'locale', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'locale', 'name' => 'locale', 'placeholder' => 'Enter Locale', 'value' => '')); ?>
+            <?php if (isset($validation)) { ?>
+              <div class='alert alert-danger mt-2'>
+                <?= $validation->getError('locale'); ?>
+              </div>
+            <?php
+
+            }
+
+            ?>
+
+          </div>
+
+          <div class="form-group col-md-6">
+
+            <?php echo form_label('City', 'city', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'city', 'name' => 'city', 'placeholder' => 'Enter City', 'value' => '')); ?>
+            <?php if (isset($validation)) { ?>
+              <div class='alert alert-danger mt-2'>
+                <?= $validation->getError('city'); ?>
+              </div>
+            <?php
+
+            }
+
+            ?>
+
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-12">
+
+            <?php echo form_label('Address', 'address', $lblAttributes); ?>
+
+            <?php echo form_textarea(array('type' => 'text', 'class' => 'form-control', 'id' => 'address', 'name' => 'address', 'placeholder' => 'Enter Address', 'value' => '','rows'=>'3','cols'=>'2')); ?>
+
+            <?php if (isset($validation)) { ?>
+              <div class='alert alert-danger mt-2'>
+                <?= $validation->getError('address'); ?>
+              </div>
+
+            <?php
+
+            }
+
+            ?>
+
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+              <div class="form-group col-md-12">
+
+              <input type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" value="1" name="status">
+
+              <?php if (isset($validation)) { ?>
+              <div class='alert alert-danger mt-2'>
+                <?= $validation->getError('status'); ?>
+              </div>
+
+              <?php
+
+              }
+
+              ?>
+
+              </div>
 
         </div>
 
       </div>
-
-
-      <?php echo form_close(); ?>
-
 
     </div>
 

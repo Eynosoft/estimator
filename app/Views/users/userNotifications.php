@@ -1,127 +1,105 @@
-<!-- Content Column -->
-<div class="row">
+      <!-- Content Column -->
+      <div class="row">
 
-  <div class="col-lg-12 mb-4">
-    <!-- Project Card Example -->
-    <div class="card shadow">
+        <div class="col-lg-12 mb-4">
+          <!-- Project Card Example -->
+          <div class="card shadow">
 
-      <div class="card-header py-3">
+            <div class="card-header py-3">
 
-        <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
 
-      </div>
+            </div>
 
-      <?php
+              <div class="card-body">
 
-      $lblAttributes = ['class' => 'fieldLabel mb-1'];
+              <?php
 
-      $frmattribute = [
-        'id' => 'users_notification',
-        'method' => 'post',
-      ];
+                $lblAttributes = ['class' => 'fieldLabel mb-1'];
 
-      echo form_open('users/storeNotifications', $frmattribute);
+              ?>
 
-      ?>
+                <div class="table-responsive">
 
-      <?php
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-      echo form_input(array('type' => 'hidden', 'name' => 'uid', 'value' => $uid));
+                    <thead>
 
-      ?>
+                      <tr>
 
-      <div class="card-body">
+                        <th class="firstCol">Type</th>
 
-        <div class="table-responsive">
+                        <th>Email</th>
 
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <th>Push</th>
 
-            <thead>
+                      </tr>
 
-              <tr>
+                    </thead>
 
-                <th class="firstCol">Type</th>
+                    <tbody>
 
-                <th>Email</th>
+                      <tr>
 
-                <th>Push</th>
+                        <td>Estimation Job Completed</td>
 
-              </tr>
+                        <td>
 
-            </thead>
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_email" name="usernotifications[]">
 
-            <tbody>
-
-              <tr>
-
-                <td>Estimation Job Completed</td>
-
-                <td>
-
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_email" name="usernotifications[]">
-
-                </td>
+                        </td>
 
 
-                <td>
+                        <td>
 
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_push" name="usernotifications[]">
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="jobcompleted_push" name="usernotifications[]">
 
-                </td>
+                        </td>
 
-              </tr>
-
-
-              <tr>
-
-                <td>Estimation Job Work Order</td>
-
-                <td>
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_email" name="usernotifications[]">
-                </td>
-
-                <td>
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_push" name="usernotifications[]">
-                </td>
-
-              </tr>
+                      </tr>
 
 
-              <tr>
+                      <tr>
 
-                <td>Estimation Request External Created</td>
+                        <td>Estimation Job Work Order</td>
 
-                <td>
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_email" name="usernotifications[]">
-                </td>
+                        <td>
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_email" name="usernotifications[]">
+                        </td>
 
-                <td>
-                  <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_push" name="usernotifications[]">
-                </td>
+                        <td>
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="work_order_push" name="usernotifications[]">
+                        </td>
 
-              </tr>
+                      </tr>
 
-            </tbody>
 
-          </table>
+                      <tr>
+
+                        <td>Estimation Request External Created</td>
+
+                        <td>
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_email" name="usernotifications[]">
+                        </td>
+
+                        <td>
+                          <input type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" value="request_created_push" name="usernotifications[]">
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+
+              </div>
+
+          </div>
 
         </div>
 
-      </div>
-
-      <div class="col-lg-12 mb-4">
-
-        <?php echo form_input(array('type'=>'submit','value'=>'Save','name' => 'usernotification','class' => 'btn btn-md btn-primary', 'id'=>'usernotification')
-        ) ?>
+        <!-- Save Button row -->
 
       </div>
-
-      <?php echo form_close(); ?>
-
-    </div>
-
-  </div>
-
-  <!-- Save Button row -->
-
-</div>

@@ -1,4 +1,6 @@
 <!-- Content Column -->
+<br>
+
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -15,10 +17,10 @@
 
       <?php
 
-      $gid = $garage_notification['gid'];
-      if (!empty($garage_notification['notifications'])) {
-        for ($i = 0; $i < count($garage_notification['notifications']); $i++) {
-          if (isset($garage_notification['notifications'][$i]) && ($garage_notification['notifications'][$i] == 'email')) {
+      $gid = $garage['id'];
+      if (!empty($garage['notifications'])) {
+        for ($i = 0; $i < count($garage['notifications']); $i++) {
+          if (isset($garage['notifications'][$i]) && ($garage['notifications'][$i] == 'email')) {
             $email = 'checked';
           } else {
             $push = 'checked';
@@ -33,16 +35,6 @@
         <?php
 
         $lblAttributes = ['class' => 'fieldLabel mb-1'];
-        $frmattribute = [
-
-          'id' => 'garage_notification',
-          'method' => 'post',
-
-        ];
-
-        echo form_open('garage/updateNotification' . '/' . $gid, $frmattribute);
-
-        echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid));
 
         ?>
 
@@ -87,14 +79,6 @@
         </div>
 
       </div>
-
-      <div class="col-lg-12 mb-4">
-
-      <?php echo form_input(array('type' => 'submit', 'name' => 'updatenotification', 'id' => 'updatenotification', 'value' => 'Save', 'class' => 'btn btn-md btn-primary')) ?>
-
-      </div>
-
-      <?php echo form_close(); ?>
 
     </div>
 
