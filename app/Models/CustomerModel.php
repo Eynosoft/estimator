@@ -68,7 +68,7 @@ class CustomerModel extends Model
 	{
 		try {
 			if (!empty($id)) {
-				if ($this->update($id, $data)) {
+				if($this->update($id, $data)) {
 					return true;
 				} else {
 					return $this->errors();

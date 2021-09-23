@@ -1,11 +1,11 @@
 <!-- Content Column -->
 <div class="row">
 
-  <div class="col-lg-12 mb-4">
+  <div class="col-lg-12 mb-4"> 
     <!-- Project Card Example -->
 
     <div class="card shadow">
-
+      
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Assign Job</h6>
       </div>
@@ -16,17 +16,15 @@
 
       ?>
 
-    
-    <?php echo form_input(array('type' => 'hidden', 'class' => 'form-control', 'id' => 'requestor_id', 'name' => 'requestor_id', 'value' => $requestor[0]['id'])); ?>
+    <?php echo form_input(array('type' => 'hidden', 'class' => 'form-control', 'id' => 'requestor_id', 'name' => 'requestor_id', 'value' => $requestor['id'])); ?>
 
-
-      <?php if (!empty($requestor[0]['assign_id'])) { ?>
+      <?php if (!empty($requestor['assign_id'])) { ?>
 
         <div class="card-body">
 
           <div class="form-row">
 
-            <?php echo form_input(array('type' => 'hidden', 'name' => 'assign_id', 'value' => $requestor[0]['assign_id'])); ?>
+            <?php echo form_input(array('type' => 'hidden', 'name' => 'assign_id', 'value' => $requestor['assign_id'])); ?>
 
             <div class="form-group col-md-12">
 
@@ -35,7 +33,7 @@
               <?php
 
               $options = $assessors;
-              echo form_dropdown('assessor', $options, $requestor[0]['assessor'], 'class="form-control" id="assessor_name"');
+              echo form_dropdown('assessor', $options, $requestor['assessor'], 'class="form-control" id="assessor_name"');
 
               ?>
 
@@ -60,7 +58,7 @@
             <div class="form-group col-md-12">
 
               <?php echo form_label('Visit Date', 'visit', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'datepicker', 'name' => 'visit_date', 'value' => $requestor[0]['visit_date'])); ?>
+              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'datepicker', 'name' => 'visit_date', 'value' => $requestor['visit_date'])); ?>
 
               <?php if (isset($validation)) { ?>
 

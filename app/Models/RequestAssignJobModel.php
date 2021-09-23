@@ -25,6 +25,7 @@ class RequestAssignJobModel extends Model
 	function __construct()
 	{
 		parent::__construct();
+		$this->db = \Config\Database::connect();
 	}
 
 	// ------------------------------------------------------------------------------------------//
@@ -75,6 +76,11 @@ class RequestAssignJobModel extends Model
 				}
 			} else {
 				if ($this->save($data)) {
+					$assign_id = $this->getInsertID();
+					$query = $this->db->query('SELECT requestor_id FROM request_assign_job WHERE assign_id = "'.$assign_id.'" ');
+					$request_data = $query->getResult();
+					$request_id = $request_data[0]->requestor_id;
+					$query = $this->db->query('UPDATE requestor SET status = 1 WHERE id = "'.$request_id.'"');
 					return true;
 				} else {
 					return $this->errors();
@@ -94,7 +100,6 @@ class RequestAssignJobModel extends Model
 
 	public function getAssignDataById($id = null)
 	{
-
 		try {
 			$assign_data = $this->where('id', $id)->findAll();
 			return $assign_data;

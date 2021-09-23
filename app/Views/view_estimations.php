@@ -10,12 +10,11 @@
 
   </div>
 
-
   <div class="row">
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a href="<?php echo base_url('requests/update') . '/' . $requestor[0]['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a href="<?php echo base_url('requests/update') . '/' . $requestor['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -46,7 +45,7 @@
         </div>
 
       </div>
-
+      
       <div class="card primary mb-4">
 
         <div class="card-header py-3">
@@ -63,23 +62,21 @@
 
             <a href="#"> <i class="fa fa-arrow-right" aria-hidden="true"></i>&nbspWithdraw<span class="badge badge-primary fa fa-arrow-right"></span></a>
 
-
-
             <!-- Show Notes Data Dynamically -->
 
-            <?php if (!empty($requestor[0]['assign_id'])) { ?>
+            <?php if (!empty($requestor['assign_id'])) { ?>
 
               <a href="#" id="notes">
 
                 <i id='icon' class="fa fa-minus" aria-hidden="true"></i>&nbspNote<span class="badge badge-primary fa fa-arrow-right"></span></a>
 
-              <div style="background-color: #808080;padding:5px 5px 5px 5px;" id='assign_notes'><?php echo $requestor[0]['assign_note']; ?></div>
+              <div style="background-color: #808080;padding:5px 5px 5px 5px;" id='assign_notes'><?php echo $requestor['assign_note']; ?></div>
 
             <?php } ?>
 
             <!-- Show Notes data Dynamically Ends -->
 
-            <a href="<?php echo base_url('requests/delete_request') . '/' . $requestor[0]['id']; ?>">
+            <a href="<?php echo base_url('requests/delete_request') . '/' . $requestor['id']; ?>">
 
               <i class="fa fa-trash" aria-hidden="true"></i>&nbspDelete<span class="badge badge-primary fa fa-arrow-right"></span></a>
 
@@ -116,15 +113,20 @@
 
                   <td><strong>Status</strong></td>
 
-                  <?php if (!empty($requestor[0]['assign_id'])) {  ?>
+                  <?php
+                  
+                  switch ($requestor['status']) {
 
-                    <td><button class="btn btn-success sm" disabled>Assigned</button></td>
+                    case '0':
+                      echo "<td><button class='btn btn-danger' disabled>Unassigned</button></td>";
+                      break;
 
-                  <?php } else { ?>
-
-                    <td><button class="btn btn-danger sm" disabled>Unassigned</button></td>
-
-                  <?php } ?>
+                    default:
+                      echo "<td><button class='btn btn-success' disabled>Assigned</button></td>";
+                      break;
+                  }
+                  
+                  ?>
 
                 </tr>
 
@@ -132,25 +134,18 @@
 
                   <td><strong>Created</strong></td>
 
-                  <?php
-
-                  $created = $requestor[0]['created_at'];
-                  $newDate = date("d/m/Y h:i:sa", strtotime($created));
-
-                  ?>
-
-                  <td><?php echo $newDate; ?></td>
+                  <td><?php echo date("d/m/Y h:s a", strtotime($requestor['created_at']));; ?></td>
 
                 </tr>
 
                 <tr>
 
 
-                  <?php if (!empty($requestor[0]['assign_id'])) {  ?>
+                  <?php if (!empty($requestor['assign_id'])) {  ?>
 
                     <td><strong>Visit Date</strong></td>
 
-                    <td><?php echo $requestor[0]['visit_date']; ?></td>
+                    <td><?php echo $requestor['visit_date']; ?></td>
 
                 </tr>
 
@@ -165,32 +160,32 @@
 
               <tr>
 
-                <td><strong>Number</strong></td>
-                <td><?php echo $requestor[0]['claim_number']; ?> </td>
+                <td><strong>Request Number</strong></td>
+                <td><?php echo $requestor['request_no']; ?></td>
 
               </tr>
 
               <tr>
                 <td><strong>Customer</strong></td>
-                <td><?php echo $requestor[0]['customer']; ?></td>
+                <td><?php echo $requestor['customer']; ?></td>
               </tr>
 
 
               <tr>
                 <td><strong>Requested</strong></td>
-                <td>-</td>
+                <td><?php echo $requestor['requested_date']; ?></td>
               </tr>
 
               <tr>
                 <td><strong>Requested By</strong></td>
-                <td><?php echo $requestor[0]['requestor']; ?></td>
+                <td><?php echo $requestor['requestor']; ?></td>
               </tr>
 
               <tr>
 
                 <td><strong>Vehicle</strong></td>
 
-                <td><?php echo $requestor[0]['vehicle']; ?></td>
+                <td><?php echo $requestor['vehicle']; ?></td>
 
               </tr>
 
@@ -198,7 +193,7 @@
 
                 <td><strong>Garage</strong></td>
 
-                <td><?php echo $requestor[0]['garage']; ?></td>
+                <td><?php echo $requestor['garage']; ?></td>
 
               </tr>
 
@@ -249,7 +244,7 @@
 
               <?php
 
-              form_input(array('type' => 'hidden', 'id' => 'request_id', 'name' => 'request_id', 'value' => $requestor[0]['id']));
+              form_input(array('type' => 'hidden', 'id' => 'request_id', 'name' => 'request_id', 'value' => $requestor['id']));
 
               ?>
 
@@ -439,6 +434,7 @@ foreach ($person_doc as $person_image) { ?>
   </div>
 
 <?php $i++;
+
 }
 
 ?>

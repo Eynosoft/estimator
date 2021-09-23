@@ -19,7 +19,7 @@
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
 
-  <a class="nav-link" href="<?php echo base_url('Dashboard/'); ?>">
+  <a class="nav-link" href="<?php echo base_url('dashboard/'); ?>">
 
     <i class="fa fa-home" aria-hidden="true"></i>
 

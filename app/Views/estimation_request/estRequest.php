@@ -1,7 +1,5 @@
 <!-- Content Column -->
-<br>
 <div class="row">
-
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
@@ -34,7 +32,7 @@
             <div class="form-group col-md-12">
 
               <?php echo form_label('Requested', 'requested'); ?>
-              <?php echo form_input(array('name' => 'requested_date', 'type' => 'date', 'class' => 'form-control', 'id' => 'requested',)); ?>
+              <?php echo form_input(array('name' => 'requested_date', 'type' => 'text', 'class' => 'form-control datetimepicker', 'id' => 'requested',)); ?>
 
             </div>
 

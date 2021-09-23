@@ -35,13 +35,13 @@
 
             <a href="#">External <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
 
-            <a href="#">Unassigned <span class="badge badge-danger" style="font-size: 15px;"><?php echo count($requestor) - $requestor['0']['assign_total']; ?></span></a>
+            <a href="#">Unassigned <span class="badge badge-danger" style="font-size: 15px;"><?php echo !empty($requestor['0']['unassigned_total']) ? $requestor['0']['unassigned_total'] : '0'; ?></span></a>
 
             <a href="#">Assigned <span class="badge badge-success" style="font-size: 15px;"><?php echo !empty($requestor['0']['assign_total']) ? $requestor['0']['assign_total'] : '0'; ?></span></a>
 
             <a href="#">Withdrawn <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
 
-            <a href="#"><strong>Total <span class="badge badge-primary" style="font-size: 17px;"><?php echo count($requestor); ?></span></strong></a>
+            <a href="#"><strong>Total <span class="badge badge-primary" style="font-size: 17px;"><?php echo  !empty($requestor['0']['total']) ? $requestor['0']['total'] : '0'; ?></span></strong></a>
 
           </div>
 
@@ -77,7 +77,7 @@
 
                   <th>Created</th>
 
-                  <th>Number</th>
+                  <th>Claim Number</th>
 
                   <th>Vehicles</th>
 
@@ -118,30 +118,36 @@
 
                     <td><span class="badge badge-primary" style="font-size: 13px;">Estimation</span></td>
 
-                    <?php  if(!empty($rows['assign_id']))  {  ?>
 
-                      <td><span class="badge badge-success" style="font-size: 13px;">Assigned</span></td>
+                    <?php
 
-                    <?php } else { ?>
+                    switch ($rows['status']) {
 
-                      <td><span class="badge badge-danger" style="font-size: 13px;">Unassigned</span></td>
+                      case '0':
+                        echo "<td><span class='badge badge-danger' style='font-size: 13px;'>Unassigned</span></td>";
+                        break;
 
-                    <?php } ?>
+                      default:
+                        echo "<td><span class='badge badge-success' style='font-size: 13px;'>Assigned</span></td>";
+                        break;
+
+                    }
+
+                    ?>
 
                     <td class="actionCol">
 
-                      <a class="mr-2" href="<?php echo base_url('requests/view_estimations') . '/' .   $rows['id']; ?> ">
+                    <a class="mr-2" href="<?php echo base_url('requests/view_estimations') . '/' .   $rows['id']; ?> ">
 
                       <i class="fa fa-eye" aria-hidden="true"></i>
 
-                      </a>
+                    </a>
 
                     </td>
 
                   </tr>
 
-                <?php $i++;
-                }  ?>
+                <?php $i++; } ?>
 
               </tbody>
 

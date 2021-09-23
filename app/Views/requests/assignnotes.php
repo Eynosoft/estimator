@@ -1,18 +1,13 @@
 <div class="row">
-
+  
   <div class="col-lg-12 mb-4">
-
     <!-- Project Card Example -->
-
     <div class="card shadow">
-
       <div class="card-header py-3">
-
         <h6 class="m-0 font-weight-bold text-primary">Notes</h6>
-
       </div>
 
-      <?php if (!empty($requestor[0]['assign_id'])) { ?>
+      <?php if (!empty($requestor['assign_id'])) { ?>
 
         <div class="card-body">
 
@@ -21,7 +16,6 @@
           echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid));
 
           ?>
-
 
           <div class="form-row">
 
@@ -32,11 +26,12 @@
               $options = [
                 'name'        => 'notes',
                 'id'          => 'sysnotes_description',
-                'value'       => $requestor[0]['assign_note'],
+                'value'       => $requestor['assign_note'],
                 'rows'        => '05',
                 'cols'        => '10',
                 'class'       => 'form-control'
               ];
+
               echo form_textarea($options);
 
               ?>
@@ -56,7 +51,6 @@
           echo form_input(array('type' => 'hidden', 'name' => 'gid', 'value' => $gid));
 
           ?>
-
 
           <div class="form-row">
 
@@ -84,8 +78,6 @@
 
 
       <?php } ?>
-
-
 
       <div class="col-lg-12 mb-4">
 

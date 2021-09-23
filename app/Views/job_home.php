@@ -25,15 +25,15 @@
 
           <div class="vertical-menu iconNone">
 
-            <a href="#">Pending <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
+            <a href="#">Pending <span class="badge badge-primary" style="font-size: 15px;"><?php echo $jobs_data[0]['pending']; ?></span></a>
 
-            <a href="#">In progress <span class="badge badge-danger" style="font-size: 15px;">0</span></a>
+            <a href="#">In progress <span class="badge badge-success" style="font-size: 15px;"><?php echo $jobs_data[0]['inprogress']; ?></span></a>
 
-            <a href="#">Completed <span class="badge badge-success" style="font-size: 15px;">0</span></a>
+            <a href="#">Completed <span class="badge badge-danger" style="font-size: 15px;"><?php echo $jobs_data[0]['completed']; ?></span></a>
 
-            <a href="#">Finish <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
+            <a href="#">Finish <span class="badge badge-warning" style="font-size: 15px;">0</span></a>
 
-            <a href="#"><strong>Total <span class="badge badge-primary" style="font-size: 17px;">0</span></strong></a>
+            <a href="#"><strong>Total <span class="badge badge-primary" style="font-size: 17px;"><?php echo $jobs_data[0]['total_data']; ?></span></strong></a>
 
           </div>
 
@@ -59,7 +59,7 @@
 
           <div class="table-responsive">
 
-            <table class="table table-bordered" id="requestors" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="requestors_jobs" width="100%" cellspacing="0">
 
               <thead>
                 <tr>
@@ -76,41 +76,65 @@
 
               <tbody>
 
-              <?php  
-              
-              foreach ($jobs as $row)  {
+                <?php
 
-              ?>
+                if (!empty($jobs_data)) {
 
-                <tr>
+                  foreach ($jobs_data as $row) {
 
-                  <td><?php echo  $row['customer']; ?></td>
+                ?>
+                    <tr>
 
-                  <td><?php echo $row['assessor']; ?></td>
+                      <td><?php echo  $row['customer']; ?></td>
 
-                  <td><?php echo $row['garage']; ?></td>
+                      <td><?php echo $row['assessor']; ?></td>
 
-                  <td><?php echo $row['created_at']; ?></td>
+                      <td><?php echo $row['garage']; ?></td>
 
-                  <td><?php echo $row['requestor']; ?></td>
+                      <td><?php echo $row['created_at']; ?></td>
 
-                  <td><?php echo $row['vehicle']; ?></td>
+                      <td><?php echo $row['requestor']; ?></td>
 
-                  <td><button class="btn btn-success" disabled>Pending</button></td>
+                      <td><?php echo $row['vehicle']; ?></td>
 
-                  <td class="actionCol">
+                      <?php
 
-                    <a class="mr-2" href="<?php echo base_url('requests/job_estimations'); ?> ">
+                      switch ($row['status']) {
 
-                      <i class="fa fa-eye" aria-hidden="true"></i>
+                        case '1':
+                          echo "<td><button class='btn btn-primary' disabled>Pending</button></td>";
+                          break;
 
-                    </a>
+                        case '2':
+                        echo "<td><button class='btn btn-success' disabled>Progress</button></td>";
+                        break;
 
-                  </td>
+                        case '3':
+                          echo "<td><button class='btn btn-danger' disabled>Completed</button></td>";
+                        break;
+  
+                        default:
+                        echo "<td><button class='btn btn-secondry' disabled>N/A</button></td>";
+                        break;
 
-                </tr>
+                      }
 
-              <?php } ?>
+                      ?>
+
+                      <td class="actionCol">
+
+                        <a class="mr-2" href="<?php echo base_url('requests/viewjob'); ?>/<?php echo $row['id']; ?> ">
+
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+
+                        </a>
+
+                      </td>
+
+                    </tr>
+
+                <?php }
+                }  ?>
 
               </tbody>
 

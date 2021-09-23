@@ -118,6 +118,22 @@ function getHtml(items){
   return htmls;
 }
 
+
+$(document).ready(function(){
+$('#status_inprogress').click(function(){
+$('#about_requests').hide();
+$('#assign_jobs').show();
+});
+
+$('#about').click(function(){
+ $('#about_requests').show();
+ $('#assign_jobs').hide();
+});
+
+});
+
+
+
 $(document).ready(function() {
 
   $('#persons').click(function(){
@@ -159,13 +175,17 @@ $(document).ready(function(){
   $('#request_documents').DataTable();
 });
 
+$(document).ready(function(){
+  $('#requestors_jobs').DataTable();
+});
+
 
 // Show Notes Section into the toggel class into the assign notes section
 
 $(document).ready(function(){
 $('#notes').on('click',function() {
-   $('#icon').toggleClass('fa fa fa-plus');
-   $('#assign_notes').toggle();
+  $('#icon').toggleClass('fa fa fa-plus');
+  $('#assign_notes').toggle();
   }, function() {
     $('#icon').addClass('fa fa-plus');
     $('#icon').toggleClass('fa fa fa-minus');
@@ -184,3 +204,12 @@ $( function() {
 $(function() {
   $("#datepicker1").datepicker();
 });
+
+
+$(function() {
+$('.datetimepicker').datetimepicker({
+    format:'d/m/Y h:m:s a',
+});
+});
+
+

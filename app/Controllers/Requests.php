@@ -9,6 +9,7 @@ use App\Models\UsersModel;
 use App\Models\RequestAssignJobModel;
 use App\Models\RequestPersonModel;
 use App\Models\PersonDocumentModel;
+use App\Models\JobRequestModel;
 
 class Requests extends BaseController
 {
@@ -18,6 +19,7 @@ class Requests extends BaseController
 	protected $assign_model = null;
 	protected $request_person_model = null;
 	protected $person_document_model = null;
+	protected $job_request_model = null;
 
 	public function __construct()
 	{
@@ -29,10 +31,11 @@ class Requests extends BaseController
 		$this->assign_model = new RequestAssignJobModel();
 		$this->request_person_model = new RequestPersonModel();
 		$this->person_document_model = new PersonDocumentModel();
+		$this->job_request_model = new JobRequestModel();
 	}
 
- //-------------------------------------------------------------------------------------------------//
- // Home Page For the request Starts
+	//-------------------------------------------------------------------------------------------------//
+	// Home Page For the request Starts
 
 	public function index()
 	{
@@ -60,6 +63,7 @@ class Requests extends BaseController
 		$context = [
 			'username' => user()->username,
 		];
+
 		$context['customer'] = $this->customer_model->setCustomerDropdown();
 		return view('new_estimation_request', $context);
 	}
@@ -73,18 +77,14 @@ class Requests extends BaseController
 
 	public function update($id = null)
 	{
-
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['requestor'] = $this->request_model->requestGetDataById($id);
 		return view('update_estimation_request', $context);
-
 	}
 
 	// Update Request Service Ends 
@@ -105,9 +105,10 @@ class Requests extends BaseController
 
 		if (!$check) {
 			return view('new_estimation_request', ['validation' => $this->validator]);
-		}  else  {
-			
+		} else {
+
 			$id = $this->request->getPost('id');
+
 			$data = [
 				'customer' => $this->request->getVar('customer'),
 				'requested_date' => $this->request->getVar('requested_date'),
@@ -139,15 +140,12 @@ class Requests extends BaseController
 
 	public function view_estimations($id = null)
 	{
-
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['requestor'] = $this->request_model->requestGetDataById($id);
 		$context['person_data'] = $this->request_person_model->getPersonDataById($id);
 		$context['person_doc'] = $this->person_document_model->getPersonDocDataById($id);
@@ -179,7 +177,6 @@ class Requests extends BaseController
 
 		$url = base_url() . '/requests';
 		return redirect()->to($url);
-
 	}
 
 	// Delete of the estimation request Ends 
@@ -191,35 +188,27 @@ class Requests extends BaseController
 
 	public function assignJob()
 	{
-
-		if(!logged_in()) {
+		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
-    $assign_id = $this->request->getVar('assign_id');
-
+		$assign_id = $this->request->getVar('assign_id');
 		$data = [
 			'requestor_id' => $this->request->getVar('requestor_id'),
 			'assessor' => $this->request->getVar('assessor'),
 			'assign_note' => $this->request->getVar('notes'),
 			'visit_date' => $this->request->getVar('visit_date'),
 		];
-
-	$result = $this->assign_model->insertAssignJob($data,$assign_id);
-
+		$result = $this->assign_model->insertAssignJob($data, $assign_id);
 		if ($result) {
 			$this->session->set('message', 'success');
 		} else {
 			$this->session->set('error', 'error');
 		}
-
-		$url = base_url() . '/requests/view_estimations'.'/'.$data['requestor_id'];
+		$url = base_url() . '/requests/viewjob' . '/' . $data['requestor_id'];
 		return redirect()->to($url);
-		
 	}
 
 	// Assign a job to a requestor Ends 
@@ -227,8 +216,14 @@ class Requests extends BaseController
 
 	public function request_store()
 	{
-
+		
+		$request_no = $this->request_model->getrequestNumber();
+		$length = 8;
+		$string = substr(str_repeat(0, $length) .$request_no, -$length);
+		$result_request_no = 'REQ'.$string;
+	
 		$request_data = [
+			'request_no' => $result_request_no,
 			'customer' => $this->request->getVar('customer'),
 			'requested_date' => $this->request->getVar('requested_date'),
 			'requestor' => $this->request->getVar('requestor'),
@@ -245,18 +240,17 @@ class Requests extends BaseController
 			'liability' => $this->request->getVar('liability'),
 		];
 
-	$request_id = $this->request_model->insertrequestor($request_data);
+		$request_id = $this->request_model->insertrequestor($request_data);
+		// Person Document Data Starts 
 
-  // Person Document Data Starts 
-
-		if (!empty($request_id))  {
+		if (!empty($request_id)) {
 			$galleryImages = [];
 			$returnData = [];
 			$fileNames = [];
 			$uploadPath = 'assets/uploads/';
 			if ($imagefile = $this->request->getFiles()) {
 				$i = 0;
-				foreach($imagefile['files'] as $img) {
+				foreach ($imagefile['files'] as $img) {
 					if ($img->isValid() && !$img->hasMoved()) {
 						$fileNewName = $img->getRandomName();
 						$filetype = $img->getClientMimeType();
@@ -276,28 +270,45 @@ class Requests extends BaseController
 			}
 		}
 
-	  // Insert person data 
+		//Insert person data 
 
 		$person_data = [
-				'person_type' => $this->request->getVar('person_type'),
-				'person_name' => $this->request->getVar('person_name'),
-				'person_number' => $this->request->getVar('person_number'),
-			];
+			'person_type' => $this->request->getVar('person_type'),
+			'person_name' => $this->request->getVar('person_name'),
+			'person_number' => $this->request->getVar('person_number'),
+		];
 
-	 $result = $this->request_person_model->insertPersonData($person_data, $request_id);
-	// Insert person data 
+		$result = $this->request_person_model->insertPersonData($person_data, $request_id);
+		// Insert person data 
 		$url = base_url() . '/requests';
 		return redirect()->to($url);
 		die();
+	}
 
-}
+	/************************************************************************************/
+	/************************************************************************************/
 
-/************************************************************************************/
-/************************************************************************************/
+	public function viewjob($request_id = null)
+	{
+		if (!logged_in()) {
+			return redirect()->to(base_url(route_to('/')));
+		}
+		$context = [
+			'username' => user()->username,
+		];
 
-public function updateDoc($request_id = null) {
-	echo "hello got the request id";
-	die('###');
-}
+		$context['requestor'] = $this->request_model->requestGetDataById($request_id);
+		$context['job_request_data'] = $this->request_model->getJobRequestDataById($request_id);
+		$context['assessors'] = $this->user_model->getallusersData();
 
+		return view('view_job', $context);
+		
+	}
+
+	public function updateDoc($request_id = null)
+	{
+		echo "hello got the request id";
+		die('###');
+	}
+	
 }

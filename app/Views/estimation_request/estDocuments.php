@@ -1,5 +1,4 @@
 <!-- Content Column -->
-<br>
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -40,6 +39,7 @@
 <?php
 
 $method = base_url('requests/request_store');
+$method_redirect = base_url('requests/');
 
 ?>
 
@@ -48,7 +48,8 @@ $method = base_url('requests/request_store');
 <!-- Dropzone CSS and JS -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'>
+</script>
 
 <script>
 
@@ -73,6 +74,7 @@ $method = base_url('requests/request_store');
     url: "<?php echo $method; ?>",
   });
 
+
   myDropzone.on('sending', function(file, xhr, formData) {
     var data = $('form').serializeArray();
     $.each(data, function(key, el) {
@@ -90,9 +92,11 @@ $method = base_url('requests/request_store');
       type: "success",
       dangerMode: true,
       buttons: true
+    }).then(function(){
+      window.location.href = "<?php echo $method_redirect; ?>"
     });
-
   });
+
 
   myDropzone.on("error", function(data) {
     $("#msg").html('<div class="alert alert-danger">There is some thing wrong, Please try again..!</div>');
@@ -102,10 +106,8 @@ $method = base_url('requests/request_store');
     myDropzone.removeFile(file);
   });
 
-
   $("#add_file").on("click", function() {
     myDropzone.processQueue();
   });
-  
 
 </script>

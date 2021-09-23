@@ -1,5 +1,11 @@
 <!-- Content Column -->
-<br>
+<style>
+  .glyphicon{
+    z-index: 10000;
+  }
+
+</style>
+
 <div class="row">
 
   <div class="col-lg-12 mb-4">
@@ -30,7 +36,7 @@
 
               <label class="fieldLabel mb-1">Date of accident</label>
 
-              <input class="form-control" type="datetime-local" name = 'date_accident'>
+              <input name="date_accident" class="form-control datetimepicker" type="text" />
 
             </div>
 
@@ -125,13 +131,9 @@
 
           <!-- Save Button row -->
 
-
       </div>
-
     </div>
-
   </div>
-
-
-
 </div>
+
+
