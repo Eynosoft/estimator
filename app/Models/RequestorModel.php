@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use PhpParser\Node\Stmt\Catch_;
+use PhpParser\Node\Stmt\TryCatch;
 
 class RequestorModel extends Model
 {
@@ -61,7 +63,67 @@ class RequestorModel extends Model
   //------------------------------------------------------------------------------------------------//
 
 
-  public function getAllStatusDashboard(){
+  // Get report 
+
+  public function getFinalReport($id = null)
+  {
+    try {
+      $customer = new CustomerModel();
+      $users = new UsersModel();
+      $this->table('requestor');
+      $this->select('*');
+      $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
+      $this->join('job_requests','job_requests.request_id=requestor.id');
+      $this->where('requestor.id',$id);
+      $requestors =  $this->findAll();
+
+      if (!empty($requestors)) {
+        foreach ($requestors as $jobs) {
+          $returndata['id'] =  $jobs['id'];
+          $returndata['request_no'] = $jobs['request_no'];
+          $customer_data = !empty($jobs['customer']) ? $customer->getCustomerNameById($jobs['customer']) : 'N/A';
+          $returndata['customer'] = $customer_data;
+          $returndata['requested_date'] = $jobs['requested_date'];
+          $returndata['requestor'] =  $jobs['requestor'];
+          $returndata['vehicle'] = $jobs['vehicle'];
+          $returndata['garage'] = $jobs['garage'];
+          $returndata['insured_reference'] = $jobs['insured_reference'];
+          $returndata['date_accident'] = $jobs['date_accident'];
+          $returndata['policy_number'] = $jobs['policy_number'];
+          $returndata['claim_number'] = $jobs['claim_number'];
+          $returndata['inspection'] = $jobs['inspection'];
+          $returndata['insured_amount'] = $jobs['insured_amount'];
+          $returndata['exemption_amount'] = $jobs['exemption_amount'];
+          $returndata['responsibility'] = $jobs['responsibility'];
+          $returndata['liability'] = $jobs['liability'];
+          $returndata['status'] = $jobs['status'];
+          $returndata['created_at'] = date("d/m/Y h:i a", strtotime($jobs['created_at']));
+          $returndata['assign_id'] = $jobs['assign_id'];
+          $assessor_data = !empty($jobs['assessor']) ? $users->getusersNameById($jobs['assessor']) : 'N/A';
+          $returndata['assessor'] = $assessor_data;
+          $returndata['assign_note'] = $jobs['assign_note'];
+          $returndata['visit_date'] = $jobs['visit_date'];
+          $returndata['pre_accident_condition'] = $jobs['pre_accident_condition'];
+          $returndata['tyre_condition'] = $jobs['tyre_condition'];
+          $returndata['speedo_reading'] = $jobs['speedo_reading'];
+          $returndata['reservers'] = $jobs['reservers'];
+          $returndata['total_loss_type'] = $jobs['total_loss_type'];
+          $returndata['estimated_market_value'] =$jobs['estimated_market_value'];
+          $returndata['approximated_salvage_value'] = $jobs['approximated_salvage_value'];
+          $returndata['remark'] = $jobs['remark'];
+        }
+      }
+      return $returndata;
+    }catch (\Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  // Get report Data 
+
+
+  public function getAllStatusDashboard()
+  {
 
     $returndata = [];
     try {
@@ -91,19 +153,18 @@ class RequestorModel extends Model
       $completed_result = $completed_data[0]->total_completed;
 
       if (!empty($request_data)) {
-          $returndata['total_requests'] = $assign_total;
-          $returndata['total_estimation'] = $assign_result;
-          $returndata['unassigned_total'] = $unassigned_result;
-          $returndata['assign_total'] = $assign_result;
-          $returndata['pending_total'] = $pending_result;
-          $returndata['inprogress'] = $inprogress_result;
-          $returndata['completed'] = $completed_result;
+        $returndata['total_requests'] = $assign_total;
+        $returndata['total_estimation'] = $assign_result;
+        $returndata['unassigned_total'] = $unassigned_result;
+        $returndata['assign_total'] = $assign_result;
+        $returndata['pending_total'] = $pending_result;
+        $returndata['inprogress'] = $inprogress_result;
+        $returndata['completed'] = $completed_result;
       }
       return $returndata;
     } catch (\Exception $e) {
       die($e->getMessage());
     }
-
   }
 
   // -----------------------------------------------------------------------------------------------// 
@@ -241,7 +302,7 @@ class RequestorModel extends Model
     return false;
   }
 
-// Assigned Data ends 
+  // Assigned Data ends 
 
   public function requestGetDataById($id = null)
   {

@@ -4,6 +4,7 @@
 <div class="container-fluid">
   <!-- Page Heading -->
 
+
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Estimation Request <small>About</small> </h1>
   </div>
@@ -96,8 +97,9 @@
             <a id="requests" href="<?php echo base_url('jobsestimation'); ?>"> <i class="fa fa-file" aria-hidden="true"></i>&nbspRequests<span class="badge badge-primary"></span>
             </a>
 
-            <?php
+          <?php
 
+          $report_link = base_url('requests/estimation_report').'/'.$requestor['id'];
 
             switch ($requestor['status']) {
 
@@ -112,7 +114,7 @@
                   break;
 
                 case '3':
-                  echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-file-pdf-o' aria-hidden='true' style='font-size:19px;color:red'></i>&nbspReport<span class='badge badge-primary fa fa-arrow-right'></span>
+                  echo "<a href='".$report_link."' target='_blank'><i class='fa fa-file-pdf-o' aria-hidden='true' style='font-size:19px;color:red'></i>&nbspReport<span class='badge badge-primary fa fa-arrow-right'></span>
                   </a>";
                   break;
               

@@ -216,12 +216,12 @@ class Requests extends BaseController
 
 	public function request_store()
 	{
-		
+
 		$request_no = $this->request_model->getrequestNumber();
 		$length = 8;
-		$string = substr(str_repeat(0, $length) .$request_no, -$length);
-		$result_request_no = 'REQ'.$string;
-	
+		$string = substr(str_repeat(0, $length) . $request_no, -$length);
+		$result_request_no = 'REQ' . $string;
+
 		$request_data = [
 			'request_no' => $result_request_no,
 			'customer' => $this->request->getVar('customer'),
@@ -296,19 +296,43 @@ class Requests extends BaseController
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['requestor'] = $this->request_model->requestGetDataById($request_id);
 		$context['job_request_data'] = $this->request_model->getJobRequestDataById($request_id);
 		$context['assessors'] = $this->user_model->getallusersData();
-
 		return view('view_job', $context);
-		
 	}
 
-	public function updateDoc($request_id = null)
+	public function estimation_report($id = null)
 	{
-		echo "hello got the request id";
-		die('###');
+		$request_id = $id;
+		$result = $this->request_model->getFinalReport($request_id);
+		$dompdf = new \Dompdf\Dompdf();
+		//$dompdf->loadHtml($result);
+		$dompdf->loadHtml(view('pdf/view_estimation_report', ["estimation_report" => $result]));
+		$dompdf->setPaper('A4', 'landscape');
+		$dompdf->render();
+
+		$canvas = $dompdf->getCanvas(); 
+		// Get height and width of page 
+		$w = $canvas->get_width(); 
+		$h = $canvas->get_height(); 
+		// Specify watermark image 
+		$imageURL = FCPATH.'/assets/draft/draft.jpg'; 
+		$imgWidth = 600; 
+		$imgHeight = 350; 
+		
+		// Set image opacity 
+		$canvas->set_opacity(0.3); 
+		
+		// Specify horizontal and vertical position 
+		$x = (($w-$imgWidth)/2); 
+		$y = (($h-$imgHeight)/3); 
+		
+		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight,$resolution = "normal"); 
+		$dompdf->stream("estimation_report.pdf", array("Attachment" => false));
+		//$dompdf->stream('estimation_report' .time());
 	}
-	
+
+	// this is the method for the get final claim report for the claimantm
+
 }
