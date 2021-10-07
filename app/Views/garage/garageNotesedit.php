@@ -1,4 +1,4 @@
-            <br>
+
             <!-- Content Column -->
             <div class="row">
 

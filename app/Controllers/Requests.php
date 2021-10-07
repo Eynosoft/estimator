@@ -10,6 +10,8 @@ use App\Models\RequestAssignJobModel;
 use App\Models\RequestPersonModel;
 use App\Models\PersonDocumentModel;
 use App\Models\JobRequestModel;
+use App\Models\PartsModel;
+use App\Models\PartsActionModel;
 
 class Requests extends BaseController
 {
@@ -20,6 +22,8 @@ class Requests extends BaseController
 	protected $request_person_model = null;
 	protected $person_document_model = null;
 	protected $job_request_model = null;
+	protected $parts_model = null;
+	protected $parts_action_model = null;
 
 	public function __construct()
 	{
@@ -32,6 +36,8 @@ class Requests extends BaseController
 		$this->request_person_model = new RequestPersonModel();
 		$this->person_document_model = new PersonDocumentModel();
 		$this->job_request_model = new JobRequestModel();
+		$this->parts_model = new PartsModel();
+		$this->parts_action_model = new PartsActionModel();
 	}
 
 	//-------------------------------------------------------------------------------------------------//
@@ -51,6 +57,20 @@ class Requests extends BaseController
 
 	// Home Page for the request Ends
 	//-------------------------------------------------------------------------------------------------//
+
+	public function requeststatus($status = null) {
+		if (!logged_in()) {
+			return redirect()->to(base_url(route_to('/')));
+		}
+		$context = [
+			'username' => user()->username,
+		];
+
+		$context['assign_unassign'] = $this->request_model->assignunassignAllData($status);
+    $context['assign_unassign_total'] = $this->request_model->assigstatus();
+
+		return view('jobs_estimation_status_list', $context);
+	}
 
 	//------------------------------------------------------------------------------------------------//
 	// create Method for the Request
@@ -95,6 +115,7 @@ class Requests extends BaseController
 
 	public function store()
 	{
+
 		$check = $this->validate(
 			[
 				'customer' => 'required',
@@ -216,7 +237,6 @@ class Requests extends BaseController
 
 	public function request_store()
 	{
-
 		$request_no = $this->request_model->getrequestNumber();
 		$length = 8;
 		$string = substr(str_repeat(0, $length) . $request_no, -$length);
@@ -239,7 +259,7 @@ class Requests extends BaseController
 			'responsibility' => $this->request->getVar('responsibility'),
 			'liability' => $this->request->getVar('liability'),
 		];
-
+		
 		$request_id = $this->request_model->insertrequestor($request_data);
 		// Person Document Data Starts 
 
@@ -271,13 +291,11 @@ class Requests extends BaseController
 		}
 
 		//Insert person data 
-
 		$person_data = [
 			'person_type' => $this->request->getVar('person_type'),
 			'person_name' => $this->request->getVar('person_name'),
 			'person_number' => $this->request->getVar('person_number'),
 		];
-
 		$result = $this->request_person_model->insertPersonData($person_data, $request_id);
 		// Insert person data 
 		$url = base_url() . '/requests';
@@ -290,46 +308,52 @@ class Requests extends BaseController
 
 	public function viewjob($request_id = null)
 	{
-		if (!logged_in()) {
+		if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
 			'username' => user()->username,
 		];
 		$context['requestor'] = $this->request_model->requestGetDataById($request_id);
+		$context['part_action_options'] = $this->parts_action_model->setPartsactionDropdown();
 		$context['job_request_data'] = $this->request_model->getJobRequestDataById($request_id);
 		$context['assessors'] = $this->user_model->getallusersData();
+		$context['part'] = $this->parts_model->setPartsDropdown();
 		return view('view_job', $context);
 	}
 
 	public function estimation_report($id = null)
-	{
+	{ 
 		$request_id = $id;
 		$result = $this->request_model->getFinalReport($request_id);
 		$dompdf = new \Dompdf\Dompdf();
 		//$dompdf->loadHtml($result);
+		//$dompdf->loadHtml(view('pdf/view_estimation_report', ["estimation_report" => $result]));
 		$dompdf->loadHtml(view('pdf/view_estimation_report', ["estimation_report" => $result]));
-		$dompdf->setPaper('A4', 'landscape');
+		$dompdf->setPaper('A4', 'portrait');
 		$dompdf->render();
-
 		$canvas = $dompdf->getCanvas(); 
+
 		// Get height and width of page 
 		$w = $canvas->get_width(); 
 		$h = $canvas->get_height(); 
+
 		// Specify watermark image 
 		$imageURL = FCPATH.'/assets/draft/draft.jpg'; 
 		$imgWidth = 600; 
-		$imgHeight = 350; 
+		$imgHeight = 350;
 		
 		// Set image opacity 
 		$canvas->set_opacity(0.3); 
-		
 		// Specify horizontal and vertical position 
 		$x = (($w-$imgWidth)/2); 
 		$y = (($h-$imgHeight)/3); 
-		
 		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight,$resolution = "normal"); 
-		$dompdf->stream("estimation_report.pdf", array("Attachment" => false));
+
+    ob_end_clean();
+		$dompdf->stream("estimation_report.pdf", array("Attachment" => 0)); 
+		//for preview attachment will be 0 and for download the pdf attachment should be 1
+		exit(0);
 		//$dompdf->stream('estimation_report' .time());
 	}
 

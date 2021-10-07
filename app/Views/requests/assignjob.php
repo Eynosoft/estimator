@@ -58,7 +58,7 @@
             <div class="form-group col-md-12">
 
               <?php echo form_label('Visit Date', 'visit', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'datepicker', 'name' => 'visit_date', 'value' => $requestor['visit_date'])); ?>
+              <?php echo form_input(array('type' => 'text', 'class' => 'form-control datetimepicker', 'name' => 'visit_date', 'value' => $requestor['visit_date'])); ?>
 
               <?php if (isset($validation)) { ?>
 
@@ -116,7 +116,7 @@
             <div class="form-group col-md-12">
 
               <?php echo form_label('Visit', 'visit', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'datepicker1', 'name' => 'visit_date', 'value' => '')); ?>
+              <?php echo form_input(array('type' => 'text', 'class' => 'form-control datetimepicker','name' => 'visit_date', 'value' => '')); ?>
               <?php if (isset($validation)) { ?>
                 <div class='alert alert-danger mt-2'>
                   <?= $validation->getError('reports_password'); ?>

@@ -67,9 +67,15 @@ class RequestorModel extends Model
 
   public function getFinalReport($id = null)
   {
-    try {
+    try{
+
       $customer = new CustomerModel();
       $users = new UsersModel();
+      $vehicle = new VehicleModel();
+      $garage = new GarageModel();
+      $job_labours = new JobRequestLabourModel();
+      $job_parts = new JobRequestPartsModel();
+
       $this->table('requestor');
       $this->select('*');
       $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
@@ -77,16 +83,29 @@ class RequestorModel extends Model
       $this->where('requestor.id',$id);
       $requestors =  $this->findAll();
 
-      if (!empty($requestors)) {
+      if(!empty($requestors)) {
         foreach ($requestors as $jobs) {
+          
           $returndata['id'] =  $jobs['id'];
           $returndata['request_no'] = $jobs['request_no'];
           $customer_data = !empty($jobs['customer']) ? $customer->getCustomerNameById($jobs['customer']) : 'N/A';
           $returndata['customer'] = $customer_data;
           $returndata['requested_date'] = $jobs['requested_date'];
           $returndata['requestor'] =  $jobs['requestor'];
-          $returndata['vehicle'] = $jobs['vehicle'];
-          $returndata['garage'] = $jobs['garage'];
+          $vehicle_data = !empty($jobs['vehicle']) ? $vehicle->getVehicleDataById($jobs['vehicle']) : 'N/A';
+          $returndata['vehicle'] = $vehicle_data;
+
+          $labours_data = !empty($jobs['job_id']) ? $job_labours->getJobLaboursDataById($jobs['job_id']) : 'N/A';
+
+          $returndata['labours_data'] = $labours_data;
+
+          $parts_data = !empty($jobs['job_id']) ? $job_parts->getPartsDataById($jobs['job_id']) : 'N/A';
+          $returndata['parts_data'] = $parts_data;
+
+          
+          $garage_data = !empty($jobs['garage']) ? $garage->getGarageNameById($jobs['garage']) : 'N/A';
+          $returndata['garage'] = $garage_data;
+
           $returndata['insured_reference'] = $jobs['insured_reference'];
           $returndata['date_accident'] = $jobs['date_accident'];
           $returndata['policy_number'] = $jobs['policy_number'];
@@ -167,6 +186,94 @@ class RequestorModel extends Model
     }
   }
 
+
+  // Get all assigned and unassigned data Status
+
+  public function assignunassignAllData($status = null)
+  {
+    $requestors = new RequestorModel();
+    $customer = new CustomerModel();
+    $vehicle = new VehicleModel();
+    $users = new UsersModel();
+    $returndata = [];
+    try {
+      $this->table('requestor');
+      $this->select('*');
+      if($status == 0){
+      $this->where('status', $status);
+      }else{
+      $this->where('status >=', $status);
+      }
+      $request_data =  $this->findAll();
+
+      if (!empty($request_data)) {
+        $i = 0;
+        foreach ($request_data as $requestor) {
+          $returndata[$i]['id'] = $requestor['id'];
+          $customer_data = !empty($requestor['customer']) ? $customer->getCustomerNameById($requestor['customer']) : 'N/A';
+          $returndata[$i]['customer'] = $customer_data;
+          $returndata[$i]['requestor'] = $requestor['requestor'];
+          $vehicle_data = !empty($requestor['vehicle']) ? $vehicle->getVehicleNameById($requestor['vehicle']) : 'N/A';
+          $returndata[$i]['vehicle'] = $vehicle_data;
+          $returndata[$i]['garage'] = $requestor['garage'];
+          $returndata[$i]['insured_reference'] = $requestor['insured_reference'];
+          $returndata[$i]['date_accident'] = $requestor['date_accident'];
+          $returndata[$i]['policy_number'] = $requestor['policy_number'];
+          $returndata[$i]['claim_number'] = $requestor['claim_number'];
+          $returndata[$i]['inspection'] = $requestor['inspection'];
+          $returndata[$i]['insured_amount'] = $requestor['insured_amount'];
+          $returndata[$i]['exemption_amount'] = $requestor['exemption_amount'];
+          $returndata[$i]['responsibility'] = $requestor['responsibility'];
+          $returndata[$i]['liability'] = $requestor['liability'];
+          $returndata[$i]['status'] = $requestor['status'];
+          $returndata[$i]['created_at'] =  $requestor['created_at'];
+          $i++;
+        }
+      }
+      return $returndata;
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+// Get all assigned and unassigned data status
+
+
+// Get all assigned and unassigned data Starts
+
+public function assigstatus()  {
+    $returndata = [];
+    try {
+      $this->table('requestor');
+      $this->select('*');
+      $request_data =  $this->findAll();
+      $assign_total =  $this->countAllResults();
+
+      $unassigned_value = $this->db->query("select count(*) as total_unassigned from requestor where status='0'");
+      $unassigned_data = $unassigned_value->getResult();
+      $unassigned_result = $unassigned_data[0]->total_unassigned;
+
+      $assign_value = $this->db->query("select count(*) as total_assign from requestor where status>=1");
+      $assign_data = $assign_value->getResult();
+      $assign_result = $assign_data[0]->total_assign;
+
+      if (!empty($request_data)) {
+        foreach ($request_data as $requestor) {
+          $returndata['id'] = $requestor['id'];
+          $returndata['status'] = $requestor['status'];
+          $returndata['total'] = $assign_total;
+          $returndata['assign_total'] = $assign_result;
+          $returndata['unassigned_total'] = $unassigned_result;
+          $returndata['created_at'] =  $requestor['created_at'];
+        }
+      }
+      return $returndata;
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+}
+  // Get all assigned and unassigned data ends 
+
   // -----------------------------------------------------------------------------------------------// 
   // Get Requestor all data Starts
 
@@ -174,6 +281,7 @@ class RequestorModel extends Model
   {
     $requestors = new RequestorModel();
     $customer = new CustomerModel();
+    $vehicle = new VehicleModel();
     $users = new UsersModel();
     $returndata = [];
     try {
@@ -197,7 +305,8 @@ class RequestorModel extends Model
           $customer_data = !empty($requestor['customer']) ? $customer->getCustomerNameById($requestor['customer']) : 'N/A';
           $returndata[$i]['customer'] = $customer_data;
           $returndata[$i]['requestor'] = $requestor['requestor'];
-          $returndata[$i]['vehicle'] = $requestor['vehicle'];
+          $vehicle_data = !empty($requestor['vehicle']) ? $vehicle->getVehicleNameById($requestor['vehicle']) : 'N/A';
+          $returndata[$i]['vehicle'] = $vehicle_data;
           $returndata[$i]['garage'] = $requestor['garage'];
           $returndata[$i]['insured_reference'] = $requestor['insured_reference'];
           $returndata[$i]['date_accident'] = $requestor['date_accident'];
@@ -235,13 +344,119 @@ class RequestorModel extends Model
     }
   }
 
-  // Assigned Data
+
+// Assigned Data
+
+
+// Get All Data according to the status wise 
+
+ public function getDataStatusWise($status = null)
+ {
+    try {
+      $customer = new CustomerModel();
+      $users = new UsersModel();
+      $vehicle = new VehicleModel();
+      $garage = new GarageModel();
+
+      $this->table('requestor');
+      $this->select('*');
+      $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
+      $this->where('requestor.status',$status);
+      $requestors =  $this->findAll();
+
+      if (!empty($requestors)) {
+        $i = 0;
+        foreach ($requestors as $jobs) {
+          $returndata[$i]['id'] =  $jobs['id'];
+          $customer_data = !empty($jobs['customer']) ? $customer->getCustomerNameById($jobs['customer']) : 'N/A';
+          $returndata[$i]['customer'] = $customer_data;
+          $returndata[$i]['request_no'] = $jobs['request_no'];
+          $returndata[$i]['requestor'] =  $jobs['requestor'];
+          $returndata[$i]['assign_id'] = $jobs['assign_id'];
+          $returndata[$i]['assign_note'] = $jobs['assign_note'];
+          $returndata[$i]['visit_date'] = $jobs['visit_date'];
+          $returndata[$i]['requested_date'] = $jobs['requested_date'];
+          $assessor_data = !empty($jobs['assessor']) ? $users->getusersNameById($jobs['assessor']) : 'N/A';
+          $returndata[$i]['assessor'] = $assessor_data;
+          $vehicle_data = !empty($jobs['vehicle']) ? $vehicle->getVehicleNameById($jobs['vehicle']) : 'N/A';
+          $returndata[$i]['vehicle'] = $vehicle_data;
+          $garage_data = !empty($jobs['garage']) ? $garage->getGarageNameById($jobs['garage']) : 'N/A';
+          $returndata[$i]['garage'] = $garage_data;
+          $returndata[$i]['insured_reference'] = $jobs['insured_reference'];
+          $returndata[$i]['date_accident'] = $jobs['date_accident'];
+          $returndata[$i]['policy_number'] = $jobs['policy_number'];
+          $returndata[$i]['claim_number'] = $jobs['claim_number'];
+          $returndata[$i]['inspection'] = $jobs['inspection'];
+          $returndata[$i]['insured_amount'] = $jobs['insured_amount'];
+          $returndata[$i]['exemption_amount'] = $jobs['exemption_amount'];
+          $returndata[$i]['responsibility'] = $jobs['responsibility'];
+          $returndata[$i]['liability'] = $jobs['liability'];
+          $returndata[$i]['created_at'] = date("d/m/Y h:i a", strtotime($jobs['created_at']));
+          $returndata[$i]['status'] = $jobs['status'];
+          $i++;
+        }
+      }
+      return $returndata;
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+    return false;
+ }
+
+//  Get all Data According to teh status wise 
+
+
+// Get all Data for the count all data status
+
+public function countAlljobstatus()
+  {
+    try {
+      $this->table('requestor');
+      $this->select('*');
+      $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
+      $requestors =  $this->findAll();
+      $total_data = count($requestors);
+
+      $pending = $this->db->query("select count(*) as total_pending from requestor where status='1'");
+      $pending_data = $pending->getResult();
+      $pending_result = $pending_data[0]->total_pending;
+
+      $inprogress = $this->db->query("select count(*) as total_inprogress from requestor where status='2'");
+      $inprogress_data = $inprogress->getResult();
+      $inprogress_result = $inprogress_data[0]->total_inprogress;
+
+      $completed = $this->db->query("select count(*) as total_completed from requestor where status='3'");
+      $completed_data = $completed->getResult();
+      $completed_result = $completed_data[0]->total_completed;
+
+      if (!empty($requestors)) {
+        foreach ($requestors as $jobs) {
+          $returndata['id'] =  $jobs['id'];
+          $returndata['status'] = $jobs['status'];
+          $returndata['total_data'] = $total_data;
+          $returndata['pending'] = $pending_result;
+          $returndata['inprogress'] = $inprogress_result;
+          $returndata['completed'] = $completed_result;
+        }
+      }
+      return $returndata;
+    } catch (\Exception $e) {
+      die($e->getMessage());
+    }
+    return false;
+  }
+
+// Get all data for the count all data status ends
+
 
   public function getAllRequestData()
   {
     try {
       $customer = new CustomerModel();
       $users = new UsersModel();
+      $vehicle = new VehicleModel();
+      $garage = new GarageModel();
+
       $this->table('requestor');
       $this->select('*');
       $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
@@ -275,8 +490,10 @@ class RequestorModel extends Model
           $returndata[$i]['requested_date'] = $jobs['requested_date'];
           $assessor_data = !empty($jobs['assessor']) ? $users->getusersNameById($jobs['assessor']) : 'N/A';
           $returndata[$i]['assessor'] = $assessor_data;
-          $returndata[$i]['vehicle'] = $jobs['vehicle'];
-          $returndata[$i]['garage'] = $jobs['garage'];
+          $vehicle_data = !empty($jobs['vehicle']) ? $vehicle->getVehicleNameById($jobs['vehicle']) : 'N/A';
+          $returndata[$i]['vehicle'] = $vehicle_data;
+          $garage_data = !empty($jobs['garage']) ? $garage->getGarageNameById($jobs['garage']) : 'N/A';
+          $returndata[$i]['garage'] = $garage_data;
           $returndata[$i]['insured_reference'] = $jobs['insured_reference'];
           $returndata[$i]['date_accident'] = $jobs['date_accident'];
           $returndata[$i]['policy_number'] = $jobs['policy_number'];
@@ -286,13 +503,14 @@ class RequestorModel extends Model
           $returndata[$i]['exemption_amount'] = $jobs['exemption_amount'];
           $returndata[$i]['responsibility'] = $jobs['responsibility'];
           $returndata[$i]['liability'] = $jobs['liability'];
-          $returndata[$i]['status'] = $jobs['status'];
           $returndata[$i]['created_at'] = date("d/m/Y h:i a", strtotime($jobs['created_at']));
+          $returndata[$i]['status'] = $jobs['status'];
           $returndata[$i]['total_data'] = $total_data;
           $returndata[$i]['pending'] = $pending_result;
           $returndata[$i]['inprogress'] = $inprogress_result;
           $returndata[$i]['completed'] = $completed_result;
           $i++;
+
         }
       }
       return $returndata;
@@ -309,6 +527,9 @@ class RequestorModel extends Model
     try {
       $customer = new CustomerModel();
       $users = new UsersModel();
+      $vehicle = new VehicleModel();
+      $garage = new GarageModel();
+
       $this->table('requestor');
       $this->select('*');
       $this->join('request_assign_job', 'request_assign_job.requestor_id = requestor.id');
@@ -316,7 +537,9 @@ class RequestorModel extends Model
       $requestors =  $this->findAll();
 
       if (!empty($requestors)) {
+
         foreach ($requestors as $requestor_data) {
+
           $returndata['id'] =  $requestor_data['id'];
           $customer_data = !empty($requestor_data['customer']) ? $customer->getCustomerNameById($requestor_data['customer']) : 'N/A';
           $returndata['customer'] = $customer_data;
@@ -329,8 +552,12 @@ class RequestorModel extends Model
           $assessor_data = !empty($requestor_data['assessor']) ? $users->getusersNameById($requestor_data['assessor']) : 'N/A';
           $returndata['assessor'] = $assessor_data;
           $returndata['assessor_data'] = $requestor_data['assessor'];
-          $returndata['vehicle'] = $requestor_data['vehicle'];
-          $returndata['garage'] = $requestor_data['garage'];
+          $vehicle_data = !empty($requestor_data['vehicle']) ? $vehicle->getVehicleNameById($requestor_data['vehicle']) : 'N/A';
+          $returndata['vehicle'] = $vehicle_data;
+
+          $garage_data = !empty($requestor_data['garage']) ? $garage->getGarageNameById($requestor_data['garage']) : 'N/A';
+          $returndata['garage'] = $garage_data;
+
           $returndata['insured_reference'] = $requestor_data['insured_reference'];
           $returndata['date_accident'] = $requestor_data['date_accident'];
           $returndata['policy_number'] = $requestor_data['policy_number'];
@@ -346,6 +573,7 @@ class RequestorModel extends Model
       } else {
         $requestors_value = $this->where('id', $id)->findAll();
         if (!empty($requestors_value)) {
+
           foreach ($requestors_value as $requestor_data) {
             $returndata['id'] =  $requestor_data['id'];
             $customer_data = !empty($requestor_data['customer']) ? $customer->getCustomerNameById($requestor_data['customer']) : 'N/A';
@@ -353,8 +581,12 @@ class RequestorModel extends Model
             $returndata['request_no'] = $requestor_data['request_no'];
             $returndata['requestor'] =  $requestor_data['requestor'];
             $returndata['requested_date'] = $requestor_data['requested_date'];
-            $returndata['vehicle'] = $requestor_data['vehicle'];
-            $returndata['garage'] = $requestor_data['garage'];
+            $vehicle_data = !empty($requestor_data['vehicle']) ? $vehicle->getVehicleNameById($requestor_data['vehicle']) : 'N/A';
+            $returndata['vehicle'] = $vehicle_data;
+
+            $garage_data = !empty($requestor_data['garage']) ? $garage->getGarageNameById($requestor_data['garage']) : 'N/A';
+            $returndata['garage'] = $garage_data;
+
             $returndata['insured_reference'] = $requestor_data['insured_reference'];
             $returndata['date_accident'] = $requestor_data['date_accident'];
             $returndata['policy_number'] = $requestor_data['policy_number'];
@@ -369,7 +601,9 @@ class RequestorModel extends Model
           }
         }
       }
-      return $returndata;
+
+    return $returndata;
+
     } catch (\Exception $e) {
       die($e->getMessage());
     }
@@ -416,13 +650,18 @@ class RequestorModel extends Model
   public function getJobRequestDataById($id)
   {
     try {
+
       $customer = new CustomerModel();
       $users = new UsersModel();
+      $labours = new JobRequestLabourModel();
+      $parts_data = new JobRequestPartsModel();
+
       $this->table('requestor');
       $this->select('job_requests.*');
       $this->join('job_requests', 'job_requests.request_id = requestor.id');
       $this->where('requestor.id', $id);
       $job_request =  $this->findAll();
+
       if (!empty($job_request)) {
         foreach ($job_request as $jobs) {
           $returndata['job_id'] =  $jobs['job_id'];
@@ -434,14 +673,15 @@ class RequestorModel extends Model
           $returndata['tyre_condition'] = $jobs['tyre_condition'];
           $returndata['speedo_reading'] = $jobs['speedo_reading'];
           $returndata['reservers'] = $jobs['reservers'];
+          $returndata['labours'] = !empty($jobs['job_id']) ? $labours->getJobLaboursDataById($jobs['job_id']) : 'N/A';
+           $returndata['job_parts'] = !empty($jobs['job_id']) ? $parts_data->getPartsDataByJobId($jobs['job_id']) : 'N/A';
           $returndata['total_loss_type'] = $jobs['total_loss_type'];
           $returndata['estimated_market_value'] = $jobs['estimated_market_value'];
           $returndata['approximated_salvage_value'] = $jobs['approximated_salvage_value'];
           $returndata['status'] = $jobs['status'];
           $returndata['remark'] = $jobs['remark'];
         }
-      }
-
+      }     
       return $returndata;
     } catch (\Exception $e) {
       die($e->getMessage());

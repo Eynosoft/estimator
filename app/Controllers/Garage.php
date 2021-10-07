@@ -228,5 +228,12 @@ class Garage extends BaseController
 // Get Garage data ends 
 //----------------------------------------------------------------------------------------------//
 
+public function ajaxSearch()
+{
+	$search_data = $this->request->getVar('q');
+	$result = $this->garage_model->getGarageByAjax($search_data);
+	echo $result;
+}
+
 
 }

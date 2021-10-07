@@ -11,24 +11,40 @@
       </div>
       <div class="card-body">
 
-    <input type="hidden" class="txt_csrfname" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-
         <div class="form-row">
 
           <div class="form-group col-md-12">
 
             <label class="fieldLabel mb-1">Garage</label>
 
-            <input type="text" name="garage" class="form-control" placeholder="Search Garage" id="autocompleteuser">
+            <select style="max-width: 600px;" class="search form-control" name="garage"></select>
 
           </div>
 
         </div>
-
         <!-- Save Button row -->
-
       </div>
 
     </div>
   </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+  $('.search').select2({
+    placeholder: '--- Choose Garage  ---',
+    ajax: {
+      url: '<?php echo base_url('garage/ajaxSearch'); ?>',
+      dataType: 'json',
+      delay: 250,
+      processResults: function(data) {
+        return {
+          results: data
+        };
+      },
+      cache: true
+    }
+  });
+</script>

@@ -112,7 +112,6 @@ public function insertgarage($data = null,$id = null)
 //---------------------------------------------------------------------------------------------//
 
 
-
 // --------------------------------------------------------------------------------------------//
 // Delete Garage by Id
 
@@ -169,6 +168,38 @@ public function getGarageDropdownData($search = null)
 
 // Get Garage Dropwdon data
 //----------------------------------------------------------------------------------------------//
+
+public function getGarageByAjax($search_data = null)
+{
+  try {
+    $data = [];
+    $db      = \Config\Database::connect();
+    $builder = $db->table('garage');
+    $query = $builder->like('garage_name', $search_data)
+      ->select('id,garage_name as text')
+      ->limit(10)->get();
+    $data = $query->getResult();
+    return json_encode($data);
+  } catch (\Exception $e) {
+    die($e->getMessage());
+  }
+  return false;
+}
+
+// Get Garage Name By Id 
+  
+public function getGarageNameById($id = null){
+try {
+  $garage_data = $this->where('id',$id)->findColumn('garage_name');
+  return $garage_data[0];
+  }catch(\Exception $e){
+  die($e->getMessage());
+  }
+  return false;
+}
+
+
+// Get gagare Name By Id
 
 }
 

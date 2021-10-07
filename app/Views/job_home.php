@@ -25,22 +25,19 @@
 
           <div class="vertical-menu iconNone">
 
-            <a href="#">Pending <span class="badge badge-primary" style="font-size: 15px;"><?php echo $jobs_data[0]['pending']; ?></span></a>
+            <a href="<?php echo base_url('Jobsestimation/jobstatus').'/'.'1'; ?>">Pending <span class="badge badge-primary" style="font-size: 15px;"><?php echo $jobs_data[0]['pending']; ?></span></a>
 
-            <a href="#">In progress <span class="badge badge-success" style="font-size: 15px;"><?php echo $jobs_data[0]['inprogress']; ?></span></a>
+            <a href="<?php echo base_url('Jobsestimation/jobstatus').'/'.'2'; ?>">In progress <span class="badge badge-success" style="font-size: 15px;"><?php echo $jobs_data[0]['inprogress']; ?></span></a>
 
-            <a href="#">Completed <span class="badge badge-danger" style="font-size: 15px;"><?php echo $jobs_data[0]['completed']; ?></span></a>
+            <a href="<?php echo base_url('Jobsestimation/jobstatus').'/'.'3'; ?>">Completed <span class="badge badge-danger" style="font-size: 15px;"><?php echo $jobs_data[0]['completed']; ?></span></a>
 
-            <a href="#">Finish <span class="badge badge-warning" style="font-size: 15px;">0</span></a>
+            <a href="<?php echo base_url('Jobsestimation/jobstatus').'/'.'4'; ?>">Finish <span class="badge badge-warning" style="font-size: 15px;">0</span></a>
 
             <a href="#"><strong>Total <span class="badge badge-primary" style="font-size: 17px;"><?php echo $jobs_data[0]['total_data']; ?></span></strong></a>
 
           </div>
-
         </div>
-
       </div>
-
     </div>
 
     <!-- Right Column -->
@@ -91,7 +88,14 @@
 
                       <td><?php echo $row['garage']; ?></td>
 
-                      <td><?php echo $row['created_at']; ?></td>
+                      <?php
+
+                      $originalDate = $row['created_at'];
+                      $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
+
+                      ?>
+
+                      <td><?php echo $newDate; ?></td>
 
                       <td><?php echo $row['requestor']; ?></td>
 
@@ -106,17 +110,16 @@
                           break;
 
                         case '2':
-                        echo "<td><button class='btn btn-success' disabled>Progress</button></td>";
-                        break;
+                          echo "<td><button class='btn btn-success' disabled>Progress</button></td>";
+                          break;
 
                         case '3':
                           echo "<td><button class='btn btn-danger' disabled>Completed</button></td>";
-                        break;
-  
-                        default:
-                        echo "<td><button class='btn btn-secondry' disabled>N/A</button></td>";
-                        break;
+                          break;
 
+                        default:
+                          echo "<td><button class='btn btn-secondry' disabled>N/A</button></td>";
+                          break;
                       }
 
                       ?>
@@ -133,8 +136,7 @@
 
                     </tr>
 
-                <?php }
-                }  ?>
+                <?php }  }  ?>
 
               </tbody>
 

@@ -234,6 +234,33 @@
 </li>
 <!-- Divider -->
 
+
+<li class="nav-item">
+
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFourlist" aria-expanded="true" aria-controls="collapseFour">
+
+    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+
+  <span>Lists</span>
+
+  </a>
+
+  <div id="collapseFourlist" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+
+    <div class="py-2 collapse-inner">
+
+      <a class="collapse-item" href="<?php echo base_url('parts/'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>Parts</a>
+
+      <a class="collapse-item" href="<?php echo base_url('parts/partsaction/') ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i>Parts Actions</a>
+
+      <a class="collapse-item" href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i>Shortcuts</a>
+
+    </div>
+
+  </div>
+
+</li>
+
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Sidebar Toggler (Sidebar) -->
 

@@ -134,7 +134,14 @@
 
                   <td><strong>Created</strong></td>
 
-                  <td><?php echo date("d/m/Y h:s a", strtotime($requestor['created_at']));; ?></td>
+                  <?php
+
+                    $originalDate = $requestor['created_at'];
+                    $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
+
+                  ?>
+
+                  <td><?php echo $newDate; ?></td>
 
                 </tr>
 

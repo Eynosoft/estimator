@@ -35,9 +35,9 @@
 
             <a href="#">External <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
 
-            <a href="#">Unassigned <span class="badge badge-danger" style="font-size: 15px;"><?php echo !empty($requestor['0']['unassigned_total']) ? $requestor['0']['unassigned_total'] : '0'; ?></span></a>
+            <a href="<?php echo base_url('requests/requeststatus').'/'.'0'; ?>">Unassigned <span class="badge badge-danger" style="font-size: 15px;"><?php echo !empty($requestor['0']['unassigned_total']) ? $requestor['0']['unassigned_total'] : '0'; ?></span></a>
 
-            <a href="#">Assigned <span class="badge badge-success" style="font-size: 15px;"><?php echo !empty($requestor['0']['assign_total']) ? $requestor['0']['assign_total'] : '0'; ?></span></a>
+            <a href="<?php echo base_url('requests/requeststatus').'/'.'1'; ?>">Assigned <span class="badge badge-success" style="font-size: 15px;"><?php echo !empty($requestor['0']['assign_total']) ? $requestor['0']['assign_total'] : '0'; ?></span></a>
 
             <a href="#">Withdrawn <span class="badge badge-primary" style="font-size: 15px;">0</span></a>
 
@@ -106,6 +106,7 @@
                     <?php
 
                     $originalDate = $rows['created_at'];
+
                     $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
 
                     ?>

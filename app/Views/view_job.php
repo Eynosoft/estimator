@@ -1,19 +1,20 @@
 <?php echo $this->extend('template/layout_main'); ?>
 <?php echo $this->section('content');  ?>
 
-<div class="container-fluid">
+<div>
+
   <!-- Page Heading -->
 
-
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Estimation Request <small>About</small> </h1>
+    <h1 class="h3 mb-0 text-gray-800">Estimation Request &nbsp<b>"<?php echo $requestor['request_no'] ?>"</b> </h1>
   </div>
 
   <div class="row">
+
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a href="<?php echo base_url('requests/update') . '/' . $requestor['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a href="javascript:void(0);" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -48,6 +49,7 @@
               default:
                 echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-danger'>Finish</span></a>";
                 break;
+
             }
 
             ?>
@@ -97,27 +99,27 @@
             <a id="requests" href="<?php echo base_url('jobsestimation'); ?>"> <i class="fa fa-file" aria-hidden="true"></i>&nbspRequests<span class="badge badge-primary"></span>
             </a>
 
-          <?php
+            <?php
 
-          $report_link = base_url('requests/estimation_report').'/'.$requestor['id'];
+            $report_link = base_url('requests/estimation_report') . '/' . $requestor['id'];
 
             switch ($requestor['status']) {
 
               case '1':
-                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspIn progress<span class='badge badge-primary fa fa-arrow-right'></span>
+                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-spinner' aria-hidden='true'></i>&nbspIn progress<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
+              break;
+
+              case '2':
+                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspComplete<span class='badge badge-primary fa fa-arrow-right'></span>
+                  </a>";
+              break;
+
+              case '3':
+                echo "<a href='" . $report_link . "' target='_blank'><i class='fa fa-file-pdf-o' aria-hidden='true' style='font-size:19px;color:red'></i>&nbspReport<span class='badge badge-primary fa fa-arrow-right'></span>
+                  </a>";
                 break;
 
-                case '2':
-                  echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspComplete<span class='badge badge-primary fa fa-arrow-right'></span>
-                  </a>";
-                  break;
-
-                case '3':
-                  echo "<a href='".$report_link."' target='_blank'><i class='fa fa-file-pdf-o' aria-hidden='true' style='font-size:19px;color:red'></i>&nbspReport<span class='badge badge-primary fa fa-arrow-right'></span>
-                  </a>";
-                  break;
-              
               default:
                 echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspN/A<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
@@ -206,7 +208,14 @@
 
                   <td> <strong>Created</strong> </td>
 
-                  <td><?php echo date("d/m/Y h:s a", strtotime($requestor['created_at'])); ?></td>
+                  <?php
+
+                  $originalDate = $requestor['created_at'];
+                  $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
+
+                  ?>
+
+                  <td><?php echo $newDate; ?></td>
 
                 </tr>
 
