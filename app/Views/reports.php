@@ -17,9 +17,6 @@
     <!-- Left Column -->
 
     <div class="col-lg-4 mb-4">
-
-
-
       <!-- Left Other HTML -->
 
       <div class="card shadow mb-4">
@@ -44,11 +41,7 @@
 
       </div>
 
-
-
     </div>
-
-
 
     <!-- Right Column -->
 
@@ -64,213 +57,216 @@
 
         <div class="card-body">
 
-          <form>
+          <?php
 
-            <div class="form-row">
+          $frmattribute = [
+            'id' => 'report_generate',
+            'method' => 'post',
+          ];
 
-              <div class="form-group col-md-12">
+          echo form_open('reports/estimation_report', $frmattribute);
 
-                <label class="fieldLabel mb-1">Customer</label>
+          ?>
 
-                <?php 
-                
-                $frmattribute = [
-                  'class' => 'form-control',
-                ];
+          <div class="form-row">
 
-                ?>
+            <div class="form-group col-md-12">
 
-                <?php $options = $customer; ?>
+              <label class="fieldLabel mb-1">Customer</label>
 
-                <?php echo form_dropdown('customer', $options, '',$frmattribute); ?>
+              <?php
+
+              $frmattribute = [
+                'class' => 'form-control',
+              ];
+
+              ?>
+
+              <?php $options = $customer; ?>
+
+              <?php echo form_dropdown('customer', $options, '', $frmattribute); ?>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-row">
+
+            <div class="form-group col-md-12">
+
+              <label class="fieldLabel mb-1">Data Filter</label>
+
+              <select class="form-control">
+
+                <option>Requested</option>
+
+                <option>Unrequested</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+
+              <label class="fieldLabel mb-1">From</label>
+
+              <input name='form_date' class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+
+            </div>
+
+            <div class="form-group col-md-6">
+
+              <label class="fieldLabel mb-1">To</label>
+
+              <input name='till_date' class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-12">
+
+              <label class="fieldLabel mb-1">Setting</label>
+
+              <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                  <tbody>
+
+                    <tr>
+
+                    <td>Show unassigned requests</td>
+
+                      <td style="width: 40px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="0" name="unassigned">
+                      </td>
+
+                    </tr>
+
+                    <tr>
+
+                    <td>Show estimators analysis</td>
+
+                    <td style="width: 40px;"><input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="assigned"></td>
+
+                    </tr>
+
+                  </tbody>
+
+                </table>
 
               </div>
 
             </div>
 
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-12">
+
+              <label class="fieldLabel mb-1">Permissions</label>
+
+              <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                  <tbody>
+
+                    <tr>
+
+                      <td><input type="text" placeholder="Search..." class="form-control"></td>
+
+                      <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
+
+                    </tr>
+
+                  </tbody>
+
+                </table>
 
 
-            <div class="form-row">
 
-              <div class="form-group col-md-12">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                <label class="fieldLabel mb-1">Data Filter</label>
+                  <tbody>
 
-                <select class="form-control">
+                    <tr>
 
-                  <option>Requested</option>
+                      <td>Complete</td>
 
-                  <option>Unrequested</option>
+                      <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="3" name="status_completed"></td>
 
-                </select>
+                    </tr>
 
-              </div>
+                    <tr>
 
-            </div>
+                      <td>Finish</td>
 
+                      <td style="width: 40px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="4" name="status_finished">
+                      </td>
 
+                    </tr>
 
-            <div class="form-row">
+                    <tr>
 
-              <div class="form-group col-md-6">
+                      <td>In progress</td>
 
-                <label class="fieldLabel mb-1">From</label>
+                      <td style="width: 40px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="2" name="status_progress">
+                      </td>
 
-                <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+                    </tr>
 
-              </div>
+                    <tr>
 
-              <div class="form-group col-md-6">
+                      <td>Pending</td>
 
-                <label class="fieldLabel mb-1">To</label>
+                      <td style="width: 40px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status_pending">
+                      </td>
 
-                <input class="form-control" type="datetime-local" id="birthdaytime" name="birthdaytime">
+                    </tr>
 
-              </div>
+                  </tbody>
 
-            </div>
-
-            <div class="form-row">
-
-              <div class="form-group col-md-12">
-
-                <label class="fieldLabel mb-1">Setting</label>
-
-                <div class="table-responsive">
-
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                    <tbody>
-
-                      <tr>
-
-                        <td>Show unassigned requests</td>
-
-                        <td style="width: 40px;">
-                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status">
-                        </td>
-
-                      </tr>
-
-                      <tr>
-
-                        <td>Show estimators analysis</td>
-
-                        <td style="width: 40px;"><input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
-                </div>
+                </table>
 
               </div>
 
             </div>
 
+          </div>
 
+          <!-- Save Button row -->
 
-            <div class="form-row">
+          <div class="row">
 
-              <div class="form-group col-md-12">
+            <div class="col-lg-12 mb-4">
 
-                <label class="fieldLabel mb-1">Permissions</label>
-
-                <div class="table-responsive">
-
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                    <tbody>
-
-                      <tr>
-
-                        <td><input type="text" placeholder="Search..." class="form-control"></td>
-
-                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
-
-
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                    <tbody>
-
-                      <tr>
-
-                        <td>Complete</td>
-
-                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                      <tr>
-
-                        <td>Finish</td>
-
-                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                      <tr>
-
-                        <td>In progress</td>
-
-                        <td style="width: 40px;"> <input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                      <tr>
-
-                        <td>Pending</td>
-
-                        <td style="width: 40px;"><input type="checkbox" checked data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" value="1" name="status"></td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
-                </div>
-
-              </div>
+              <button type="submit" class="btn btn-md btn-primary">Submit</button>
 
             </div>
 
+          </div>
 
-
-            <!-- Save Button row -->
-
-            <div class="row">
-
-              <div class="col-lg-12 mb-4">
-
-                <button type="button" class="btn btn-md btn-primary">Submit</button>
-
-              </div>
-
-            </div>
-
-          </form>
+          <?php echo form_close(); ?>
 
         </div>
 
       </div>
 
     </div>
-
-
-
-
-
-
 
   </div>
 

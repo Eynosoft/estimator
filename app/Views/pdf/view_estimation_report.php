@@ -210,13 +210,13 @@
         <th style="width: 25%;text-align:left;">Status</th>
         <th style="width: 25%;text-align:left;">Qty</th>
         <th style="width: 25%;text-align:left;">S Cost</th>
-        <th style="width: 25%;text-align:left;">Dis</th>
+        <th style="width: 25%;text-align:left;">Dis(%)</th>
         <th style="width: 25%;text-align:left;">T Cost</th>
       </tr>
 
-     <?php 
+     <?php
 
-     if(!empty($estimation_report['parts_data'])) { 
+     if(!empty($estimation_report['parts_data'])) {
      foreach ($estimation_report['parts_data'] as $parts_data) { ?>
 
       <tr>
@@ -228,7 +228,7 @@
         <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['quantity']; ?></td>
         <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_cost']; ?></td>
         <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['discount']; ?></td>
-        
+
         <?php
         $dis_amount = (($parts_data['part_cost'] * $parts_data['quantity']) * ($parts_data['discount']/ 100));
         $total_amount = (($parts_data['part_cost'] * $parts_data['quantity']) - $dis_amount);
@@ -241,8 +241,8 @@
 
     <tr>
 
-        <td colspan="6" style="text-align:right;">Total Parts & Accessories</td>
-        <td colspan="2" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
+        <td colspan="7" style="text-align:right;">Total Parts & Accessories</td>
+        <td colspan="1" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
 
      </tr>
 
@@ -261,9 +261,11 @@
       </tr>
 
       <?php
+
       if(!empty($estimation_report['labours_data'])) {
+
       foreach ($estimation_report['labours_data'] as $labours) { ?>
-    
+
       <tr>
 
         <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['labour']; ?></td>
@@ -273,8 +275,8 @@
         <?php
 
         $total_cost = $labours['cost_total'];
-        $total_vat_amount += !empty($labours['vat_cost']) ? $labours['vat_cost'] : 0; 
-        
+        $total_vat_amount += !empty($labours['vat_cost']) ? $labours['vat_cost'] : 0;
+
         ?>
 
       </tr>
@@ -282,7 +284,7 @@
       <?php } } ?>
 
       <tfoot>
-        
+
         <tr style="width: 50%;">
           <td colspan="2" style="text-align:right;">Total Labour</td>
           <td style="text-align:left;"><b><?php echo $total_cost; ?></b></td>
@@ -292,8 +294,9 @@
           <td colspan="2" style="text-align:right;">Total Parts & Accessories & Labours</td>
           <td style="text-align:left;"><b><?php echo ($parts_data['total_amount']+$total_cost); ?></b></td>
         </tr>
-        
+
         <?php $vat_amount = $total_vat_amount - $total_cost; ?>
+
         <tr style="width: 50%;">
           <td colspan="2" style="text-align:right;">Vat Amount</td>
           <td style="text-align:left;"><b><?php echo $vat_amount; ?></b></td>
@@ -301,7 +304,7 @@
 
         <tr style="width: 50%;">
           <td colspan="2" style="text-align:right;">Total With Vat</td>
-          <td style="text-align:left;"><b><?php echo ($total_vat_amount + $parts_data['total_amount'] +$total_cost); ?></b></td>
+          <td style="text-align:left;"><b><?php echo ($vat_amount + $parts_data['total_amount'] +$total_cost); ?></b></td>
         </tr>
 
       </tfoot>

@@ -58,7 +58,7 @@
 
           <label>Select Parts : </label>
 
-          <input type="text" id="parts_data" class="form-control" value=''>
+          <input type="text" id="parts_data" class="form-control" value='' placeholder = 'Search Parts...'>
 
           <div class="col-md-12">
 

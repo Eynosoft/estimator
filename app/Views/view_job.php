@@ -14,7 +14,7 @@
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a href="javascript:void(0);" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a id="edit_job_request" href="javascript:void(0);" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -49,7 +49,6 @@
               default:
                 echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-danger'>Finish</span></a>";
                 break;
-
             }
 
             ?>
@@ -108,12 +107,12 @@
               case '1':
                 echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-spinner' aria-hidden='true'></i>&nbspIn progress<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
-              break;
+                break;
 
               case '2':
                 echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspComplete<span class='badge badge-primary fa fa-arrow-right'></span>
                   </a>";
-              break;
+                break;
 
               case '3':
                 echo "<a href='" . $report_link . "' target='_blank'><i class='fa fa-file-pdf-o' aria-hidden='true' style='font-size:19px;color:red'></i>&nbspReport<span class='badge badge-primary fa fa-arrow-right'></span>
@@ -124,7 +123,6 @@
                 echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspN/A<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
                 break;
-
             }  ?>
 
 
@@ -308,21 +306,21 @@
 
               <ul class="nav nav-tabs">
 
-                <li class="active"><a data-toggle="tab" href="#assignjob">Assign Job</a></li>
+                <li class="active"><a data-toggle="tab" href="#assignjob">Assign</a></li>
 
                 <li><a data-toggle="tab" href="#job_estimation">Estimation</a></li>
 
-                <li><a data-toggle="tab" href="#job_parts">Parts</a></li>
+                <li><a data-toggle="tab" href="#job_damage">Damage</a></li>
 
-                <li><a data-toggle="tab" href="#job_labours">Labours</a></li>
+                <li><a data-toggle="tab" href="#job_parts">Part</a></li>
+
+                <li><a data-toggle="tab" href="#job_labours">Labour</a></li>
 
                 <li><a data-toggle="tab" href="#job_loss">Total Loss</a></li>
 
-                <!-- <li><a data-toggle="tab" href="#job_document">Documents</a></li> -->
+                <li><a data-toggle="tab" href="#assign_job_remarks">Remark</a></li>
 
-                <li><a data-toggle="tab" href="#assign_job_remarks">Remarks</a></li>
-
-                <li><a data-toggle="tab" href="#job_document">Documents</a></li>
+                <li><a data-toggle="tab" href="#job_document">Document</a></li>
 
               </ul>
 
@@ -353,6 +351,12 @@
                 <div id="job_estimation" class="tab-pane fade">
 
                   <?php echo $this->include('job_requests/assign_jobestimation'); ?>
+
+                </div>
+
+                <div id="job_damage" class="tab-pane fade">
+
+                  <?php echo $this->include('job_requests/assign_damage_area'); ?>
 
                 </div>
 

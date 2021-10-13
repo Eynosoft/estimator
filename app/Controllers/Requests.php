@@ -88,7 +88,7 @@ class Requests extends BaseController
 		return view('new_estimation_request', $context);
 	}
 
-	// Create Method for the request Ends 
+	// Create Method for the request Ends
 	//-------------------------------------------------------------------------------------------------//
 
 
@@ -107,7 +107,7 @@ class Requests extends BaseController
 		return view('update_estimation_request', $context);
 	}
 
-	// Update Request Service Ends 
+	// Update Request Service Ends
 	// -------------------------------------------------------------------------------------------------//
 
 	// -------------------------------------------------------------------------------------------------//
@@ -152,7 +152,7 @@ class Requests extends BaseController
 		return $this->response->redirect(site_url('requests/'));
 	}
 
-	// insert and update requestors Ends 
+	// insert and update requestors Ends
 	//------------------------------------------------------------------------------------------------//
 
 
@@ -175,7 +175,7 @@ class Requests extends BaseController
 	}
 
 	// View Estimation Request by Id ends
-	//------------------------------------------------------------------------------------------------// 
+	//------------------------------------------------------------------------------------------------//
 
 
 	//------------------------------------------------------------------------------------------------//
@@ -200,7 +200,7 @@ class Requests extends BaseController
 		return redirect()->to($url);
 	}
 
-	// Delete of the estimation request Ends 
+	// Delete of the estimation request Ends
 	//-------------------------------------------------------------------------------------------------//
 
 
@@ -232,7 +232,7 @@ class Requests extends BaseController
 		return redirect()->to($url);
 	}
 
-	// Assign a job to a requestor Ends 
+	// Assign a job to a requestor Ends
 	//-------------------------------------------------------------------------------------------------//
 
 	public function request_store()
@@ -259,9 +259,9 @@ class Requests extends BaseController
 			'responsibility' => $this->request->getVar('responsibility'),
 			'liability' => $this->request->getVar('liability'),
 		];
-		
+
 		$request_id = $this->request_model->insertrequestor($request_data);
-		// Person Document Data Starts 
+		// Person Document Data Starts
 
 		if (!empty($request_id)) {
 			$galleryImages = [];
@@ -290,14 +290,14 @@ class Requests extends BaseController
 			}
 		}
 
-		//Insert person data 
+		//Insert person data
 		$person_data = [
 			'person_type' => $this->request->getVar('person_type'),
 			'person_name' => $this->request->getVar('person_name'),
 			'person_number' => $this->request->getVar('person_number'),
 		];
 		$result = $this->request_person_model->insertPersonData($person_data, $request_id);
-		// Insert person data 
+		// Insert person data
 		$url = base_url() . '/requests';
 		return redirect()->to($url);
 		die();
@@ -323,7 +323,7 @@ class Requests extends BaseController
 	}
 
 	public function estimation_report($id = null)
-	{ 
+	{
 		$request_id = $id;
 		$result = $this->request_model->getFinalReport($request_id);
 		$dompdf = new \Dompdf\Dompdf();
@@ -332,26 +332,26 @@ class Requests extends BaseController
 		$dompdf->loadHtml(view('pdf/view_estimation_report', ["estimation_report" => $result]));
 		$dompdf->setPaper('A4', 'portrait');
 		$dompdf->render();
-		$canvas = $dompdf->getCanvas(); 
+		$canvas = $dompdf->getCanvas();
 
-		// Get height and width of page 
-		$w = $canvas->get_width(); 
-		$h = $canvas->get_height(); 
+		// Get height and width of page
+		$w = $canvas->get_width();
+		$h = $canvas->get_height();
 
-		// Specify watermark image 
-		$imageURL = FCPATH.'/assets/draft/draft.jpg'; 
-		$imgWidth = 600; 
+		// Specify watermark image
+		$imageURL = FCPATH.'/assets/draft/draft.jpg';
+		$imgWidth = 600;
 		$imgHeight = 350;
-		
-		// Set image opacity 
-		$canvas->set_opacity(0.3); 
-		// Specify horizontal and vertical position 
-		$x = (($w-$imgWidth)/2); 
-		$y = (($h-$imgHeight)/3); 
-		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight,$resolution = "normal"); 
+
+		// Set image opacity
+		$canvas->set_opacity(0.3);
+		// Specify horizontal and vertical position
+		$x = (($w-$imgWidth)/2);
+		$y = (($h-$imgHeight)/3);
+		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight,$resolution = "normal");
 
     ob_end_clean();
-		$dompdf->stream("estimation_report.pdf", array("Attachment" => 0)); 
+		$dompdf->stream("estimation_report.pdf", array("Attachment" => 0));
 		//for preview attachment will be 0 and for download the pdf attachment should be 1
 		exit(0);
 		//$dompdf->stream('estimation_report' .time());
