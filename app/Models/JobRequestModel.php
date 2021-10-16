@@ -60,8 +60,8 @@ class JobRequestModel extends Model
     }
     return false;
   }
-  
+
   // Insert Requestor Ends
   //------------------------------------------------------------------------------------------------//
-  
+
 }

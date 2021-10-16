@@ -87,6 +87,7 @@ class App extends BaseConfig
 	 */
 
 	public $negotiateLocale = false;
+
 	/**
 	 * --------------------------------------------------------------------------
 	 * Supported Locales
@@ -111,6 +112,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $appTimezone = 'Asia/Kolkata';
 
 	/**
@@ -125,6 +127,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $charset = 'UTF-8';
 
 	/**
@@ -139,6 +142,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $forceGlobalSecureRequests = false;
 
 	/**
@@ -154,6 +158,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler';
 
 	/**
@@ -165,7 +170,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $sessionCookieName = 'ci_session';
+
+  public $sessionCookieName = 'ci_session';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -177,6 +183,7 @@ class App extends BaseConfig
 	 *
 	 * @var integer
 	 */
+
 	public $sessionExpiration = 7200;
 
 	/**
@@ -210,7 +217,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
-	
+
 	public $sessionMatchIP = false;
 
 	/**
@@ -235,7 +242,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
-	public $sessionRegenerateDestroy = false;
+	public $sessionRegenerateDestroy = true;
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -370,7 +377,7 @@ class App extends BaseConfig
 	 */
 
 	public $CSRFCookieName = 'csrf_cookie_name';
-	
+
 	/**
 	 * --------------------------------------------------------------------------
 	 * CSRF Expire

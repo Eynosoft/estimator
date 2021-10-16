@@ -18,10 +18,8 @@ use App\Libraries\Alertclass;
  * For security be sure to declare any new methods as protected or private.
  */
 
-
 class BaseController extends Controller
 {
-	
 	/**
 	 * An array of helpers to be loaded automatically upon
 	 * class instantiation. These helpers will be available
@@ -29,6 +27,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
+
 	protected $helpers = ['auth','form','Pdf'];
 
 	/**
@@ -45,7 +44,7 @@ class BaseController extends Controller
 		parent::initController($request, $response, $logger);
 		$this->alertclass = new Alertclass();
 		$this->alertclass->display();
-		// test code 
+		// test code
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
@@ -58,16 +59,19 @@ class Requests extends BaseController
 	// Home Page for the request Ends
 	//-------------------------------------------------------------------------------------------------//
 
-	public function requeststatus($status = null) {
+	public function requeststatus($status = null)
+	{
+
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
 
 		$context['assign_unassign'] = $this->request_model->assignunassignAllData($status);
-    $context['assign_unassign_total'] = $this->request_model->assigstatus();
+		$context['assign_unassign_total'] = $this->request_model->assigstatus();
 
 		return view('jobs_estimation_status_list', $context);
 	}
@@ -83,7 +87,6 @@ class Requests extends BaseController
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['customer'] = $this->customer_model->setCustomerDropdown();
 		return view('new_estimation_request', $context);
 	}
@@ -115,7 +118,6 @@ class Requests extends BaseController
 
 	public function store()
 	{
-
 		$check = $this->validate(
 			[
 				'customer' => 'required',
@@ -123,26 +125,21 @@ class Requests extends BaseController
 				'requestor' => 'required',
 			]
 		);
-
 		if (!$check) {
 			return view('new_estimation_request', ['validation' => $this->validator]);
 		} else {
-
 			$id = $this->request->getPost('id');
-
 			$data = [
 				'customer' => $this->request->getVar('customer'),
 				'requested_date' => $this->request->getVar('requested_date'),
 				'requestor' => $this->request->getVar('requestor'),
 			];
-
 			if (!empty($id)) {
 				$result = $this->request_model->insertrequestor($data, $id);
 				//$_SESSION['message'] = 'success';
 			} else {
 				$result = $this->request_model->insertrequestor($data);
 			}
-
 			if ($result) {
 				$this->session->set('message', 'success');
 			} else {
@@ -164,9 +161,11 @@ class Requests extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
+
 		$context['requestor'] = $this->request_model->requestGetDataById($id);
 		$context['person_data'] = $this->request_person_model->getPersonDataById($id);
 		$context['person_doc'] = $this->person_document_model->getPersonDocDataById($id);
@@ -289,7 +288,6 @@ class Requests extends BaseController
 				$saveData = $this->person_document_model->documentInsert($returnData);
 			}
 		}
-
 		//Insert person data
 		$person_data = [
 			'person_type' => $this->request->getVar('person_type'),
@@ -308,7 +306,7 @@ class Requests extends BaseController
 
 	public function viewjob($request_id = null)
 	{
-		if(!logged_in()) {
+		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
@@ -333,24 +331,24 @@ class Requests extends BaseController
 		$dompdf->setPaper('A4', 'portrait');
 		$dompdf->render();
 		$canvas = $dompdf->getCanvas();
-
 		// Get height and width of page
 		$w = $canvas->get_width();
 		$h = $canvas->get_height();
 
 		// Specify watermark image
-		$imageURL = FCPATH.'/assets/draft/draft.jpg';
+		$imageURL = FCPATH . '/assets/draft/draft.jpg';
+
+
 		$imgWidth = 600;
 		$imgHeight = 350;
-
 		// Set image opacity
 		$canvas->set_opacity(0.3);
 		// Specify horizontal and vertical position
-		$x = (($w-$imgWidth)/2);
-		$y = (($h-$imgHeight)/3);
-		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight,$resolution = "normal");
+		$x = (($w - $imgWidth) / 2);
+		$y = (($h - $imgHeight) / 3);
+		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight, $resolution = "normal");
 
-    ob_end_clean();
+		ob_end_clean();
 		$dompdf->stream("estimation_report.pdf", array("Attachment" => 0));
 		//for preview attachment will be 0 and for download the pdf attachment should be 1
 		exit(0);
