@@ -8,6 +8,7 @@ use App\Models\JobRequestModel;
 use App\Models\JobRequestDocumentModel;
 use App\Models\JobRequestLabourModel;
 use App\Models\JobRequestPartsModel;
+use App\Models\JobRequestDamageModel;
 
 class Jobsestimation extends BaseController
 {
@@ -16,6 +17,7 @@ class Jobsestimation extends BaseController
 	protected $jobrequest_doc_model = null;
 	protected $jobrequest_labour = null;
 	protected $jobrequest_parts = null;
+	protected $partdamage = null;
 
 	public function __construct()
 	{
@@ -24,6 +26,7 @@ class Jobsestimation extends BaseController
 		$this->jobrequest_doc_model = new JobRequestDocumentModel();
 		$this->jobrequest_labour = new JobRequestLabourModel();
 		$this->jobrequest_parts = new JobRequestPartsModel();
+		$this->partdamage = new JobRequestDamageModel();
 		$this->session = \Config\Services::session();
 		$this->session->start();
 	}
@@ -74,6 +77,7 @@ class Jobsestimation extends BaseController
 
 	public function job_request_store($job_id = null)
 	{
+
 		$job_request = [
 			'request_id' => $this->request->getVar('request_id'),
 			'assign_id' => $this->request->getVar('assign_id'),
@@ -89,7 +93,37 @@ class Jobsestimation extends BaseController
 			'remark' => $this->request->getVar('remark'),
 		];
 
-	$job_request_id = $this->jobrequest_model->insertjobrequest($job_request, $job_id);
+$job_request_id = $this->jobrequest_model->insertjobrequest($job_request, $job_id);
+
+// Damage Parts Section Starts
+
+ if(!empty($job_request_id)) {
+
+	 $data = [];
+	 $data[0]['damage_area'] = $this->request->getVar('front_right');
+	 $data[0]['damage_type'] = $this->request->getVar('damage_front_right');
+	 $data[1]['damage_area'] = $this->request->getVar('side_right1');
+	 $data[1]['damage_type'] = $this->request->getVar('damage_side_right1');
+	 $data[2]['damage_area'] = $this->request->getVar('side_right2');
+	 $data[2]['damage_type'] = $this->request->getVar('damage_side_right2');
+	 $data[3]['damage_area'] = $this->request->getVar('rear');
+	 $data[3]['damage_type'] = $this->request->getVar('damage_rear');
+	 $data[4]['damage_area'] = $this->request->getVar('car_front_main');
+	 $data[4]['damage_type'] = $this->request->getVar('damage_car_front_main');
+   $data[5]['damage_area'] = $this->request->getVar('second_car_front');
+	 $data[5]['damage_type'] = $this->request->getVar('damage_second_car_front');
+	 $data[6]['damage_area'] = $this->request->getVar('second_car_center');
+	 $data[6]['damage_type'] = $this->request->getVar('damage_second_car_center');
+	 $data[7]['damage_area'] = $this->request->getVar('second_car_back');
+	 $data[7]['damage_type'] = $this->request->getVar('damage_second_car_back');
+	 $data[8]['damage_area'] = $this->request->getvar('car_top');
+	 $data[8]['damage_type'] = $this->request->getVar('damage_car_top');
+
+	$job_damage_parts = $this->partdamage->damageInsert(json_encode($data), $job_request_id);
+
+ }
+
+// Damage Parts Section Ends
 
 	if (!empty($job_request_id)) {
 	    $job_parts = [
@@ -121,7 +155,6 @@ class Jobsestimation extends BaseController
 			];
 			$result = $this->jobrequest_labour->labourInsert($labours, $job_request_id);
 		}
-
 
 		if (!empty($job_request_id)) {
 			$galleryImages = [];

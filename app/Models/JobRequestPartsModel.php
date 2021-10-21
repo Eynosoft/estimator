@@ -26,8 +26,8 @@ class JobRequestPartsModel extends Model
     $this->db = \Config\Database::connect();
     //$this->documentation_model = new DocumentationModel();
   }
-  
-  // -----------------------------------------------------------------------------------------------// 
+
+  // -----------------------------------------------------------------------------------------------//
   // Get Requestor all data Starts
 
   function partsInsert($data = null, $job_request_id=null)
@@ -49,7 +49,7 @@ class JobRequestPartsModel extends Model
     }
   }
 
-    // Get All Labours by id 
+    // Get All Labours by id
     public function getPartsDataById($job_id = null)
     {
       $part_action_data = new PartsActionModel();
@@ -78,13 +78,13 @@ class JobRequestPartsModel extends Model
       }
       return false;
     }
-  
-    // Get All Labours By Id 
+
+    // Get All Labours By Id
 
 
 
-// Get parts data by the job id data Starts 
-    
+// Get parts data by the job id data Starts
+
   public function getPartsDataByJobId($id = null)
   {
     try {
@@ -96,6 +96,6 @@ class JobRequestPartsModel extends Model
     return false;
   }
 
-// Get parts data by the job it data ends  
+// Get parts data by the job it data ends
 
 }

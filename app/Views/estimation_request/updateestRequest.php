@@ -1,6 +1,6 @@
 <!-- Content Column -->
 <div class="row">
-  
+
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
@@ -25,16 +25,7 @@
 
       <?php
 
-      if(!empty($requestor))  {
-        
-          foreach ($requestor as $request) {
-
-            $id = $request['id'];
-            $customer = $request['customer'];
-            $requested_date = $request['requested_date'];
-            $requestor = $request['requestor'];
-
-        ?>
+      if(!empty($requestor))  { ?>
 
             <div class="form-row">
 
@@ -45,7 +36,7 @@
                 <?php
 
                 $options = $customer;
-                echo form_dropdown('customer', $options, '', 'class="form-control" id="customer"');
+                echo form_dropdown('customer', $options,'', 'class="form-control" id="customer"');
 
                 ?>
 
@@ -58,7 +49,7 @@
               <div class="form-group col-md-12">
 
                 <?php echo form_label('Requested', 'requested'); ?>
-                <?php echo form_input(array('name' => 'requested_date', 'type' => 'date', 'class' => 'form-control', 'id' => 'requested',)); ?>
+                <?php echo form_input(array('name' => 'requested_date', 'type' => 'date', 'class' => 'form-control', 'id' => 'requested','value'=> $requestor['requested_date'])); ?>
 
               </div>
 
@@ -81,32 +72,17 @@
 
                 ?>
 
-                <?php echo form_dropdown('requestor', $requestor, '', 'class="form-control" id="requestor"'); ?>
+                <?php echo form_dropdown('requestor', $requestor, $requestor['requestor'], 'class="form-control" id="requestor"'); ?>
 
               </div>
 
             </div>
 
-            <!-- Save Button row -->
+        <!-- Save Button row -->
 
-            <div class="row">
+            <?php } ?>
 
-              <div class="col-lg-12 mb-4">
-
-                <?php
-
-                echo  form_submit(array('name' => 'save', 'class' => "btn btn-md btn-primary", 'value' => 'Save'))
-
-                ?>
-
-              </div>
-
-            </div>
-
-          <?php }  } ?>
-
-        
-        <?php echo form_close(); ?>
+            <?php echo form_close(); ?>
 
             </div>
 

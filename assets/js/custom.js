@@ -119,7 +119,6 @@ $(document).ready(function() {
 
 });
 
-
 $(document).ready(function() {
 
     $('#persons').click(function() {
@@ -159,6 +158,28 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function() {
+
+    $('#about').click(function() {
+        $('#about_garage').show();
+        $('#requests').hide();
+        $('#estimations').hide();
+    });
+
+    $('#requests_data').click(function() {
+        $('#requests').show();
+        $('#about_garage').hide();
+        $('#estimations').hide();
+    });
+
+    $('#estimation_data').click(function() {
+        $('#requests').hide();
+        $('#about_garage').hide();
+        $('#estimations').show();
+    });
+
+});
+
 
 $(document).ready(function() {
     $('#person_data').DataTable();
@@ -172,6 +193,13 @@ $(document).ready(function() {
     $('#requestors_jobs').DataTable();
 });
 
+$(document).ready(function() {
+    $('#requestsdata').DataTable();
+});
+
+$(document).ready(function() {
+    $('#estimationsdata').DataTable();
+});
 
 // Show Notes Section into the toggel class into the assign notes section
 

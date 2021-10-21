@@ -12,7 +12,7 @@ class App extends BaseConfig
 	 * URL to your CodeIgniter root. Typically this will be your base URL,
 	 * WITH a trailing slash:
 	 *
-	 *    http://example.com/
+	 *http://example.com/
 	 *
 	 * If this is not set then CodeIgniter will try guess the protocol, domain
 	 * and path to your installation. However, you should always configure this
@@ -20,6 +20,7 @@ class App extends BaseConfig
 	 * environments.
 	 *
 	 * @var string
+	 *
 	 */
 
 	public $baseURL = 'http://localhost/estimator/';
@@ -143,7 +144,7 @@ class App extends BaseConfig
 	 * @var boolean
 	 */
 
-	public $forceGlobalSecureRequests = false;
+public $forceGlobalSecureRequests = false;
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -203,6 +204,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $sessionSavePath = WRITEPATH . 'session';
 
 	/**
@@ -229,6 +231,7 @@ class App extends BaseConfig
 	 *
 	 * @var integer
 	 */
+
 	public $sessionTimeToUpdate = 300;
 
 	/**
@@ -242,6 +245,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $sessionRegenerateDestroy = true;
 
 	/**
@@ -253,6 +257,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $cookiePrefix = '';
 
 	/**
@@ -275,7 +280,9 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $cookiePath = '/';
+
+
+public $cookiePath = '/';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -297,6 +304,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $cookieHTTPOnly = false;
 
 	/**
@@ -349,6 +357,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $CSRFTokenName = 'csrf_test_name';
 
 	/**
@@ -362,6 +371,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $CSRFHeaderName = 'X-CSRF-TOKEN';
 
 	/**
@@ -374,7 +384,7 @@ class App extends BaseConfig
 	 * @deprecated Use `Config\Security` $cookieName property instead of using this property.
 	 *
 	 * @var string
-	 */
+	*/
 
 	public $CSRFCookieName = 'csrf_cookie_name';
 
@@ -402,6 +412,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $CSRFRegenerate = true;
 
 	/**
@@ -415,6 +426,7 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $CSRFRedirect = true;
 
 	/**
@@ -436,6 +448,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+
 	public $CSRFSameSite = 'Lax';
 
 	/**
@@ -456,5 +469,6 @@ class App extends BaseConfig
 	 *
 	 * @var boolean
 	 */
+
 	public $CSPEnabled = false;
 }

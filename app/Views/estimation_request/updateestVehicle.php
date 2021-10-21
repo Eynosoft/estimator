@@ -1,7 +1,7 @@
           <!-- Content Column -->
           <div class="row">
 
-              <div class="col-lg-12 mb-4">
+            <div class="col-lg-12 mb-4">
 
               <!-- Project Card Example -->
 
@@ -15,8 +15,6 @@
 
                 <div class="card-body">
 
-                  <form method="post" id= "homeSearch" name="vehicleSearch" action="#" autocomplete="off">
-                  
                     <div class="form-row">
 
                       <div class="form-group col-md-12">
@@ -24,25 +22,11 @@
                           <label class="fieldLabel mb-1" >Vehicle</label>
 
                           <input type="text" name="home_search" class="form-control" placeholder="Search"  id="ajax_search">
-                      
+
                       </div>
 
                     </div>
-
                     <!-- Save Button row -->
-
-                    <div class="row">
-
-                      <div class="col-lg-12 mb-4">
-
-                      <input type="submit" name="searchinghome" class="btn btn-primary searchIcon" value="Submit">
-
-                      </div>
-
-                    </div>
-
-                  </form>
-
                 </div>
 
               </div>

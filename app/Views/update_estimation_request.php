@@ -12,7 +12,7 @@
     <h1 class="h3 mb-0 text-gray-800">Add Estimation Requests</h1>
 
   </div>
-  
+
   <!-- Content Row -->
 
   <div class="row">
@@ -38,7 +38,7 @@
         </ul>
 
         <div class="tab-content">
-          
+
           <div id="updateestRequest" class="tab-pane fade in active">
 
             <?php echo $this->include('estimation_request/updateestRequest'); ?>

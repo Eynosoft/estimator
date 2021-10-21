@@ -21,7 +21,7 @@
       background-color: #D3D3D3;
       border: 1px solid black;
       color: #000 !important;
-      font-size: 15px;
+      font-size: 13px;
       /* line-height: 15px !important; */
     }
 
@@ -29,7 +29,7 @@
       line-height: 15px !important;
       vertical-align: middle !important;
       border: 1px solid black;
-      font-size: 13px;
+      font-size: 12px;
       background-color: #D3D3D3;
     }
 
@@ -174,7 +174,7 @@
         <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['exemption_amount']; ?></td>
       </tr>
 
-    </table><br><br>
+    </table>
 
     <h3>Description Of Damage</h3>
     <hr class="new3">
@@ -186,15 +186,16 @@
         <th style="width: 25%;text-align:left;">Damage</th>
       </tr>
 
-      <tr>
-        <td style="width: 25%;text-align:left;background-color: #fff;">Front</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;">Slight</td>
-      </tr>
+      <?php if(!empty($estimation_report['damage_part'])){
+          foreach ($estimation_report['damage_part'] as $damages)
+         { ?>
 
       <tr>
-        <td style="width: 25%;text-align:left;background-color: #fff;">Front Right</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;">Slight</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_area'] ?></td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_type']; ?></td>
       </tr>
+
+      <?php } } ?>
 
     </table> <br>
 
@@ -204,6 +205,7 @@
     <table style="width: 100%;" cellspacing="0" cellpadding="6">
 
       <tr>
+
         <th style="width: 25%;text-align:left;">Parts & Assessors </th>
         <th style="width: 25%;text-align:left;">Damage</th>
         <th style="width: 25%;text-align:left;">Action</th>
@@ -212,11 +214,13 @@
         <th style="width: 25%;text-align:left;">S Cost</th>
         <th style="width: 25%;text-align:left;">Dis(%)</th>
         <th style="width: 25%;text-align:left;">T Cost</th>
+
       </tr>
 
      <?php
 
      if(!empty($estimation_report['parts_data'])) {
+
      foreach ($estimation_report['parts_data'] as $parts_data) { ?>
 
       <tr>
@@ -235,18 +239,18 @@
         ?>
       <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $total_amount; ?></td>
 
-      </tr>
+    </tr>
 
     <?php } } ?>
 
     <tr>
 
-        <td colspan="7" style="text-align:right;">Total Parts & Accessories</td>
-        <td colspan="1" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
+      <td colspan="7" style="text-align:right;">Total Parts & Accessories</td>
+      <td colspan="1" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
 
-     </tr>
+    </tr>
 
-    </table> <br>
+  </table> <br>
 
 
     <h3 style="margin-bottom: 2px;">Labour Description</h3>

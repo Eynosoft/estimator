@@ -74,6 +74,7 @@ class RequestorModel extends Model
       $garage = new GarageModel();
       $job_labours = new JobRequestLabourModel();
       $job_parts = new JobRequestPartsModel();
+      $damage_data = new JobRequestDamageModel();
 
       $this->table('requestor');
       $this->select('*');
@@ -102,6 +103,9 @@ class RequestorModel extends Model
 
           $garage_data = !empty($jobs['garage']) ? $garage->getGarageNameById($jobs['garage']) : 'N/A';
           $returndata['garage'] = $garage_data;
+
+          $damage_parts = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) :'N/A';
+          $returndata['damage_part'] =  $damage_parts;
 
           $returndata['insured_reference'] = $jobs['insured_reference'];
           $returndata['date_accident'] = $jobs['date_accident'];
@@ -524,7 +528,6 @@ class RequestorModel extends Model
   public function requestGetDataById($id = null)
   {
     try {
-
       $customer = new CustomerModel();
       $users = new UsersModel();
       $vehicle = new VehicleModel();
@@ -647,11 +650,17 @@ public function getrequestNumber(){
       $users = new UsersModel();
       $labours = new JobRequestLabourModel();
       $parts_data = new JobRequestPartsModel();
+      $damage_data = new JobRequestDamageModel();
+
       $this->table('requestor');
       $this->select('job_requests.*');
       $this->join('job_requests', 'job_requests.request_id = requestor.id');
       $this->where('requestor.id', $id);
       $job_request =  $this->findAll();
+      // echo "<pre>";
+      // print_r($job_request);
+      // die('####');
+
       if (!empty($job_request)) {
         foreach ($job_request as $jobs) {
           $returndata['job_id'] =  $jobs['job_id'];
@@ -665,6 +674,9 @@ public function getrequestNumber(){
           $returndata['reservers'] = $jobs['reservers'];
           $returndata['labours'] = !empty($jobs['job_id']) ? $labours->getJobLaboursDataById($jobs['job_id']) : 'N/A';
           $returndata['job_parts'] = !empty($jobs['job_id']) ? $parts_data->getPartsDataByJobId($jobs['job_id']) : 'N/A';
+
+          $returndata['damage_parts'] = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) : 'N/A';
+
           $returndata['total_loss_type'] = $jobs['total_loss_type'];
           $returndata['estimated_market_value'] = $jobs['estimated_market_value'];
           $returndata['approximated_salvage_value'] = $jobs['approximated_salvage_value'];
@@ -683,11 +695,12 @@ public function getrequestNumber(){
   public function estimation_report($estimation_data = null)
   {
     try {
+
     $vehicle = new VehicleModel();
     $customer = new CustomerModel();
     $returnData = [];
 
-    if (!empty($estimation_data['customer']) || !empty($estimation_data['from_date']) || !empty($estimation_data['till_date']) || !empty($estimation_data['assigned']) || !empty($estimation_data['unassigned']) || !empty($estimation_data['status_finished']) || !empty($estimation_data['status_pending']) || !empty($estimation_data['status_completed']) || !empty($estimation_data['status_progress'])) {
+    if (!empty($estimation_data['customer']) || !empty($estimation_data['from_date']) || !empty($estimation_data['till_date']) || !empty($estimation_data['assigned']) || !empty($estimation_data['unassigned']) || !empty($estimation_data['status_finished']) || !empty($estimation_data['status_pending']) || !empty($estimation_data['status_completed']) || !empty($estimation_data['status_progress']))  {
 
     $where_status = '';
     $where_customer = '';
@@ -723,13 +736,15 @@ public function getrequestNumber(){
 
       $where = $where_in . ' AND ' . $where_customer;
 
-        // echo  "<pre>";
-        // print_r($where);
-        // die('####');
+      // echo  "<pre>";
+      // print_r($where);
+      // die('####');
 
-    $all_record =  $this->db->query('SELECT  * from requestor INNER JOIN job_requests on job_requests.request_id=requestor.id  where ' . $where . ' ');
+      $all_record =  $this->db->query('SELECT  * from requestor INNER JOIN job_requests on job_requests.request_id=requestor.id  where ' . $where . ' ');
+
         // echo $this->db->getLastQuery($all_record);
         // die('####');
+
         $total_data = $all_record->getResult();
         $result_data = json_decode(json_encode($total_data), true);
         // echo "<pre>";

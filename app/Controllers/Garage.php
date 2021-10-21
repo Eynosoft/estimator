@@ -11,7 +11,6 @@ class Garage extends BaseController
 	protected $garage_model = null;
 	protected $session;
 
-
 	function __construct()
 	{
 		$this->garage_model = new GarageModel();
@@ -21,7 +20,7 @@ class Garage extends BaseController
 
 
 //----------------------------------------------------------------------------------------------//
-//Garage Home Page Method Starts 
+// Garage Home Page Method Starts
 
 	public function index()
 	{
@@ -35,7 +34,7 @@ class Garage extends BaseController
 		return view('garages_list', $context);
 	}
 
-// Garage Home Page Method Ends 
+// Garage Home Page Method Ends
 //-----------------------------------------------------------------------------------------------//
 
 
@@ -44,18 +43,16 @@ class Garage extends BaseController
 
 	public function create($id = null)
 	{
-		if (!logged_in()) {
+		if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['garage'] = $this->garage_model->getAllDataById($id);
 		$context['gid'] = $id;
 		return view('garage_create', $context);
 	}
-
 
 // Create Garage Ends
 //-----------------------------------------------------------------------------------------------//
@@ -66,7 +63,7 @@ class Garage extends BaseController
 
 	public function update($id = null)
 	{
-		if (!logged_in()) {
+		if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
@@ -79,7 +76,6 @@ class Garage extends BaseController
 // Update Garage Ends
 // ----------------------------------------------------------------------------------------------//
 
-
 // ---------------------------------------------------------------------------------------------//
 // View Garage Page Starts
 
@@ -88,16 +84,21 @@ class Garage extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
+
 		$context['garage'] = $this->garage_model->getGarageDataById($id);
-		return view('view_garage', $context);
+		$context['requests'] = $this->garage_model->getRequestById($id);
+		$context['estimations'] = $this->garage_model->getEstimationRequestById($id);
+
+	return view('view_garage', $context);
+
 	}
 
 // View Garage Page Ends
 // --------------------------------------------------------------------------------------------//
-
 
 // -------------------------------------------------------------------------------------------//
 // Store Garage Data Starts
@@ -156,7 +157,6 @@ class Garage extends BaseController
 	public function updateGarage()
 	{
 		$id = $this->request->getVar('id');
-
 		$data = [
 			'garage_name' => $this->request->getVar('garage_name'),
 			'owner_name' => $this->request->getVar('owner_name'),
@@ -175,7 +175,7 @@ class Garage extends BaseController
       'doc_type' => json_encode($this->request->getVar('doc_type')),
 		];
 
-		if(!empty($id)){
+	  if(!empty($id)){
 			$result = $this->garage_model->insertgarage($data, $id);
 			$url = base_url() . '/garage/view' .'/'.$id;
 			return redirect()->to($url);
@@ -191,18 +191,20 @@ class Garage extends BaseController
 // ----------------------------------------------------------------------------------------------//
 // Delete Garage By Id Starts
 
-	public function delete($id = null)
-	{
-		$result = $this->garage_model->deletGarageById($id);
-		return $this->response->redirect(site_url('Garage'));
-	}
 
-// Delete Garage By Id Ends 
+public function delete($id = null)
+{
+	$result = $this->garage_model->deletGarageById($id);
+	return $this->response->redirect(site_url('Garage'));
+}
+
+
+// Delete Garage By Id Ends
 //-----------------------------------------------------------------------------------------------//
 
 
 // ---------------------------------------------------------------------------------------------//
-// Get garages data 
+// Get garages data
 	public function getGarages()
 	{
 		$request = service('request');
@@ -225,7 +227,7 @@ class Garage extends BaseController
 		return $this->response->setJSON($response);
 	}
 
-// Get Garage data ends 
+// Get Garage data ends
 //----------------------------------------------------------------------------------------------//
 
 public function ajaxSearch()
@@ -234,6 +236,5 @@ public function ajaxSearch()
 	$result = $this->garage_model->getGarageByAjax($search_data);
 	echo $result;
 }
-
 
 }

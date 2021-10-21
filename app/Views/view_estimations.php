@@ -2,6 +2,7 @@
 <?php echo $this->section('content');  ?>
 
 <div class="container-fluid">
+
   <!-- Page Heading -->
 
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -14,7 +15,7 @@
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a href="<?php echo base_url('requests/update') . '/' . $requestor['id']; ?>" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a href="<?php echo base_url('requests/update') . '/' . $requestor['id']; ?>" class="btn btn-md btn-warning btn-block mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -30,22 +31,22 @@
 
           <div class="vertical-menu iconNone">
 
-            <a id="about" href="javascript:void(0)">About<span class="badge badge-primary"></span></a>
+          <a id="about" href="javascript:void(0)">About<span class="badge badge-primary"></span></a>
 
-            <a href="#">Insurance Details<span class="badge badge-primary"></span></a>
+          <a href="#">Insurance Details<span class="badge badge-primary"></span></a>
 
-            <a id="persons" href="javascript:void(0)">Persons <span class="badge badge-primary" style="font-size: 15px;"><?php echo count($person_data); ?></span></a>
+          <a id="persons" href="javascript:void(0)">Persons <span class="badge badge-primary" style="font-size: 15px;"><?php echo count($person_data); ?></span></a>
 
-            <a id="docs" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"><?php echo count($person_doc); ?></span></a>
+          <a id="docs" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"><?php echo count($person_doc); ?></span></a>
 
-            <a href="#"><strong>Timeline <span class="badge badge-primary" style="font-size: 15px;">0</span></strong></a>
+          <a href="#"><strong>Timeline <span class="badge badge-primary" style="font-size: 15px;">0</span></strong></a>
 
           </div>
 
         </div>
 
       </div>
-      
+
       <div class="card primary mb-4">
 
         <div class="card-header py-3">
@@ -114,7 +115,7 @@
                   <td><strong>Status</strong></td>
 
                   <?php
-                  
+
                   switch ($requestor['status']) {
 
                     case '0':
@@ -125,7 +126,7 @@
                       echo "<td><button class='btn btn-success' disabled>Assigned</button></td>";
                       break;
                   }
-                  
+
                   ?>
 
                 </tr>

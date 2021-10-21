@@ -107,6 +107,11 @@ class Requests extends BaseController
 			'username' => user()->username,
 		];
 		$context['requestor'] = $this->request_model->requestGetDataById($id);
+		$context['customer'] = $this->customer_model->setCustomerDropdown();
+
+		// echo "<pre>";
+		// print_r($context);
+		// die('###');
 		return view('update_estimation_request', $context);
 	}
 
@@ -149,12 +154,11 @@ class Requests extends BaseController
 		return $this->response->redirect(site_url('requests/'));
 	}
 
-	// insert and update requestors Ends
-	//------------------------------------------------------------------------------------------------//
+// insert and update requestors Ends
+//------------------------------------------------------------------------------------------------//
 
-
-	//------------------------------------------------------------------------------------------------//
-	// View Estimations By Id
+//------------------------------------------------------------------------------------------------//
+// View Estimations By Id
 
 	public function view_estimations($id = null)
 	{
@@ -306,9 +310,11 @@ class Requests extends BaseController
 
 	public function viewjob($request_id = null)
 	{
-		if (!logged_in()) {
+
+	  if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
@@ -318,6 +324,7 @@ class Requests extends BaseController
 		$context['assessors'] = $this->user_model->getallusersData();
 		$context['part'] = $this->parts_model->setPartsDropdown();
 		return view('view_job', $context);
+
 	}
 
 	public function estimation_report($id = null)

@@ -27,7 +27,7 @@ class PartsModel extends Model
   }
 
   // ------------------------------------------------------------------------------------------//
-  // Get dropdown starts 
+  // Get dropdown starts
 
   function masterGetAllData()
   {
@@ -39,12 +39,12 @@ class PartsModel extends Model
     }
   }
 
-  // Get Dropdown Ends 
+  // Get Dropdown Ends
   // --------------------------------------------------------------------------------------------//
 
 
   // ---------------------------------------------------------------------------------------------//
-  // Get All Customers Data 
+  // Get All Customers Data
 
   public function getAllpartsData()
   {
@@ -57,7 +57,7 @@ class PartsModel extends Model
     return false;
   }
 
-  // Get all Customers Data Ends 
+  // Get all Customers Data Ends
   //-----------------------------------------------------------------------------------------------//
 
 
@@ -111,7 +111,7 @@ class PartsModel extends Model
     }
   }
 
-  // Get Customer name by id Ends 
+  // Get Customer name by id Ends
   // ----------------------------------------------------------------------------------------------//
 
   // ---------------------------------------------------------------------------------------------//

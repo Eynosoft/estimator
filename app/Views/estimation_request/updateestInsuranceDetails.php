@@ -1,11 +1,9 @@
 <!-- Content Column -->
-
 <div class="row">
 
   <div class="col-lg-12 mb-4">
 
-    <!-- Project Card Example -->
-
+  <!-- Project Card Example -->
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -16,144 +14,129 @@
 
       <div class="card-body">
 
-        <form>
+        <?php
 
+        $lblattributes = [
+          'class' => 'fieldLabel mb-1',
+        ];
 
+        ?>
 
-          <div class="form-row">
+      <div class="form-row">
 
-            <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
 
-              <label class="fieldLabel mb-1">Insured's Reference</label>
+          <?php echo form_label("Insured's Reference", '', $lblattributes); ?>
 
-              <input class="form-control" type="text">
+          <?php echo form_input(array('name' => 'insured_reference', 'class' => 'form-control', 'id' => 'insured_reference', 'placeholder' => 'Enter Insured Reference')); ?>
 
-            </div>
+        </div>
 
-            <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
 
-              <label class="fieldLabel mb-1">Date of accident</label>
+            <?php echo form_label('Date of accident', '', $lblattributes); ?>
 
-              <input class="form-control" type="datetime-local">
+            <?php echo form_input(array('name' => 'date_of_accident', 'class' => 'form-control', 'id' => 'date_of_accident')); ?>
 
-            </div>
+        </div>
 
-          </div>
+      </div>
 
+      <div class="form-row">
 
+          <div class="form-group col-md-6">
 
-          <div class="form-row">
+            <?php echo form_label("Policy number", '', $lblattributes); ?>
 
-            <div class="form-group col-md-6">
-
-              <label class="fieldLabel mb-1">Policy number</label>
-
-              <input class="form-control" type="text">
-
-            </div>
-
-            <div class="form-group col-md-6">
-
-              <label class="fieldLabel mb-1">Claim number</label>
-
-              <input class="form-control" type="text">
-
-            </div>
+            <?php echo form_input(array('name' => 'policy_number', 'class' => 'form-control', 'id' => 'policy_number', 'placeholder' => 'Enter Policy Number')); ?>
 
           </div>
 
+        <div class="form-group col-md-6">
 
+          <?php echo form_label('Claim Number', '', $lblattributes); ?>
 
-          <div class="form-row">
+          <?php echo form_input(array('name' => 'Claim Number', 'class' => 'form-control', 'id' => 'claim_number', 'placeholder' => 'Enter Claim Number')); ?>
 
-            <div class="form-group col-md-4">
+        </div>
 
-              <label class="fieldLabel mb-1">Inspection</label>
+        </div>
 
-              <select class="form-control">
+        <div class="form-row">
 
-                <option>Unknown</option>
+          <div class="form-group col-md-4">
 
-                <option>Insured Vehicle</option>
+            <?php echo form_label('Inspection', 'Inspection', $lblattributes); ?>
 
-                <option>Third Party Vehicle</option>
+            <?php
+            $options = [
+              '' => 'Select Options',
+              'Unknown' => 'Unknown',
+              'Insured Vehicle' => 'Insured Vehicle',
+              'Third Party Vehicle' => 'Third Party Vehicle',
+            ];
 
-              </select>
+            ?>
 
-            </div>
+          <?php echo form_dropdown('inspection', $options, '', 'class="form-control" id="inspection"'); ?>
 
-            <div class="form-group col-md-4">
+        </div>
 
-              <label class="fieldLabel mb-1">Insured amount</label>
+        <div class="form-group col-md-4">
 
-              <input class="form-control" type="text">
+          <?php echo form_label('Insured Amount', 'insured Amount', $lblattributes); ?>
 
-            </div>
+          <?php echo form_input(array('name' => 'insured_amount', 'class' => 'form-control', 'id' => 'insured_amount', 'placeholder' => 'Enter Insured Amount')); ?>
 
-            <div class="form-group col-md-4">
+        </div>
 
-              <label class="fieldLabel mb-1">Exemption amount</label>
+        <div class="form-group col-md-4">
 
-              <input class="form-control" type="text">
+          <?php echo form_label('Exemption Amount', 'exemption_amount', $lblattributes); ?>
 
-            </div>
+          <?php echo form_input(array('name' => 'exemption_amount', 'class' => 'form-control', 'id' => 'exemption_amount', 'placeholder' => 'Exemption Amount')); ?>
 
-          </div>
+        </div>
 
+      </div>
 
+        <div class="form-row">
 
-          <div class="form-row">
+          <div class="form-group col-md-6">
 
-            <div class="form-group col-md-6">
+            <?php echo form_label('Responsibility', 'Responsibility', $lblattributes); ?>
 
-              <label class="fieldLabel mb-1">Responsibility</label>
+            <?php
 
-              <select class="form-control">
+            $options = [
 
-                <option>Unknown</option>
+              '' => 'Select Options',
+              'Unknown' => 'Unknown',
+              'Yes' => 'Yes',
+              'No' => 'No',
 
-                <option>Yes</option>
+            ];
 
-                <option>No</option>
+            ?>
 
-              </select>
-
-            </div>
-
-            <div class="form-group col-md-6">
-
-              <label class="fieldLabel mb-1">Liability</label>
-
-              <input class="form-control" type="text" placeholder="Enter In %">
-
-            </div>
-
-          </div>
-
-
-
-          <!-- Save Button row -->
-
-          <div class="row">
-
-            <div class="col-lg-12 mb-4">
-
-              <button type="button" class="btn btn-md btn-primary">Save</button>
-
-            </div>
+            <?php echo form_dropdown('responsibility', $options, '', 'class="form-control" id="responsibility"'); ?>
 
           </div>
 
+          <div class="form-group col-md-6">
 
+            <?php echo form_label('Liability', 'Liability', $lblattributes); ?>
 
-        </form>
+            <?php echo form_input(array('name' => 'liability', 'class' => 'form-control', 'id' => 'liability', 'placeholder' => 'Enter Liability')); ?>
+
+          </div>
+
+        </div>
 
       </div>
 
     </div>
 
   </div>
-
-
 
 </div>
