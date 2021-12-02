@@ -13,3 +13,4 @@
 
 
 <?php echo $this->include('template/footer'); ?>
+<?php echo $this->include('template/salert'); ?>

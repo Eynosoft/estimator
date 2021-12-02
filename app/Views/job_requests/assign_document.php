@@ -2,6 +2,7 @@
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
+
     <div class="card shadow row">
 
       <div class="card-header py-3" style="height: 67px;">
@@ -22,6 +23,7 @@
           </div>
         </div>
 
+
         <div class="form-group">
           <button type="submit" id="add_file" name="save_request" class="btn btn-primary">Save</button>
         </div>
@@ -38,9 +40,11 @@
 
 <?php
 
-if(!empty($job_request_data['job_id'])){
+if(!empty($job_request_data['job_id'])) {
+
 $method = base_url('Jobsestimation/job_request_store').'/'.$job_request_data['job_id'];
-}else{
+
+} else {
   $method = base_url('Jobsestimation/job_request_store');
 }
 
@@ -49,6 +53,9 @@ $method_redirect = base_url('requests/viewjob') .'/'.$requestor['id'];
 ?>
 
 <!-- jQuery -->
+<!-- Dropzone CSS and JS -->
+<!-- jQuery -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Dropzone CSS and JS -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
@@ -79,7 +86,7 @@ $method_redirect = base_url('requests/viewjob') .'/'.$requestor['id'];
     acceptedFiles: ".png, .jpeg, .jpg, .gif, .pdf , .doc, .docx , .xls, .xlsx",
     url: "<?php echo $method; ?>",
   });
-  
+
   myDropzone.on('sending', function(file, xhr, formData) {
     var data = $('form').serializeArray();
     $.each(data, function(key, el) {
@@ -114,5 +121,5 @@ $method_redirect = base_url('requests/viewjob') .'/'.$requestor['id'];
     myDropzone.processQueue();
   });
 
-  
+
 </script>

@@ -37,7 +37,7 @@ class Parts extends BaseController
 		return view('parts_list', $context);
 	}
 
-	// Home Page Controller ends 
+	// Home Page Controller ends
 	// ----------------------------------------------------------------------------------------------//
 
 
@@ -80,7 +80,7 @@ class Parts extends BaseController
 
 
 	// ---------------------------------------------------------------------------------------------//
-	//Delete Customer Data starts 
+	//Delete Customer Data starts
 
 	public function delete($id = null)
 	{
@@ -117,12 +117,12 @@ class Parts extends BaseController
 		}
 	}
 
-
 	public function partslist()
 	{
 		$postData = $this->request->getVar();
     $data = $this->parts_model->getPartsByAjax($postData);
     echo json_encode($data);
+		die;
 	}
 
 
@@ -165,7 +165,7 @@ class Parts extends BaseController
 
 
 	// ---------------------------------------------------------------------------------------------//
-	//Delete Customer Data starts 
+	//Delete Customer Data starts
 
 	public function parts_action_delete($id = null)
 	{
@@ -178,7 +178,7 @@ class Parts extends BaseController
 		return $this->response->redirect(site_url('parts/partsaction/'));
 	}
 
-//Update and save part action data 
+//Update and save part action data
 
 	public function partactionsave($id = null)
 	{
@@ -195,7 +195,7 @@ class Parts extends BaseController
 		}
 	}
 
-	// Update and save  part action data 
+	// Update and save  part action data
 
 
 

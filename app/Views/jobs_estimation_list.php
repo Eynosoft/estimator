@@ -106,7 +106,6 @@
                     <?php
 
                     $originalDate = $rows['created_at'];
-
                     $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
 
                     ?>
@@ -118,7 +117,6 @@
                     <td><?php echo $rows['vehicle']; ?></td>
 
                     <td><span class="badge badge-primary" style="font-size: 13px;">Estimation</span></td>
-
 
                     <?php
 

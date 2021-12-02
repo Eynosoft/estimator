@@ -41,14 +41,6 @@
 </head>
 
 
-<?php
-
-// echo "<pre>";
-// print_r($estimation_report);
-// die('####');
-
-?>
-
 <body>
 
   <div class="container">
@@ -90,44 +82,44 @@
 
     <table style="width: 100%;" cellspacing="0" cellpadding="6">
 
-    <?php foreach ($estimation_report['vehicle'] as $vehicle_info)  { ?>
+      <?php foreach ($estimation_report['vehicle'] as $vehicle_info) { ?>
 
-      <tr>
-        <td style="width: 25%;text-align:left;">Reg No. </td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['registration_plate']; ?></td>
-        <td style="width: 25%;text-align:left;">Make</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['make']; ?></td>
-      </tr>
+        <tr>
+          <td style="width: 25%;text-align:left;">Reg No. </td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['registration_plate']; ?></td>
+          <td style="width: 25%;text-align:left;">Make</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['make']; ?></td>
+        </tr>
 
-      <tr>
-        <td style="width: 25%;text-align:left;">Year Of Registration</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['registration_date'] ?></td>
-        <td style="width: 25%;text-align:left;">Year Of Manufacture</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['manufacturing_date']; ?></td>
-      </tr>
+        <tr>
+          <td style="width: 25%;text-align:left;">Year Of Registration</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['registration_date'] ?></td>
+          <td style="width: 25%;text-align:left;">Year Of Manufacture</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['manufacturing_date']; ?></td>
+        </tr>
 
-      <tr>
-        <td style="width: 25%;text-align:left;">Model</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['model']; ?></td>
-        <td style="width: 25%;text-align:left;">Chechis Number</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['pcode']; ?></td>
-      </tr>
+        <tr>
+          <td style="width: 25%;text-align:left;">Model</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['model']; ?></td>
+          <td style="width: 25%;text-align:left;">Chechis Number</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['pcode']; ?></td>
+        </tr>
 
-      <tr>
-        <td style="width: 25%;text-align:left;">Color</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['main_color']; ?></td>
-        <td style="width: 25%;text-align:left;">Engine Power</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['engine_power']; ?></td>
-      </tr>
+        <tr>
+          <td style="width: 25%;text-align:left;">Color</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['main_color']; ?></td>
+          <td style="width: 25%;text-align:left;">Engine Power</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['engine_power']; ?></td>
+        </tr>
 
-      <tr>
-        <td style="width: 25%;text-align:left;">Engine Capacity</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['engine_capacity']; ?></td>
-        <td style="width: 25%;text-align:left;">Speedo Reading </td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['speedo_reading']; ?></td>
-      </tr>
+        <tr>
+          <td style="width: 25%;text-align:left;">Engine Capacity</td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $vehicle_info['engine_capacity']; ?></td>
+          <td style="width: 25%;text-align:left;">Speedo Reading </td>
+          <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['speedo_reading']; ?></td>
+        </tr>
 
-    <?php } ?>
+      <?php } ?>
 
       <tr>
         <td style="width: 25%;text-align:left;">Pre Accident Condition </td>
@@ -186,16 +178,16 @@
         <th style="width: 25%;text-align:left;">Damage</th>
       </tr>
 
-      <?php if(!empty($estimation_report['damage_part'])){
-          foreach ($estimation_report['damage_part'] as $damages)
-         { ?>
+      <?php if (!empty($estimation_report['damage_part'])) {
+        foreach ($estimation_report['damage_part'] as $damages) { ?>
 
-      <tr>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_area'] ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_type']; ?></td>
-      </tr>
+          <tr>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_area'] ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $damages['damage_type']; ?></td>
+          </tr>
 
-      <?php } } ?>
+      <?php }
+      } ?>
 
     </table> <br>
 
@@ -217,40 +209,41 @@
 
       </tr>
 
-     <?php
+      <?php
 
-     if(!empty($estimation_report['parts_data'])) {
+      if (!empty($estimation_report['parts_data'])) {
 
-     foreach ($estimation_report['parts_data'] as $parts_data) { ?>
+        foreach ($estimation_report['parts_data'] as $parts_data) { ?>
+
+          <tr>
+
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_name']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['damage_type']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['action_type']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_status']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['quantity']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_cost']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['discount']; ?></td>
+
+            <?php
+            $dis_amount = (($parts_data['part_cost'] * $parts_data['quantity']) * ($parts_data['discount'] / 100));
+            $total_amount = (($parts_data['part_cost'] * $parts_data['quantity']) - $dis_amount);
+            ?>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $total_amount; ?></td>
+
+          </tr>
+
+      <?php }
+      } ?>
 
       <tr>
 
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_name']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['damage_type']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['action_type']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_status']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['quantity']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['part_cost']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $parts_data['discount']; ?></td>
+        <td colspan="7" style="text-align:right;">Total Parts & Accessories</td>
+        <td colspan="1" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
 
-        <?php
-        $dis_amount = (($parts_data['part_cost'] * $parts_data['quantity']) * ($parts_data['discount']/ 100));
-        $total_amount = (($parts_data['part_cost'] * $parts_data['quantity']) - $dis_amount);
-        ?>
-      <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $total_amount; ?></td>
+      </tr>
 
-    </tr>
-
-    <?php } } ?>
-
-    <tr>
-
-      <td colspan="7" style="text-align:right;">Total Parts & Accessories</td>
-      <td colspan="1" style="text-align:left;"><b><?php echo $parts_data['total_amount']; ?></b></td>
-
-    </tr>
-
-  </table> <br>
+    </table> <br>
 
 
     <h3 style="margin-bottom: 2px;">Labour Description</h3>
@@ -266,24 +259,24 @@
 
       <?php
 
-      if(!empty($estimation_report['labours_data'])) {
+      if (!empty($estimation_report['labours_data'])) {
 
-      foreach ($estimation_report['labours_data'] as $labours) { ?>
+        foreach ($estimation_report['labours_data'] as $labours) { ?>
 
-      <tr>
+          <tr>
 
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['labour']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['description_labour']; ?></td>
-        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['cost']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['labour']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['description_labour']; ?></td>
+            <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $labours['cost']; ?></td>
 
-        <?php
+            <?php
 
-        $total_cost = $labours['cost_total'];
-        $total_vat_amount += !empty($labours['vat_cost']) ? $labours['vat_cost'] : 0;
+            $total_cost = $labours['cost_total'];
+            $total_vat_amount += !empty($labours['vat_cost']) ? $labours['vat_cost'] : 0;
 
-        ?>
+            ?>
 
-      </tr>
+          </tr>
 
       <?php } } ?>
 
@@ -296,7 +289,7 @@
 
         <tr style="width: 50%;">
           <td colspan="2" style="text-align:right;">Total Parts & Accessories & Labours</td>
-          <td style="text-align:left;"><b><?php echo ($parts_data['total_amount']+$total_cost); ?></b></td>
+          <td style="text-align:left;"><b><?php echo ($parts_data['total_amount'] + $total_cost); ?></b></td>
         </tr>
 
         <?php $vat_amount = $total_vat_amount - $total_cost; ?>
@@ -308,16 +301,19 @@
 
         <tr style="width: 50%;">
           <td colspan="2" style="text-align:right;">Total With Vat</td>
-          <td style="text-align:left;"><b><?php echo ($vat_amount + $parts_data['total_amount'] +$total_cost); ?></b></td>
+          <td style="text-align:left;"><b><?php echo ($vat_amount + $parts_data['total_amount'] + $total_cost); ?></b></td>
         </tr>
 
       </tfoot>
 
-    </table><br>
+    </table>
+
+<br>
 
 
-    <h3 style="margin-bottom: 2px;">Timings</h3>
-    <hr class="new3">
+<h3 style="margin-bottom: 2px;">Timings</h3>
+
+  <hr class="new3">
 
     <table style="width: 100%;" cellspacing="0" cellpadding="6">
 
@@ -326,24 +322,33 @@
         <th style="width: 25%;text-align:left;">Date</th>
       </tr>
 
+
+
       <tr>
 
-        <td style="width: 25%;text-align:left;background-color: #fff;">Pending</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;">-</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;">Unassigned</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['status_timing']['unassigned']; ?></td>
+
+      </tr>
+
+      <tr>
+
+        <td style="width: 25%;text-align:left;background-color: #fff;">Assigned & Pending</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['status_timing']['pending']; ?></td>
 
       </tr>
 
       <tr>
 
         <td style="width: 25%;text-align:left;background-color: #fff;">In Progress</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;">-</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['status_timing']['inprogress']; ?></td>
 
       </tr>
 
       <tr>
 
         <td style="width: 25%;text-align:left;background-color: #fff;">Completed</td>
-        <td style="width: 25%;text-align:left;background-color: #fff;">-</td>
+        <td style="width: 25%;text-align:left;background-color: #fff;"><?php echo $estimation_report['status_timing']['completed']; ?></td>
 
       </tr>
 

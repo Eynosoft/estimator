@@ -84,17 +84,13 @@ class Garage extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['garage'] = $this->garage_model->getGarageDataById($id);
 		$context['requests'] = $this->garage_model->getRequestById($id);
 		$context['estimations'] = $this->garage_model->getEstimationRequestById($id);
-
-	return view('view_garage', $context);
-
+	  return view('view_garage', $context);
 	}
 
 // View Garage Page Ends
@@ -139,17 +135,27 @@ class Garage extends BaseController
 			'status' => $this->request->getVar('status'),
 		];
 
-		if (!$check) {
+	  if(!$check) {
 			return view('garage_create', ['validation' => $this->validator]);
 		}  else {
+
 			$result = $this->garage_model->insertgarage($data);
+
+			if($result > 0) {
+				$_SESSION['message'] = 'success';
+			} else {
+				$_SESSION['message'] = 'error';
+			}
+
 			$url = base_url() . '/garage';
 			return redirect()->to($url);
 		}
+
 	}
 
+
 // Store Garage Data Ends
-//----------------------------------------------------------------------------------------------//
+// ----------------------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------------------//
 // Update Garage data Starts
@@ -175,26 +181,39 @@ class Garage extends BaseController
       'doc_type' => json_encode($this->request->getVar('doc_type')),
 		];
 
-	  if(!empty($id)){
+  if(!empty($id)) {
+
 			$result = $this->garage_model->insertgarage($data, $id);
+
+			if($result){
+      $_SESSION['message'] = 'usuccess';
+			}
+
+			else{
+				$_SESSION['message'] = 'uerror';
+			}
+
 			$url = base_url() . '/garage/view' .'/'.$id;
 			return redirect()->to($url);
 		}
-
 	}
 
 
 // Update Garage Data ends
 // ----------------------------------------------------------------------------------------------//
 
-
 // ----------------------------------------------------------------------------------------------//
 // Delete Garage By Id Starts
-
 
 public function delete($id = null)
 {
 	$result = $this->garage_model->deletGarageById($id);
+	if($result){
+		$_SESSION['message'] = 'dsuccess';
+	}
+	else{
+		$_SESSION['message'] ='derror';
+	}
 	return $this->response->redirect(site_url('Garage'));
 }
 
@@ -205,8 +224,8 @@ public function delete($id = null)
 
 // ---------------------------------------------------------------------------------------------//
 // Get garages data
-	public function getGarages()
-	{
+public function getGarages()
+{
 		$request = service('request');
 		$postData = $request->getPost();
 		$response = array();
@@ -223,9 +242,9 @@ public function delete($id = null)
 				);
 			}
 		}
-		$response['data'] = $data;
-		return $this->response->setJSON($response);
-	}
+	$response['data'] = $data;
+	return $this->response->setJSON($response);
+}
 
 // Get Garage data ends
 //----------------------------------------------------------------------------------------------//
@@ -236,5 +255,6 @@ public function ajaxSearch()
 	$result = $this->garage_model->getGarageByAjax($search_data);
 	echo $result;
 }
+
 
 }

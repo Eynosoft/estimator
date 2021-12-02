@@ -10,7 +10,6 @@
 <div class="row">
 
   <div class="col-lg-12 mb-4">
-
     <!-- Project Card Example -->
     <div class="card shadow">
 
@@ -57,14 +56,18 @@
 
             <div class="form-group col-md-6">
               <label class="fieldLabel mb-1">Emails</label>
-              <?php echo form_input(array('type' => 'email', 'class' => 'form-control', 'name' => 'account_email')); ?>
-              <span class="noteText">Seperate multiple emails with comma.</span>
+
+              <input name="account_email" id="user_account_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
+
             </div>
 
             <div class="form-group col-md-6">
               <label class="fieldLabel mb-1">Mobile</label>
-              <?php echo form_input(array('type' => 'text', 'name' => 'account_mobile', 'class' => 'form-control', 'id' => 'account_mobile')); ?>
-              <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+
+              <input name="account_mobile" id="user_account_mobile_data" placeholder="Enter Mobile Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple Mobile Numbers with <b>Enter.</b> Key </span>
+
             </div>
 
           </div>
@@ -79,8 +82,10 @@
 
             <div class="form-group col-md-6">
               <label class="fieldLabel mb-1">Faxes</label>
-              <?php echo form_input(array('type' => 'text', 'name' => 'account_fax', 'class' => 'form-control', 'id' => 'account_fax')); ?>
-              <span class="noteText">Seperate multiple faxes numbers with comma.</span>
+
+              <input name="account_fax" id="user_account_fax_data" placeholder="Enter Fax Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple Fax Numbers with <b>Enter.</b> Key </span>
+
             </div>
 
           </div>
@@ -104,4 +109,27 @@
     }
     reader.readAsDataURL(event.target.files[0]);
   }
+</script>
+
+<script>
+
+$(function(){
+    $('#user_account_email_data').tagsinput({
+      maxTags : 5
+    });
+    });
+
+$(function(){
+ $('#user_account_mobile_data').tagsinput({
+   maxTags : 5
+ });
+});
+
+$(function(){
+$('#user_account_fax_data').tagsinput({
+maxTags : 5
+});
+});
+
+
 </script>

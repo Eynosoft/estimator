@@ -13,13 +13,14 @@ class Users extends BaseController
 
 	function __construct()
 	{
+
 		$this->user_model = new UsersModel();
-		$this->session = \Config\Services::session();
-		$this->session->start();
+		$this->session 	= \Config\Services::session();
+
 	}
 
 	//--------------------------------------------------------------------------------------------//
-	// Home page for the User 
+	// Home page for the User
 
 	public function index()
 	{
@@ -29,11 +30,12 @@ class Users extends BaseController
 		$context = [
 			'username' => user()->username,
 		];
+
 		$context['user'] = $this->user_model->getUsersAllData();
 		return view('users_list', $context);
 	}
 
-	// Home page for The User Ends 
+	// Home page for The User Ends
 	//---------------------------------------------------------------------------------------------//
 
 
@@ -50,12 +52,12 @@ class Users extends BaseController
 			//'validation'  => $this->validation,
 		];
 		$context['users'] = $this->user_model->getDataById($id);
-		//$context['uid'] = $id; 
+		//$context['uid'] = $id;
 		return view('user_create', $context);
 	}
 
-	// Create Users Page Ends 
-	// -----------------------------------------------------------------------------------------------// 
+	// Create Users Page Ends
+	// -----------------------------------------------------------------------------------------------//
 
 
 	//----------------------------------------------------------------------------------------------//
@@ -79,7 +81,7 @@ class Users extends BaseController
 
 	// View user Page Ends
 	// --------------------------------------------------------------------------------------------//
-	
+
 
 
 	// -------------------------------------------------------------------------------------------//
@@ -104,9 +106,7 @@ class Users extends BaseController
 		if(!$check){
 			return view('user_create', ['validation' => $this->validator]);
 		}
-
 		else {
-
 			$contact_signature = $this->request->getFile('contact_signature');
       $uploadPath = 'assets/uploads/';
 
@@ -147,10 +147,6 @@ class Users extends BaseController
 				'permissions' => json_encode($this->request->getVar('permissions')),
 			];
 
-			// echo "<pre>";
-			// print_r($data);
-			// die('####');
-
 		$id = $this->request->getVar('id');
 			if(!empty($id)) {
 				$result = $this->user_model->insertUsersData($data, $id);
@@ -165,17 +161,24 @@ class Users extends BaseController
 			else {
 				$result = $this->user_model->insertUsersData($data);
 				if ($result) {
+
+				$_SESSION['message'] = 'success';
 					unset($_SESSION['currentTab']);
 					$_SESSION['currentTab'] = '#userContact';
 					$url = base_url() . '/users' . '/#userContact';
+					echo "<pre>";
+					print_r($_SESSION);
 					return redirect()->to($url);
+				}
+				else{
+					$_SESSION['message'] = 'error';
 				}
 			}
 			return $this->response->redirect(site_url('users'));
 		}
 	}
 
-	//Store user Data Ends 
+	//Store user Data Ends
 	//----------------------------------------------------------------------------------------------//
 
 
@@ -208,7 +211,6 @@ class Users extends BaseController
 	//----------------------------------------------------------------------------------------------//
 
 
-
 	// ----------------------------------------------------------------------------------------------//
 	// Delete Garage By Id Starts
 
@@ -216,10 +218,16 @@ class Users extends BaseController
 	public function delete($id = null)
 	{
 		$result = $this->user_model->deletUserById($id);
+		if($result){
+			$_SESSION['message'] = 'dsuccess';
+		}
+		else{
+      $_SESSION['message'] = 'derror';
+		}
 		return $this->response->redirect(site_url('Users'));
 	}
 
-	//delete user Data Ends 
+	//delete user Data Ends
   //----------------------------------------------------------------------------------------------//
 
 

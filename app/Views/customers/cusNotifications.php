@@ -1,11 +1,10 @@
 <!-- Content Column -->
-<br>
 <div class="row">
 
   <div class="col-lg-12 mb-4">
 
     <!-- Project Card Example -->
-    
+
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -14,8 +13,8 @@
 
       </div>
 
-      <?php 
-        
+      <?php
+
         echo form_input(array('type'=>'hidden','name'=>'customer_id','value'=>$customer_id));
 
       ?>
@@ -60,7 +59,7 @@
 
           </table>
 
-        
+
 
         </div>
 

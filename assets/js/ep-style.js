@@ -15,7 +15,7 @@
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
     };
-    
+
     // Toggle the side navigation when window is resized below 480px
     if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
       $("body").addClass("sidebar-toggled");
@@ -38,9 +38,9 @@
   $(document).on('scroll', function() {
     var scrollDistance = $(this).scrollTop();
     if (scrollDistance > 100) {
-      $('.scroll-to-top').fadeIn();
+     // $('.scroll-to-top').fadeIn();
     } else {
-      $('.scroll-to-top').fadeOut();
+     // $('.scroll-to-top').fadeOut();
     }
   });
 

@@ -39,11 +39,9 @@ class Jobsestimation extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['jobs_data'] = $this->request_model->getAllRequestData();
 		// echo "<pre>";
 		// print_r($context['jobs_data']);
@@ -55,14 +53,12 @@ class Jobsestimation extends BaseController
 
 	public function jobstatus($status = null)
 	{
-		if (!logged_in()) {
+		if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['jobs_status_count'] = $this->request_model->countAlljobstatus();
 		$context['job_row_data'] =  $this->request_model->getDataStatusWise($status);
 		// echo "<pre>";
@@ -77,7 +73,6 @@ class Jobsestimation extends BaseController
 
 	public function job_request_store($job_id = null)
 	{
-
 		$job_request = [
 			'request_id' => $this->request->getVar('request_id'),
 			'assign_id' => $this->request->getVar('assign_id'),
@@ -97,7 +92,7 @@ $job_request_id = $this->jobrequest_model->insertjobrequest($job_request, $job_i
 
 // Damage Parts Section Starts
 
- if(!empty($job_request_id)) {
+if(!empty($job_request_id)) {
 
 	 $data = [];
 	 $data[0]['damage_area'] = $this->request->getVar('front_right');
@@ -119,9 +114,9 @@ $job_request_id = $this->jobrequest_model->insertjobrequest($job_request, $job_i
 	 $data[8]['damage_area'] = $this->request->getvar('car_top');
 	 $data[8]['damage_type'] = $this->request->getVar('damage_car_top');
 
-	$job_damage_parts = $this->partdamage->damageInsert(json_encode($data), $job_request_id);
+ $job_damage_parts = $this->partdamage->damageInsert(json_encode($data), $job_request_id);
 
- }
+}
 
 // Damage Parts Section Ends
 

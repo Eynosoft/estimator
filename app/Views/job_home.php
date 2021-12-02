@@ -88,14 +88,7 @@
 
                       <td><?php echo $row['garage']; ?></td>
 
-                      <?php
-
-                      $originalDate = $row['created_at'];
-                      $newDate = date("d/m/Y h:i:sa", strtotime($originalDate));
-
-                      ?>
-
-                      <td><?php echo $newDate; ?></td>
+                      <td><?php echo $row['created_at']; ?></td>
 
                       <td><?php echo $row['requestor']; ?></td>
 

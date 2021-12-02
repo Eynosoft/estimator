@@ -47,13 +47,13 @@ $method_redirect = base_url('requests/');
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Dropzone CSS and JS -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js' type='text/javascript'>
 </script>
 
 <script>
 
-  //Dropzone script
+// Dropzone script
+
   $(document).ready(function() {
     $("#add_file").on('click', function(e) {
       e.preventDefault();
@@ -74,15 +74,15 @@ $method_redirect = base_url('requests/');
     url: "<?php echo $method; ?>",
   });
 
-
   myDropzone.on('sending', function(file, xhr, formData) {
     var data = $('form').serializeArray();
+    console.log(data);
     $.each(data, function(key, el) {
       formData.append(el.name, el.value);
     });
   });
 
-/* Add Files Script*/
+  /*Add Files Script*/
 
   myDropzone.on("success", function(file, message) {
     //$("#msg").html(message);
@@ -92,11 +92,10 @@ $method_redirect = base_url('requests/');
       type: "success",
       dangerMode: true,
       buttons: true
-    }).then(function(){
+    }).then(function() {
       window.location.href = "<?php echo $method_redirect; ?>"
     });
   });
-
 
   myDropzone.on("error", function(data) {
     $("#msg").html('<div class="alert alert-danger">There is some thing wrong, Please try again..!</div>');

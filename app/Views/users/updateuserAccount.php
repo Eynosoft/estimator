@@ -28,7 +28,7 @@
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              
+
               <label class="fieldLabel mb-1">Signature</label>
               <?php echo form_input(array('type' => 'file', 'name' => 'account_signature','class'=>'form-control', 'id' => 'account_signature','onchange' => 'preview_image(event)')); ?>
 
@@ -50,15 +50,22 @@
           <div class="form-row">
 
             <div class="form-group col-md-6">
+
               <label class="fieldLabel mb-1">Emails</label>
-              <?php echo form_input(array('type'=>'email','name'=>'account_email','id'=>'account_email','class'=>'form-control','value'=>$user['account_email'])); ?>
-              <span class="noteText">Seperate multiple emails with comma.</span>
+
+              <input name="account_email" id="user_account_email_data_update" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['account_email']; ?> data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
+
+
             </div>
 
             <div class="form-group col-md-6">
               <label class="fieldLabel mb-1">Mobile</label>
-              <?php echo form_input(array('type'=>'text','name'=>'account_mobile','id'=>'account_mobile','value'=>$user['account_mobile'],'class'=>'form-control')) ?>
-              <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+
+              <input name="account_mobile" id="user_account_mobile_data_update" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" data-role="tagsinput" type="text" value=<?php echo $user['account_mobile']; ?>><br>
+
+              <span class="text-danger">Seperate multiple Mobile with <b>Enter.</b></span>
+
             </div>
 
           </div>
@@ -71,9 +78,12 @@
             </div>
 
             <div class="form-group col-md-6">
+
               <label class="fieldLabel mb-1">Faxes</label>
-              <?php echo form_input(array('type'=>'text','name'=>'account_fax','id'=>'account_fax','class'=>'form-control','value'=>$user['account_fax'])); ?>
-              <span class="noteText">Seperate multiple faxes numbers with comma.</span>
+
+              <input name="account_fax" id="user_account_fax_data_update" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['account_fax']; ?> data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple Fax with <b>Enter.</b> Key </span>
+
             </div>
           </div>
 
@@ -95,4 +105,26 @@
     }
     reader.readAsDataURL(event.target.files[0]);
   }
+</script>
+
+<script>
+
+ $(function(){
+   $('#user_account_email_data_update').tagsinput({
+    maxTags : 5
+   });
+ });
+
+ $(function(){
+  $('#user_account_mobile_data_update').tagsinput({
+  maxTags : 5
+  });
+ });
+
+ $(function(){
+  $('#user_account_fax_data_update').tagsinput({
+  maxTags : 5
+  });
+ });
+
 </script>

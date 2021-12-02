@@ -1,4 +1,4 @@
-<br>
+
 <div class="row">
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
@@ -9,7 +9,7 @@
       </div>
 
       <div class="card-body">
-        
+
         <div class="table-responsive">
 
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -54,7 +54,7 @@
 
           </table>
 
-          <?php // echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savedoctype', 'value' => 'Save'))  
+          <?php // echo form_submit(array('type'=> 'submit','class' => 'btn btn-md btn-primary', 'id'=> 'savedoctype', 'value' => 'Save'))
           ?>
 
         </div>
@@ -65,19 +65,18 @@
 
   </div>
 
-  <div class="col-lg-12 mb-4">
+<div class="col-lg-12 mb-4">
 
-  <?php echo form_submit(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'savecustomer', 'value' => 'Save')) ?>
+<?php echo form_submit(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'savecustomer', 'value' => 'Save')) ?>
 
-  </div>
-
-  <!-- Save Button row -->
-
+</div>
+<!-- Save Button row -->
 </div>
 
 <!-- Modal -->
 <style>
-  .kv-file-upload {
+.kv-file-upload {
     display: none !important;
   }
+
 </style>

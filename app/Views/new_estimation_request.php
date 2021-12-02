@@ -94,15 +94,11 @@
 
           </div>
 
-
-
           <div id="estDocuments" class="tab-pane fade">
 
             <?php echo $this->include('estimation_request/estDocuments'); ?>
 
           </div>
-
-
 
         </div>
 

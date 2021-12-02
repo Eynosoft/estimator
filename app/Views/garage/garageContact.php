@@ -21,7 +21,9 @@
           <div class="form-group col-md-12">
 
             <?php echo form_label('Garage name', 'garage_name', $lblAttributes); ?>
+
             <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'garage_name', 'name' => 'garage_name', 'placeholder' => 'Enter Garage Name', 'value' => ''));
+
             ?>
 
             <?php if (isset($validation)) {  ?>
@@ -88,11 +90,14 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Emails', 'email', $lblAttributes); ?>
+            <?php echo form_label('Emails', 'email', $lblAttributes); ?><br>
 
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email Address', 'value' => '')); ?>
+            <input name="email" id="garage_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
 
-            <span class="noteText">Seperate multiple emails with comma.</span>
+            <span class="text-danger">Seperate multiple Emails numbers with <b>Enter</b>Key.</span>
+
+            <?php // echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email Address', 'value' => '')); ?>
+
             <?php if (isset($validation)) { ?>
 
               <div class='alert alert-danger mt-2'>
@@ -109,10 +114,14 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile No.', 'value' => '')); ?>
+            <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?><br>
 
-            <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+            <?php // echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile No.', 'value' => '')); ?>
+
+            <input name="mobile" id="garage_mobile_data" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="tags form-control" value="" data-role="tagsinput" type="text"><br>
+
+          <span class="text-danger">Seperate multiple mobile numbers with <b>Enter</b> Key.</span>
+
             <?php if (isset($validation)) { ?>
               <div class='alert alert-danger mt-2'>
                 <?= $validation->getError('mobile'); ?>
@@ -134,6 +143,7 @@
             <?php echo form_label('Land Lines', 'landline', $lblAttributes); ?>
 
             <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'landline', 'name' => 'landline', 'placeholder' => 'Enter Landline No.', 'value' => '')); ?>
+
             <span class="noteText"></span>
 
             <?php if (isset($validation)) { ?>
@@ -151,9 +161,12 @@
 
           <div class="form-group col-md-6">
 
-            <?php echo form_label('Fax', 'fax', $lblAttributes); ?>
-            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax No.', 'value' => '')); ?>
-            <span class="noteText">Seperate multiple faxes numbers with comma</span>
+            <?php echo form_label('Fax', 'fax', $lblAttributes); ?><br>
+
+            <?php // echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax No.', 'value' => '')); ?>
+
+            <input name="fax" id="garage_fax_data" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+            <span class="text-danger">Seperate multiple faxes numbers with <b>Enter</b> Key.</span>
 
             <?php if (isset($validation)) { ?>
 
@@ -248,13 +261,35 @@
               ?>
 
               </div>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
+
+
+<script>
+      $(function() {
+        $('#garage_fax_data').tagsinput({
+          maxTags : 5
+        });
+      });
+</script>
+
+
+<script>
+  $(function(){
+    $('#garage_mobile_data').tagsinput({
+      maxTags : 5,
+    });
+  });
+</script>
+
+
+<script>
+$(function(){
+  $('#garage_email_data').tagsinput({
+  maxTags : 5,
+  });
+});
+</script>

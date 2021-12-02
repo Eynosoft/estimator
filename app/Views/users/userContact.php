@@ -74,16 +74,18 @@ $lblAttributes = [
 
           <?php echo form_label('Signature', 'signature', $lblAttributes); ?>
 
-          <?php 
-            echo form_input(array('type' => 'file', 'class' => 'form-control', 'id' => 'signature', 'name' => 'contact_signature')); 
+          <?php
+
+          echo form_input(array('type' => 'file', 'class' => 'form-control', 'id' => 'signature', 'name' => 'contact_signature'));
+
           ?>
-         
+
           <?php if (isset($validation)) { ?>
             <div style="color: red;">
               <?= $validation->getError('file'); ?>
             </div>
           <?php } ?>
-          
+
         </div>
 
         <div class="col-md-5 col-md-offset-1 ">
@@ -98,9 +100,12 @@ $lblAttributes = [
 
         <div class="form-group col-md-6">
 
-          <?php echo form_label('Email', 'email', $lblAttributes); ?>
-          <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email')); ?>
-          <span class="noteText">Seperate multiple emails with comma.</span>
+          <?php echo form_label('Email', 'email', $lblAttributes); ?><br>
+
+          <input name="email" id="user_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+          <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
+
+
           <?php if (isset($validation)) { ?>
             <div style="color: red;">
               <?= $validation->getError('email'); ?>
@@ -111,9 +116,12 @@ $lblAttributes = [
 
         <div class="form-group col-md-6">
 
-          <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?>
-          <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile')); ?>
-          <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+          <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?><br>
+
+          <input name="mobile" id="user_mobile_data" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+          <span class="text-danger">Seperate multiple Mobiles with <b>Enter.</b> Key </span>
+
+
           <?php if (isset($validation)) { ?>
             <div style="color: red;">
               <?= $validation->getError('mobile'); ?>
@@ -129,6 +137,7 @@ $lblAttributes = [
         <div class="form-group col-md-6">
 
           <?php echo form_label('Land Line', 'Land Line', $lblAttributes); ?>
+
           <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'land_line', 'name' => 'land_line', 'placeholder' => 'Enter Landline')); ?>
           <span class="noteText"></span>
           <?php if (isset($validation)) { ?>
@@ -139,12 +148,12 @@ $lblAttributes = [
 
         </div>
 
-
         <div class="form-group col-md-6">
 
-          <?php echo form_label('Fax', 'fax', $lblAttributes); ?>
-          <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax')); ?>
-          <span class="noteText">Seperate multiple faxes numbers with comma.</span>
+          <?php echo form_label('Fax', 'fax', $lblAttributes); ?><br>
+
+          <input name="fax" id="user_fax_data" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+          <span class="text-danger">Seperate multiple Fax with <b>Enter.</b> Key </span>
 
           <?php if (isset($validation)) { ?>
             <div style="color: red;">
@@ -174,12 +183,34 @@ $lblAttributes = [
           $('#preview').html('<img src="'+event.target.result+'" width="150" height="100"/>');
         };
         fileReader.readAsDataURL(fileInput.files[0]);
-    } 
+    }
   }
 
   $("#signature").on('change',function () {
       imagePreview(this);
   });
+
+</script>
+
+<script>
+
+    $(function(){
+    $('#user_email_data').tagsinput({
+      maxTags : 5
+    });
+    });
+
+    $(function(){
+    $('#user_mobile_data').tagsinput({
+    maxTags : 5
+    });
+    });
+
+    $(function(){
+    $('#user_fax_data').tagsinput({
+     maxTags : 5
+    });
+    });
 
 </script>
 

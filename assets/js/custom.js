@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     var currentTab = $("#currentTab").val();
     console.log('current Tab=' + currentTab);
@@ -212,26 +213,21 @@ $(document).ready(function() {
         $('#icon').toggleClass('fa fa fa-minus');
         $('#assign_notes').toggle();
     });
-});
 
-// Show and hide the notes section into the toggle notes section into the assign job areas..!!!
+     $("#datepicker").datetimepicker({
+        format: 'd/m/Y',
+     });
 
-// Show the date into the input box
-$(function() {
-    $("#datepicker").datepicker();
-});
-// Show the date into the input box
+     $("#datepicker1").datetimepicker({
+        format: 'd/m/Y',
+     });
 
-$(function() {
-    $("#datepicker1").datepicker();
-});
-
-
-$(function() {
     $('.datetimepicker').datetimepicker({
         format: 'd/m/Y h:m:s a',
     });
 });
+
+// Show and hide the notes section into the toggle notes section into the assign job areas..!!!
 
 // Add Parts Value Dynamically Starts
 
@@ -273,7 +269,7 @@ $('#addRowlabour').click(function() {
 
     var optionspersontypeHtml = '<option value="">Select Options</option><option value="air conditioning">Air Conditioning</option><option value="Chassis repair">Chassis repair</option><option value="Electrical">Electrical</option><option value="Exhaust repair">Exhaust repair</option><option value="Gearbox Rebuild">Gearbox Rebuild</option><option value="Geometry">Geometry</option><option value="Glazing Work">Glazing Work</option><option value="Mechanical">Mechanical</option><option value="Panel beating & Fitting">Panel beating & Fitting </option><option value="Plastics repair">Plastics repair</option><option value="Reprogramming">Reprogramming</option><option value="Respray">Respray</option><option value="Stickers Application">Stickers Application</option><option value="Trimming work">Trimming work</option><option value="Valeting">Valeting</option><option value="Wheel rim Repair">Wheel rim Repair</option>';
 
-    var html = "<div class='row' id='removelabour'><div class='col-md-3'><label class='label-control'>Labour</label><select name='labour[]' class='form-control'>" + optionspersontypeHtml + "</select></div><div class='col-md-3'><label class='label-control'>Description</label><input type='text' class='form-control' name='description[]' value='' id='description'></div><div class='col-md-2' id='costt" + count + "'><label class='label-control'>Cost</label><input type='text' class='form-control cost' data-id = '" + count + "' name='cost[]' id='cost" + count + "' autocomplete='off'></div><div class='col-md-2' id='total_cost" + count + "'><label class='label-control'>With Vat</label><input type='text' class='form-control total_cost_vat' name='total_cost[]' data-id='" + count + "' id='vat_cost" + count + "'></div><div class='form-group col-md-1'>Vat:<input type='checkbox' checked data-toggle='toggle' data-on='Add' data-off='Remove' data-onstyle='success' data-offstyle='danger' value='' class='add_vat' data-id='" + count + "' name='vat[]'><input type='hidden' name='cost_total[]' id='cost_total" + count + "' value=''></div><div class='col-md-1'><button style='float:right;' id='removeRow' type='button' class='btn btn-danger'><i class='fa fa-trash'></i></button></div></div><br>"
+    var html = "<div class='row' id='removelabour'><div class='col-md-3'><label class='label-control'>Labour</label><select name='labour[]' class='form-control'>" + optionspersontypeHtml + "</select></div><div class='col-md-3'><label class='label-control'>Description</label><input type='text' class='form-control' name='description[]' value='' id='description'></div><div class='col-md-2' id='costt" + count + "'><label class='label-control'>Cost</label><input type='text' class='form-control cost' data-id = '" + count + "' name='cost[]' id='cost" + count + "' autocomplete='off'></div><div class='col-md-2' id='total_cost" + count + "'><label class='label-control'>With Vat</label><input type='text' class='form-control total_cost_vat' name='total_cost[]' data-id='" + count + "' id='vat_cost" + count + "' readonly></div><div class='form-group col-md-1'>Vat:<input type='checkbox' checked data-toggle='toggle' data-on='Add' data-off='Remove' data-onstyle='success' data-offstyle='danger' value='' class='add_vat' data-id='" + count + "' name='vat[]'><input type='hidden' name='cost_total[]' id='cost_total" + count + "' value=''></div><div class='col-md-1'><button style='float:right;' id='removeRow' type='button' class='btn btn-danger'><i class='fa fa-trash'></i></button></div></div><br>"
 
     $('#newLabour').append(html);
 
@@ -557,3 +553,323 @@ $(document).on('keyup', '.part_qty', function() {
 
 // loop for when the quantity is changing ends
 // Js ends for the parts div
+// Damage Area
+
+$(document).ready(function(){
+    let clickNumbers = 0;
+    $('#15').on("click", function() {
+
+      clickNumbers++;
+
+      if (clickNumbers == 1) {
+        $('#15').removeClass('svg-fill-color-double');
+        $('#15').removeClass('svg-fill-color-triple');
+        $('#15').addClass('svg-fill-color');
+        $('#damage_side_right1').val('Light');
+      }
+
+      if (clickNumbers == 2) {
+        $('#15').removeClass('svg-fill-color');
+        $('#15').removeClass('svg-fill-color-triple');
+        $('#15').addClass('svg-fill-color-double');
+        $('#damage_side_right1').val('Extensive');
+      }
+
+      if (clickNumbers == 3) {
+        $('#15').removeClass('svg-fill-color');
+        $('#15').removeClass('svg-fill-color-double');
+        $('#15').addClass('svg-fill-color-triple');
+        $('#damage_side_right1').val('Severe');
+      }
+
+      if (clickNumbers == 4) {
+        $('#15').removeClass('svg-fill-color');
+        $('#15').removeClass('svg-fill-color-double');
+        $('#15').removeClass('svg-fill-color-triple');
+        $('#damage_side_right1').val('');
+        clickNumbers = 0;
+      }
+
+    });
+
+    //Front center area fo the car ends
+
+    // Car top Area section starts
+
+    let clickcarupper = 0;
+    $('#car-top').on("click", function() {
+      clickcarupper++;
+      if (clickcarupper == 1) {
+        $('#car-top').removeClass('svg-fill-color-double');
+        $('#car-top').removeClass('svg-fill-color-triple');
+        $('#car-top').addClass('svg-fill-color');
+        $('#damage_car_top').val('Light');
+      }
+      if (clickcarupper == 2) {
+        $('#car-top').removeClass('svg-fill-color');
+        $('#car-top').removeClass('svg-fill-color-triple');
+        $('#car-top').addClass('svg-fill-color-double');
+        $('#damage_car_top').val('Extensive');
+      }
+      if (clickcarupper == 3) {
+        $('#car-top').removeClass('svg-fill-color');
+        $('#car-top').removeClass('svg-fill-color-double');
+        $('#car-top').addClass('svg-fill-color-triple');
+        $('#damage_car_top').val('Severe');
+      }
+      if (clickcarupper == 4) {
+        $('#car-top').removeClass('svg-fill-color');
+        $('#car-top').removeClass('svg-fill-color-double');
+        $('#car-top').removeClass('svg-fill-color-triple');
+        $('#damage_car_top').val('');
+        clickcarupper = 0;
+      }
+    });
+
+    // Car top section Ends
+
+    // car-front-right section Starts
+
+    let carfrontrightclick = 0;
+    $('#car-front-right').on('click', function() {
+      carfrontrightclick++;
+      if (carfrontrightclick == 1) {
+        $('#car-front-right').removeClass('svg-fill-color-double');
+        $('#car-front-right').removeClass('svg-fill-color-triple');
+        $('#car-front-right').addClass('svg-fill-color');
+        $('#front_right').val('Light');
+      }
+      if (carfrontrightclick == 2) {
+        $('#car-front-right').removeClass('svg-fill-color');
+        $('#car-front-right').removeClass('svg-fill-color-triple');
+        $('#car-front-right').addClass('svg-fill-color-double');
+        $('#front_right').val('Extensive');
+      }
+      if (carfrontrightclick == 3) {
+        $('#car-front-right').removeClass('svg-fill-color');
+        $('#car-front-right').removeClass('svg-fill-color-double');
+        $('#car-front-right').addClass('svg-fill-color-triple');
+        $('#front_right').val('Severe');
+      }
+      if (carfrontrightclick == 4) {
+        $('#car-front-right').removeClass('svg-fill-color');
+        $('#car-front-right').removeClass('svg-fill-color-double');
+        $('#car-front-right').removeClass('svg-fill-color-triple');
+        $('#front_right').val('');
+        carfrontrightclick = 0;
+      }
+    });
+
+    // car-front-right front right section ends
+
+    // front car back area starts
+
+    let carfrontbackarea = 0;
+
+    $('#car-front-back-area').on('click', function() {
+
+      carfrontbackarea++;
+
+      if (carfrontbackarea == 1) {
+        $('#car-front-back-area').removeClass('svg-fill-color-double');
+        $('#car-front-back-area').removeClass('svg-fill-color-triple');
+        $('#car-front-back-area').addClass('svg-fill-color');
+        $('#damage_side_right2').val('Light');
+      }
+
+      if (carfrontbackarea == 2) {
+        $('#car-front-back-area').removeClass('svg-fill-color');
+        $('#car-front-back-area').removeClass('svg-fill-color-triple');
+        $('#car-front-back-area').addClass('svg-fill-color-double');
+        $('#damage_side_right2').val('Extensive');
+      }
+
+      if (carfrontbackarea == 3) {
+        $('#car-front-back-area').removeClass('svg-fill-color');
+        $('#car-front-back-area').removeClass('svg-fill-color-double');
+        $('#car-front-back-area').addClass('svg-fill-color-triple');
+        $('#damage_side_right2').val('Severe');
+      }
+
+      if (carfrontbackarea == 4) {
+        $('#car-front-back-area').removeClass('svg-fill-color');
+        $('#car-front-back-area').removeClass('svg-fill-color-double');
+        $('#car-front-back-area').removeClass('svg-fill-color-triple');
+        $('#damage_side_right2').val('');
+        carfrontbackarea = 0;
+      }
+
+    });
+
+    // Front Car back area ends
+
+    // Car back Area Section Starts
+
+    let carbackarea = 0;
+    $('#car-back').on('click', function() {
+      carbackarea++;
+      if (carbackarea == 1) {
+        $('#car-back').removeClass('svg-fill-color-double');
+        $('#car-back').removeClass('svg-fill-color-triple');
+        $('#car-back').addClass('svg-fill-color');
+        $('#rear').val('Light');
+      }
+      if (carbackarea == 2) {
+        $('#car-back').removeClass('svg-fill-color');
+        $('#car-back').removeClass('svg-fill-color-triple');
+        $('#car-back').addClass('svg-fill-color-double');
+        $('#rear').val('Extensive');
+      }
+      if (carbackarea == 3) {
+        $('#car-back').removeClass('svg-fill-color');
+        $('#car-back').removeClass('svg-fill-color-double');
+        $('#car-back').addClass('svg-fill-color-triple');
+        $('#rear').val('Severe');
+      }
+      if (carbackarea == 4) {
+        $('#car-back').removeClass('svg-fill-color');
+        $('#car-back').removeClass('svg-fill-color-double');
+        $('#car-back').removeClass('svg-fill-color-triple');
+        $('#rear').val('');
+        carbackarea = 0;
+      }
+    });
+
+    // Car Back Area Section Ends
+
+    // Car Main Front Area Starts
+    let carmainfrontarea = 0;
+    $('#car-front-main').on('click', function() {
+      carmainfrontarea++;
+      if (carmainfrontarea == 1) {
+        $('#car-front-main').removeClass('svg-fill-color-double');
+        $('#car-front-main').removeClass('svg-fill-color-triple');
+        $('#car-front-main').addClass('svg-fill-color');
+        $('#damage_car_front_main').val('Light');
+      }
+      if (carmainfrontarea == 2) {
+        $('#car-front-main').removeClass('svg-fill-color');
+        $('#car-front-main').removeClass('svg-fill-color-triple');
+        $('#car-front-main').addClass('svg-fill-color-double');
+        $('#damage_car_front_main').val('Extensive');
+      }
+      if (carmainfrontarea == 3) {
+        $('#car-front-main').removeClass('svg-fill-color');
+        $('#car-front-main').removeClass('svg-fill-color-double');
+        $('#car-front-main').addClass('svg-fill-color-triple');
+        $('#damage_car_front_main').val('Severe');
+      }
+      if (carmainfrontarea == 4) {
+        $('#car-front-main').removeClass('svg-fill-color');
+        $('#car-front-main').removeClass('svg-fill-color-double');
+        $('#car-front-main').removeClass('svg-fill-color-triple');
+        $('#damage_car_front_main').val('');
+        carmainfrontarea = 0;
+      }
+    });
+
+    // Car Main Front  Area Ends
+
+    // Second Car front Area Starts
+
+    let secondcarfront = 0;
+
+    $('#second-car-front').on('click', function() {
+      secondcarfront++;
+      if (secondcarfront == 1) {
+        $('#second-car-front').removeClass('svg-fill-color-double');
+        $('#second-car-front').removeClass('svg-fill-color-triple');
+        $('#second-car-front').addClass('svg-fill-color');
+        $('#damage_second_car_front').val('Light');
+      }
+      if (secondcarfront == 2) {
+        $('#second-car-front').removeClass('svg-fill-color');
+        $('#second-car-front').removeClass('svg-fill-color-triple');
+        $('#second-car-front').addClass('svg-fill-color-double');
+        $('#damage_second_car_front').val('Extensive');
+      }
+      if (secondcarfront == 3) {
+        $('#second-car-front').removeClass('svg-fill-color');
+        $('#second-car-front').removeClass('svg-fill-color-double');
+        $('#second-car-front').addClass('svg-fill-color-triple');
+        $('#damage_second_car_front').val('Severe');
+      }
+      if (secondcarfront == 4) {
+        $('#second-car-front').removeClass('svg-fill-color');
+        $('#second-car-front').removeClass('svg-fill-color-double');
+        $('#second-car-front').removeClass('svg-fill-color-triple');
+        $('#damage_second_car_front').val('');
+        secondcarfront = 0;
+      }
+    });
+
+    // Second Car Front Area Ends
+
+    // Second Car center area starts
+
+    let secondcarcenter = 0;
+    $('#second-car-center').on('click', function() {
+      secondcarcenter++;
+      if (secondcarcenter == 1) {
+        $('#second-car-center').removeClass('svg-fill-color-double');
+        $('#second-car-center').removeClass('svg-fill-color-triple');
+        $('#second-car-center').addClass('svg-fill-color');
+        $('#damage_second_car_center').val('Light');
+      }
+      if (secondcarcenter == 2) {
+        $('#second-car-center').removeClass('svg-fill-color');
+        $('#second-car-center').removeClass('svg-fill-color-triple');
+        $('#second-car-center').addClass('svg-fill-color-double');
+        $('#damage_second_car_center').val('Extensive');
+      }
+      if (secondcarcenter == 3) {
+        $('#second-car-center').removeClass('svg-fill-color');
+        $('#second-car-center').removeClass('svg-fill-color-double');
+        $('#second-car-center').addClass('svg-fill-color-triple');
+        $('#damage_second_car_center').val('Severe');
+      }
+      if (secondcarcenter == 4) {
+        $('#second-car-center').removeClass('svg-fill-color');
+        $('#second-car-center').removeClass('svg-fill-color-double');
+        $('#second-car-center').removeClass('svg-fill-color-triple');
+        $('#damage_second_car_center').val('');
+        secondcarcenter = 0;
+      }
+    });
+
+    // Second Car Center Area Ends
+
+    // Second Car back Area Starts
+
+    let secondcarbackarea = 0;
+    $('#second-car-back').on('click', function() {
+      secondcarbackarea++;
+      if (secondcarbackarea == 1) {
+        $('#second-car-back').removeClass('svg-fill-color-double');
+        $('#second-car-back').removeClass('svg-fill-color-triple');
+        $('#second-car-back').addClass('svg-fill-color');
+        $('#damage_second_car_back').val('Light');
+      }
+      if (secondcarbackarea == 2) {
+        $('#second-car-back').removeClass('svg-fill-color');
+        $('#second-car-back').removeClass('svg-fill-color-triple');
+        $('#second-car-back').addClass('svg-fill-color-double');
+        $('#damage_second_car_back').val('Extensive');
+      }
+      if (secondcarbackarea == 3) {
+        $('#second-car-back').removeClass('svg-fill-color');
+        $('#second-car-back').removeClass('svg-fill-color-double');
+        $('#second-car-back').addClass('svg-fill-color-triple');
+        $('#damage_second_car_back').val('Severe');
+      }
+      if (secondcarbackarea == 4) {
+        $('#second-car-back').removeClass('svg-fill-color');
+        $('#second-car-back').removeClass('svg-fill-color-double');
+        $('#second-car-back').removeClass('svg-fill-color-triple');
+        $('#damage_second_car_back').val('');
+        secondcarbackarea = 0;
+      }
+    });
+  });
+
+//   Damage Area

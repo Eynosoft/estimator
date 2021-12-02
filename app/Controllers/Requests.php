@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
@@ -61,23 +60,19 @@ class Requests extends BaseController
 
 	public function requeststatus($status = null)
 	{
-
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['assign_unassign'] = $this->request_model->assignunassignAllData($status);
 		$context['assign_unassign_total'] = $this->request_model->assigstatus();
-
 		return view('jobs_estimation_status_list', $context);
 	}
 
-	//------------------------------------------------------------------------------------------------//
-	// create Method for the Request
+//------------------------------------------------------------------------------------------------//
+//create Method for the Request
 
 	public function create()
 	{
@@ -91,28 +86,28 @@ class Requests extends BaseController
 		return view('new_estimation_request', $context);
 	}
 
-	// Create Method for the request Ends
-	//-------------------------------------------------------------------------------------------------//
 
+// Create Method for the request Ends
+//-------------------------------------------------------------------------------------------------//
 
-	//-------------------------------------------------------------------------------------------------//
-	// Update Request services starts
+//-------------------------------------------------------------------------------------------------//
+// Update Request services starts
 
-	public function update($id = null)
-	{
-		if (!logged_in()) {
-			return redirect()->to(base_url(route_to('/')));
-		}
-		$context = [
-			'username' => user()->username,
-		];
-		$context['requestor'] = $this->request_model->requestGetDataById($id);
-		$context['customer'] = $this->customer_model->setCustomerDropdown();
+public function update($id = null)
+{
+	if (!logged_in()) {
+		return redirect()->to(base_url(route_to('/')));
+	}
+	$context = [
+		'username' => user()->username,
+	];
+	$context['requestor'] = $this->request_model->requestGetDataById($id);
+	$context['customer'] = $this->customer_model->setCustomerDropdown();
 
 		// echo "<pre>";
 		// print_r($context);
 		// die('###');
-		return view('update_estimation_request', $context);
+	return view('update_estimation_request', $context);
 	}
 
 	// Update Request Service Ends
@@ -157,6 +152,7 @@ class Requests extends BaseController
 // insert and update requestors Ends
 //------------------------------------------------------------------------------------------------//
 
+
 //------------------------------------------------------------------------------------------------//
 // View Estimations By Id
 
@@ -165,11 +161,9 @@ class Requests extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
-
 		$context['requestor'] = $this->request_model->requestGetDataById($id);
 		$context['person_data'] = $this->request_person_model->getPersonDataById($id);
 		$context['person_doc'] = $this->person_document_model->getPersonDocDataById($id);
@@ -177,16 +171,15 @@ class Requests extends BaseController
 		return view('view_estimations', $context);
 	}
 
-	// View Estimation Request by Id ends
-	//------------------------------------------------------------------------------------------------//
+// View Estimation Request by Id ends
+//------------------------------------------------------------------------------------------------//
 
-
-	//------------------------------------------------------------------------------------------------//
-	// Delete of the estimation request starts
+//------------------------------------------------------------------------------------------------//
+// Delete of the estimation request starts
 
 	public function delete_request($id = null)
 	{
-		if (!logged_in()) {
+		if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
@@ -198,21 +191,19 @@ class Requests extends BaseController
 		} else {
 			$this->session->set('error', 'error');
 		}
-
 		$url = base_url() . '/requests';
 		return redirect()->to($url);
-	}
+}
 
-	// Delete of the estimation request Ends
-	//-------------------------------------------------------------------------------------------------//
+//Delete of the estimation request Ends
+//-------------------------------------------------------------------------------------------------//
 
+//-------------------------------------------------------------------------------------------------//
+//Assign a job to requestor Starts
 
-	//-------------------------------------------------------------------------------------------------//
-	//Assign a job to requestor Starts
-
-	public function assignJob()
-	{
-		if (!logged_in()) {
+public function assignJob()
+  {
+	  if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
 		$context = [
@@ -226,24 +217,32 @@ class Requests extends BaseController
 			'visit_date' => $this->request->getVar('visit_date'),
 		];
 		$result = $this->assign_model->insertAssignJob($data, $assign_id);
-		if ($result) {
+		if($result) {
 			$this->session->set('message', 'success');
-		} else {
+		}else {
 			$this->session->set('error', 'error');
 		}
 		$url = base_url() . '/requests/viewjob' . '/' . $data['requestor_id'];
 		return redirect()->to($url);
-	}
+  }
 
-	// Assign a job to a requestor Ends
-	//-------------------------------------------------------------------------------------------------//
+//Assign a job to a requestor Ends
+//-------------------------------------------------------------------------------------------------//
 
-	public function request_store()
+public function request_store()
 	{
+
 		$request_no = $this->request_model->getrequestNumber();
 		$length = 8;
 		$string = substr(str_repeat(0, $length) . $request_no, -$length);
 		$result_request_no = 'REQ' . $string;
+
+		$status_timing = [
+    'unassigned' => date("d/m/Y h:i:sa"),
+    'pending' => '',
+		'inprogress' => '',
+		'completed' => '',
+		];
 
 		$request_data = [
 			'request_no' => $result_request_no,
@@ -261,11 +260,12 @@ class Requests extends BaseController
 			'exemption_amount' => $this->request->getVar('exemption_amount'),
 			'responsibility' => $this->request->getVar('responsibility'),
 			'liability' => $this->request->getVar('liability'),
-		];
+			'status_timing' => json_encode($status_timing),
+  ];
 
-		$request_id = $this->request_model->insertrequestor($request_data);
-		// Person Document Data Starts
+$request_id = $this->request_model->insertrequestor($request_data);
 
+// Person Document Data Starts
 		if (!empty($request_id)) {
 			$galleryImages = [];
 			$returnData = [];
@@ -291,30 +291,31 @@ class Requests extends BaseController
 				}
 				$saveData = $this->person_document_model->documentInsert($returnData);
 			}
-		}
-		//Insert person data
+	}
+
+//Insert person data
+
 		$person_data = [
 			'person_type' => $this->request->getVar('person_type'),
 			'person_name' => $this->request->getVar('person_name'),
 			'person_number' => $this->request->getVar('person_number'),
 		];
+
 		$result = $this->request_person_model->insertPersonData($person_data, $request_id);
 		// Insert person data
 		$url = base_url() . '/requests';
 		return redirect()->to($url);
 		die();
-	}
+}
 
-	/************************************************************************************/
-	/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
 
-	public function viewjob($request_id = null)
-	{
-
+public function viewjob($request_id = null)
+{
 	  if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username' => user()->username,
 		];
@@ -324,8 +325,7 @@ class Requests extends BaseController
 		$context['assessors'] = $this->user_model->getallusersData();
 		$context['part'] = $this->parts_model->setPartsDropdown();
 		return view('view_job', $context);
-
-	}
+}
 
 	public function estimation_report($id = null)
 	{
@@ -341,11 +341,8 @@ class Requests extends BaseController
 		// Get height and width of page
 		$w = $canvas->get_width();
 		$h = $canvas->get_height();
-
 		// Specify watermark image
 		$imageURL = FCPATH . '/assets/draft/draft.jpg';
-
-
 		$imgWidth = 600;
 		$imgHeight = 350;
 		// Set image opacity
@@ -354,7 +351,6 @@ class Requests extends BaseController
 		$x = (($w - $imgWidth) / 2);
 		$y = (($h - $imgHeight) / 3);
 		$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight, $resolution = "normal");
-
 		ob_end_clean();
 		$dompdf->stream("estimation_report.pdf", array("Attachment" => 0));
 		//for preview attachment will be 0 and for download the pdf attachment should be 1
@@ -362,6 +358,6 @@ class Requests extends BaseController
 		//$dompdf->stream('estimation_report' .time());
 	}
 
-	// this is the method for the get final claim report for the claimantm
+//this is the method for the get final claim report for the claimantm
 
 }

@@ -4,112 +4,123 @@
 
 <div class="container-fluid">
 
-<!-- Page Heading -->
+  <!-- Page Heading -->
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-  <h1 class="h3 mb-0 text-gray-800">Garages</h1>
-  <a class="btn btn-primary" href="<?php echo base_url('garage/create'); ?>">Add Garage</a>
-
-</div>
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-  
-  <div class="card-header py-3">
-
-    <h6 class="m-0 font-weight-bold text-primary">Garages List</h6>
+    <h1 class="h3 mb-0 text-gray-800">Garages</h1>
+    <a class="btn btn-primary" href="<?php echo base_url('garage/create'); ?>">Add Garage</a>
 
   </div>
 
-  <div class="card-body">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
 
-    <div class="table-responsive">
+    <div class="card-header py-3">
 
-      <table class="table table-bordered" id="garage-list" width="100%" cellspacing="0">
+      <h6 class="m-0 font-weight-bold text-primary">Garages List</h6>
 
-        <thead>
+    </div>
 
-          <tr>
 
-            <th style="width: 50px;">S.No</th>
+    <div class="card-body">
 
-            <th>Garage name</th>
+      <div class="table-responsive">
 
-            <th>Owner</th>
+        <table class="table table-bordered" id="garage-list" width="100%" cellspacing="0">
 
-            <th>Landlines</th>
-
-            <th>Mobiles</th>
-
-            <th>Faxes</th>
-
-            <th style="width: 70px;">Actions</th>
-
-          </tr>
-
-      </thead>
-
-      <tbody>
-
-          <?php if($garage): ?>
-
-            <?php foreach($garage as $row): ?>
+          <thead>
 
             <tr>
 
-              <td><?php echo $row['id']; ?></td>
+              <th style="width: 50px;">S.No</th>
 
-              <td><?php echo $row['garage_name']; ?></td>
+              <th>Garage name</th>
 
-              <td><?php echo $row['owner_name']; ?></td>
+              <th>Owner</th>
 
-              <td><?php echo $row['landline']; ?></td>
+              <th>Landlines</th>
 
-              <td><?php echo $row['mobile']; ?></td>
+              <th>Mobiles</th>
 
-              <td><?php echo $row['fax']; ?></td>
+              <th>Faxes</th>
 
-              <td class="actionCol">
-
-                <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('garage/view').'/'.$row['id']; ?>">
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                </a>
-
-                <a class="btn btn-datatable btn-icon btn-transparent-dark"
-                  href="<?php echo base_url('garage/delete').'/'.$row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
-                </a>
-
-              </td>
+              <th style="width: 70px;">Actions</th>
 
             </tr>
 
-            <?php endforeach; ?>
+          </thead>
+
+          <tbody>
+
+            <?php if ($garage) : ?>
+
+              <?php foreach ($garage as $row) :
+
+                $mobile_data = explode(',', $row['mobile']);
+
+              ?>
+
+                <tr>
+
+                  <td><?php echo $row['id']; ?></td>
+
+                  <td><?php echo $row['garage_name']; ?></td>
+
+                  <td><?php echo $row['owner_name']; ?></td>
+
+                  <td><?php echo $row['landline']; ?></td>
+
+                  <td>
+
+                  <?php
+
+                  foreach ($mobile_data as $result) { ?>
+
+                    <?php echo "<a href='tel:$result'><button style='font-size:12px;' class='btn btn-primary btn-sm'>$result</button></a>"; ?>
+
+                  <?php } ?>
+
+                  </td>
+
+                  <td><?php echo $row['fax']; ?></td>
+
+                  <td class="actionCol">
+
+                    <a class="btn btn-datatavle btn-icon btn-transparent-dark mr-2" href="<?php echo base_url('garage/view') . '/' . $row['id']; ?>">
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="btn btn-datatable btn-icon btn-transparent-dark" href="<?php echo base_url('garage/delete') . '/' . $row['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+
+                  </td>
+
+                </tr>
+
+              <?php endforeach; ?>
 
             <?php endif; ?>
 
           </tbody>
 
-      </table>
+        </table>
+
+      </div>
 
     </div>
 
   </div>
 
- </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-  
+
 <script>
-
-    $(document).ready(function() {
-      $('#garage-list').DataTable();
-    });
-
+  $(document).ready(function() {
+    $('#garage-list').DataTable();
+  });
 </script>
-
 
 <?php echo $this->endSection(); ?>

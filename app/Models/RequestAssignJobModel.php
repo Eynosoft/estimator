@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class RequestAssignJobModel extends Model
 {
-	
+
 	protected $table = 'request_assign_job';
 	protected $primaryKey = 'assign_id';
 	protected $allowedFields = ['requestor_id', 'assessor', 'visit_date','assign_note','created_at', 'updated_at'];
@@ -29,7 +29,7 @@ class RequestAssignJobModel extends Model
 	}
 
 	// ------------------------------------------------------------------------------------------//
-	// Get dropdown starts 
+	// Get dropdown starts
 
 	function masterGetAllData()
 	{
@@ -40,12 +40,12 @@ class RequestAssignJobModel extends Model
 		}
 	}
 
-	// Get Dropdown Ends 
+	// Get Dropdown Ends
 	// --------------------------------------------------------------------------------------------//
 
 
 	// ---------------------------------------------------------------------------------------------//
-	// Get All Assign Request  Data 
+	// Get All Assign Request  Data
 
 	public function getAllAssignData()
 	{
@@ -58,7 +58,7 @@ class RequestAssignJobModel extends Model
 		return false;
 	}
 
-	// Get all Assign Request Data Ends 
+	// Get all Assign Request Data Ends
 	//-----------------------------------------------------------------------------------------------//
 
 
@@ -80,8 +80,28 @@ class RequestAssignJobModel extends Model
 					$query = $this->db->query('SELECT requestor_id FROM request_assign_job WHERE assign_id = "'.$assign_id.'" ');
 					$request_data = $query->getResult();
 					$request_id = $request_data[0]->requestor_id;
-					$query = $this->db->query('UPDATE requestor SET status = 1 WHERE id = "'.$request_id.'"');
+
+					$query_status_get = $this->db->query('SELECT status_timing FROM requestor WHERE id = "'.$request_id.'"');
+					$timming_result = $query_status_get->getResult();
+					$status_timing_result = $timming_result[0]->status_timing;
+
+					$result_data = json_decode($status_timing_result);
+
+					$statusarray = json_decode(json_encode($result_data), true);
+
+					$updated_status = [
+           'unassigned' => $statusarray['unassigned'],
+					 'pending' => date("d/m/Y h:i:sa"),
+           'inprogress' => $statusarray['inprogress'],
+					 'completed' => $statusarray['completed'],
+					];
+
+					$pending_status = json_encode($updated_status);
+
+					$final_query = $this->db->query("UPDATE requestor SET status =  1 , status_timing = '".$pending_status."' WHERE id = '".$request_id."'");
+
 					return true;
+
 				} else {
 					return $this->errors();
 				}

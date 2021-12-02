@@ -16,6 +16,7 @@
 <!-- Divider -->
 
 <hr class="sidebar-divider my-0">
+
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
 
@@ -126,7 +127,7 @@
   </a>
 
 <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-  
+
     <div class="py-2 collapse-inner">
 
       <a class="collapse-item" href="<?php echo base_url('users'); ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i> List</a>

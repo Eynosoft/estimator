@@ -23,7 +23,7 @@
   <div class="col-lg-12 mb-4">
 
     <!-- Project Card Example -->
-    
+
     <div class="card shadow">
 
       <div class="card-header py-3">
@@ -63,7 +63,7 @@
           <div class="col-md-12">
 
             <br>
-            
+
             <?php if(!empty($job_request_data['job_parts'])) { ?>
 
             <div class="row" id="label_values"><br>
@@ -109,11 +109,11 @@
           <?php
 
           $i= 0;
-          
+
           if (!empty($job_request_data['job_parts'])) {
-            
+
             $tpart = count($job_request_data['job_parts']);
-            
+
             foreach ($job_request_data['job_parts'] as $job_parts) { ?>
 
               <div class='row parts-input' id='removeparts<?php echo $i; ?>'>
@@ -143,7 +143,7 @@
                   'Shorted' => 'Shorted',
                   'Twisted' => 'Twisted',
                   ];
-                  
+
                   ?>
 
                 <?php echo form_dropdown('damage_type[]',$options_damage,$job_parts['damage_type'],'class="form-control"'); ?>
@@ -157,8 +157,8 @@
 
                 <div class='col-md-2 input-val'>
 
-                <?php  
-                
+                <?php
+
                 $options_status = [
                   '' => '--Select--',
                   'New' => 'New',
@@ -167,7 +167,7 @@
                 ];
 
                 echo form_dropdown('status[]',$options_status,$job_parts['part_status'],'class="form-control"');
-                
+
                 ?>
                 </div>
 
@@ -214,7 +214,7 @@
 
           <?php } else { ?>
 
-          <input type="hidden"  id='count_parts' value="0">            
+          <input type="hidden"  id='count_parts' value="0">
 
           <?php } ?>
 
@@ -242,13 +242,14 @@
 
 </div>
 
+
 <!-- Script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- jQuery UI -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type='text/javascript'>
   $(document).ready(function() {
-    // Initialize 
+    // Initialize
     var count_delete = $('#count_parts').val();
 
     $("#parts_data").autocomplete( {
@@ -315,3 +316,5 @@
 
   });
 </script>
+
+

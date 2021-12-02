@@ -15,12 +15,10 @@ class Customer extends BaseController
 		$this->session = \Config\Services::session();
 		$this->session->start();
 		$this->customer_model = new CustomerModel();
-		
 	}
 
-	// ---------------------------------------------------------------------------------------------//
-	// Home Page Controller for the customer
-
+  // ---------------------------------------------------------------------------------------------//
+  // Home Page Controller for the customer
 
 	public function index()
 	{
@@ -35,7 +33,7 @@ class Customer extends BaseController
 	}
 
 
-// Home Page Controller ends 
+// Home Page Controller ends
 // ----------------------------------------------------------------------------------------------//
 
 
@@ -47,17 +45,14 @@ class Customer extends BaseController
 		if (!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
-
 		$context = [
 			'username'  => user()->username,
 		];
-
 		return view('customer_create', $context);
   }
 
 // Create Controller for the customer Ends
 //-----------------------------------------------------------------------------------------------//
-
 
 
 // ----------------------------------------------------------------------------------------------//
@@ -75,9 +70,8 @@ class Customer extends BaseController
 		return view('customer_edit', $context);
 	}
 
-	// Get Cystomer Data by id Ends
+	// Get Customer Data by id Ends
 	//-----------------------------------------------------------------------------------------------//
-
 
 	//-----------------------------------------------------------------------------------------------//
 	// Update Customer data Starts
@@ -106,13 +100,13 @@ class Customer extends BaseController
 		}
 	}
 
-	// Update Customer data Ends 
+	// Update Customer data Ends
 	// ---------------------------------------------------------------------------------------------//
 
 
 
 	// ---------------------------------------------------------------------------------------------//
-	//Delete Customer Data starts 
+	//Delete Customer Data starts
 
 	public function delete($id = null)
 	{
@@ -129,9 +123,9 @@ class Customer extends BaseController
 	// ---------------------------------------------------------------------------------------------//
 
 
-
 	public function insert_all_data()
 	{
+
 		$data = [
 			'client_name' => $this->request->getVar('client_name'),
 			'locale' => $this->request->getVar('locale'),

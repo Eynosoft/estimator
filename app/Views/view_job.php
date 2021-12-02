@@ -322,8 +322,9 @@
 
                 <li><a data-toggle="tab" href="#job_document">Document</a></li>
 
-              </ul>
+                <!-- <li><a data-toggle="tab" href="#job_fees">Fees</a></li> -->
 
+              </ul>
 
               <?php
 
@@ -390,6 +391,9 @@
 
                 </div>
 
+                <!-- <div id='job_fees' class="tab-pane fade">
+                    <?php // echo $this->include('job_requests/assign_fees'); ?>
+                </div> -->
 
               </div>
 

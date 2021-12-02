@@ -11,7 +11,7 @@ class RequestorModel extends Model
 
   protected $table = 'requestor';
   protected $primaryKey = 'id';
-  protected $allowedFields = ['request_no', 'customer', 'requested_date', 'requestor', 'vehicle', 'garage', 'insured_reference', 'date_accident', 'policy_number', 'claim_number', 'inspection', 'insured_amount', 'exemption_amount', 'responsibility', 'liability', 'created_at', 'updated_at'];
+  protected $allowedFields = ['request_no', 'customer', 'requested_date', 'requestor', 'vehicle', 'garage', 'insured_reference', 'date_accident', 'policy_number', 'claim_number', 'inspection', 'insured_amount', 'exemption_amount', 'responsibility', 'liability', 'status_timing', 'created_at', 'updated_at'];
 
   protected $skipValidation   = false;
   protected $allowCallbacks       = true;
@@ -104,7 +104,7 @@ class RequestorModel extends Model
           $garage_data = !empty($jobs['garage']) ? $garage->getGarageNameById($jobs['garage']) : 'N/A';
           $returndata['garage'] = $garage_data;
 
-          $damage_parts = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) :'N/A';
+          $damage_parts = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) : 'N/A';
           $returndata['damage_part'] =  $damage_parts;
 
           $returndata['insured_reference'] = $jobs['insured_reference'];
@@ -116,6 +116,10 @@ class RequestorModel extends Model
           $returndata['exemption_amount'] = $jobs['exemption_amount'];
           $returndata['responsibility'] = $jobs['responsibility'];
           $returndata['liability'] = $jobs['liability'];
+
+          $statusarray = json_decode($jobs['status_timing']);
+          $returndata['status_timing'] = json_decode(json_encode($statusarray), true);
+
           $returndata['status'] = $jobs['status'];
           $returndata['created_at'] = date("d/m/Y h:i a", strtotime($jobs['created_at']));
           $returndata['assign_id'] = $jobs['assign_id'];
@@ -523,7 +527,7 @@ class RequestorModel extends Model
     return false;
   }
 
- // Assigned Data ends
+  // Assigned Data ends
 
   public function requestGetDataById($id = null)
   {
@@ -617,13 +621,14 @@ class RequestorModel extends Model
     return false;
   }
 
-// Select Reuqestor by Id
-// --------------------------------------------------------------------------------//
+  // Select Reuqestor by Id
+  // --------------------------------------------------------------------------------//
 
 
-// Get request Number
+  // Get request Number
 
-public function getrequestNumber(){
+  public function getrequestNumber()
+  {
     try {
       $query = $this->db->query('SELECT MAX(id) as request_id FROM requestor');
       $request_id = $query->getResult();
@@ -638,10 +643,10 @@ public function getrequestNumber(){
     }
   }
 
-// Get request Number
+  // Get request Number
 
 
-// Select Requestor by Id
+  // Select Requestor by Id
 
   public function getJobRequestDataById($id)
   {
@@ -651,7 +656,6 @@ public function getrequestNumber(){
       $labours = new JobRequestLabourModel();
       $parts_data = new JobRequestPartsModel();
       $damage_data = new JobRequestDamageModel();
-
       $this->table('requestor');
       $this->select('job_requests.*');
       $this->join('job_requests', 'job_requests.request_id = requestor.id');
@@ -674,9 +678,7 @@ public function getrequestNumber(){
           $returndata['reservers'] = $jobs['reservers'];
           $returndata['labours'] = !empty($jobs['job_id']) ? $labours->getJobLaboursDataById($jobs['job_id']) : 'N/A';
           $returndata['job_parts'] = !empty($jobs['job_id']) ? $parts_data->getPartsDataByJobId($jobs['job_id']) : 'N/A';
-
           $returndata['damage_parts'] = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) : 'N/A';
-
           $returndata['total_loss_type'] = $jobs['total_loss_type'];
           $returndata['estimated_market_value'] = $jobs['estimated_market_value'];
           $returndata['approximated_salvage_value'] = $jobs['approximated_salvage_value'];
@@ -690,30 +692,32 @@ public function getrequestNumber(){
     }
   }
 
-// Get final Report for estimation data
+  // Get final Report for estimation data
+
 
   public function estimation_report($estimation_data = null)
   {
     try {
 
-    $vehicle = new VehicleModel();
-    $customer = new CustomerModel();
-    $returnData = [];
+      $vehicle = new VehicleModel();
+      $customer = new CustomerModel();
+      $returnData = [];
 
-    if (!empty($estimation_data['customer']) || !empty($estimation_data['from_date']) || !empty($estimation_data['till_date']) || !empty($estimation_data['assigned']) || !empty($estimation_data['unassigned']) || !empty($estimation_data['status_finished']) || !empty($estimation_data['status_pending']) || !empty($estimation_data['status_completed']) || !empty($estimation_data['status_progress']))  {
+      if (!empty($estimation_data['customer']) || !empty($estimation_data['from_date']) || !empty($estimation_data['till_date']) || !empty($estimation_data['assigned']) || !empty($estimation_data['unassigned']) || !empty($estimation_data['status_finished']) || !empty($estimation_data['status_pending']) || !empty($estimation_data['status_completed']) || !empty($estimation_data['status_progress'])) {
 
-    $where_status = '';
-    $where_customer = '';
+        $where_status = '';
+        $where_customer = '';
+        $where_date = '';
 
-        if((isset($estimation_data['unassigned']) && ($estimation_data['unassigned'] == 0))) {
+        if ((isset($estimation_data['unassigned']) && ($estimation_data['unassigned'] == 0))) {
           $where_status .= "status='" . $estimation_data['unassigned'] . "' OR ";
         }
 
-        if(!empty($estimation_data['status_finished'])) {
+        if (!empty($estimation_data['status_finished'])) {
           $where_status .= "status='" . $estimation_data['status_finished'] . "' OR ";
         }
 
-        if(!empty($estimation_data['status_pending'])) {
+        if (!empty($estimation_data['status_pending'])) {
           $where_status .= "status='" . $estimation_data['status_pending'] . "' OR ";
         }
 
@@ -721,36 +725,51 @@ public function getrequestNumber(){
           $where_status .= "status='" . $estimation_data['status_progress'] . "' OR ";
         }
 
-        if(!empty($estimation_data['status_completed'])) {
+        if (!empty($estimation_data['status_completed'])) {
           $where_status .= "status='" . $estimation_data['status_completed'] . "' OR ";
         }
 
-        if(!empty($where_status)) {
+        if (!empty($where_status)) {
           $trimed_value = rtrim($where_status, "OR ");
           $where_in = '(' . $trimed_value . ')';
         }
 
-        if(!empty($estimation_data['customer'])) {
+        if (!empty($estimation_data['customer'])) {
           $where_customer .= "customer='" . $estimation_data['customer'] . "' ";
         }
 
-      $where = $where_in . ' AND ' . $where_customer;
+        if (!empty($estimation_data['from_date']) && !empty($estimation_data['till_date'])) {
+          $where_date .=  " requestor.created_at>='" . $estimation_data['from_date'] . "' AND requestor.created_at <='" . $estimation_data['till_date'] . "'";
+        }
 
-      // echo  "<pre>";
-      // print_r($where);
-      // die('####');
+        if (!empty($where_date)) {
+          $where = $where_in . ' AND ' . $where_customer . 'AND' . $where_date;
+        } else {
+          $where = $where_in . ' AND ' . $where_customer;
+        }
 
-      $all_record =  $this->db->query('SELECT  * from requestor INNER JOIN job_requests on job_requests.request_id=requestor.id  where ' . $where . ' ');
+        // echo "<pre>";
+        // print_r($where);
+        // die('####');
+        // if(!empty($estimation_data['status_pending']) || !empty($estimation_data['unassigned'])) {
+        //   $all_record =  $this->db->query('SELECT  * from requestor where ' . $where . ' ');
+        // }
 
+        $all_record =  $this->db->query('SELECT  * from requestor INNER JOIN job_requests on job_requests.request_id=requestor.id  where ' . $where . ' ');
+
+        // echo "<pre>";
         // echo $this->db->getLastQuery($all_record);
         // die('####');
 
         $total_data = $all_record->getResult();
         $result_data = json_decode(json_encode($total_data), true);
+
         // echo "<pre>";
         // print_r($result_data);
         // die('####');
+
         $i = 0;
+
         foreach ($result_data as $values) {
           $returnData[$i]['id'] = $values['id'];
           $returnData[$i]['requested_date'] = $values['requested_date'];
@@ -762,13 +781,17 @@ public function getrequestNumber(){
           $returnData[$i]['customer'] = $customer_data;
           $returnData[$i]['requestor'] = $values['requestor'];
           $returnData[$i]['reservers'] = $values['reservers'];
+          $returnData[$i]['from_date'] = $estimation_data['from_date'];
+          $returnData[$i]['till_date'] = $estimation_data['till_date'];
           $i++;
-
         }
+
         return $returnData;
+
         // echo "<pre>";
         // print_r($returnData);
         // die('####');
+
       }
     } catch (\Exception $e) {
       die($e->getMessage());

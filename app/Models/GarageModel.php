@@ -28,8 +28,8 @@ class GarageModel extends Model
     $this->db = \Config\Database::connect();
   }
 
-  //------------------------------------------------------------------------------------------------//
-  // Get Garage All Data Starts
+//------------------------------------------------------------------------------------------------//
+// Get Garage All Data Starts
 
   public function getGarageAllData()
   {
@@ -42,8 +42,9 @@ class GarageModel extends Model
     return false;
   }
 
-  // Get Garage ALl Data Ends
-  // ----------------------------------------------------------------------------------------------//
+
+// Get Garage ALl Data Ends
+// ----------------------------------------------------------------------------------------------//
 
 // Get Total Request By the Id Starts
 
@@ -77,16 +78,16 @@ class GarageModel extends Model
 
 // Get Total Request By the Id Ends
 
-// Get Total Estimation Reqeust By the Id Starts
+
+//Get Total Estimation Reqeust By the Id Starts
+
 public function getEstimationRequestById($id= null) {
   try {
   $estimations = $this->db->query('SELECT * from requestor where status>=1 AND garage="'.$id.'"');
   $total_estimation = $estimations->getResult();
   $estimation_result = json_decode(json_encode($total_estimation), true);
-
   $vehicle = new VehicleModel();
   $customer = new CustomerModel();
-
   if(!empty($estimation_result)){
     $i=0;
      foreach ($estimation_result as $estimation_value) {
@@ -105,31 +106,20 @@ public function getEstimationRequestById($id= null) {
   }catch (\Exception $e) {
     die($e->getMessage());
   }
-
 }
-
-
-
-
 // Get Total Estimation Request By the Id ends
-
 
 // ---------------------------------------------------------------------------------------------//
 // Get Garage Data by Id
 
   public function getGarageDataById($id = null)
   {
-
     try {
-
       $garage_data = $this->where('id', $id)->findAll();
-
       // Requests starts
-
       $requests = $this->db->query('SELECT garage, COUNT(garage) as total_request FROM requestor where status=0 AND garage="' . $id . '"');
       $request_result = $requests->getResult();
       $final_request = $request_result[0]->total_request;
-
       // Requests Ends
 
       // Estimation starts
@@ -140,8 +130,7 @@ public function getEstimationRequestById($id= null) {
 
       // Estimation Ends
 
-      if (!empty($garage_data)) {
-
+      if(!empty($garage_data)) {
         foreach ($garage_data as $data) {
           $garage['id'] = $data['id'];
           $garage['garage_name'] = $data['garage_name'];
@@ -200,13 +189,12 @@ public function getEstimationRequestById($id= null) {
     return false;
   }
 
+// Insert And Update Customer data
+//---------------------------------------------------------------------------------------------//
 
-  // Insert And Update Customer data
-  //---------------------------------------------------------------------------------------------//
 
-
-  // --------------------------------------------------------------------------------------------//
-  // Delete Garage by Id
+// --------------------------------------------------------------------------------------------//
+// Delete Garage by Id
 
   public function deletGarageById($id = null)
   {
@@ -217,13 +205,13 @@ public function getEstimationRequestById($id= null) {
       die($e->getMessage());
     }
   }
-  // Delete Garage By Id
-  // ----------------------------------------------------------------------------------------------//
+
+// Delete Garage By Id
+// ----------------------------------------------------------------------------------------------//
 
 
-
-  // ---------------------------------------------------------------------------------------------//
-  // Get All Data by Id Starts
+// ---------------------------------------------------------------------------------------------//
+// Get All Data by Id Starts
 
   public function getAllDataById($id = null)
   {
@@ -235,18 +223,21 @@ public function getEstimationRequestById($id= null) {
     }
   }
 
-  // Get All Data by id Ends
-  // ----------------------------------------------------------------------------------------------//
+
+// Get All Data by id Ends
+//----------------------------------------------------------------------------------------------//
 
 
-  //----------------------------------------------------------------------------------------------//
-  // Get Garage Dropdown data
+
+//----------------------------------------------------------------------------------------------//
+// Get Garage Dropdown data
 
   public function getGarageDropdownData($search = null)
   {
     try {
       $dropdowndata = $this->select('garage_name')
         ->like('garage_name', $search)
+        ->where('status','1')
         ->orderBy('garage_name')
         ->findAll(5);
       return $dropdowndata;
@@ -256,17 +247,18 @@ public function getEstimationRequestById($id= null) {
     return false;
   }
 
-  // Get Garage Dropwdon data
-  //----------------------------------------------------------------------------------------------//
+// Get Garage Dropwdon data
+//----------------------------------------------------------------------------------------------//
 
-  public function getGarageByAjax($search_data = null)
-  {
+public function getGarageByAjax($search_data = null)
+{
     try {
       $data = [];
       $db      = \Config\Database::connect();
       $builder = $db->table('garage');
       $query = $builder->like('garage_name', $search_data)
         ->select('id,garage_name as text')
+        ->where('status','1')
         ->limit(10)->get();
       $data = $query->getResult();
       return json_encode($data);
@@ -274,9 +266,9 @@ public function getEstimationRequestById($id= null) {
       die($e->getMessage());
     }
     return false;
-  }
+}
 
-  // Get Garage Name By Id
+// Get Garage Name By Id
 
   public function getGarageNameById($id = null)
   {
@@ -289,7 +281,6 @@ public function getEstimationRequestById($id= null) {
     return false;
   }
 
-
-  // Get gagare Name By Id
+// Get gagare Name By Id
 
 }

@@ -36,7 +36,7 @@ class Reports extends BaseController
 	{
 		$estimation_data = [
 			'customer' => $this->request->getVar('customer'),
-			'from_date' => $this->request->getVar('from_date'),
+			'from_date' => $this->request->getVar('form_date'),
 			'till_date' => $this->request->getVar('till_date'),
 			'assigned' => $this->request->getVar('assigned'),
 			'unassigned' => $this->request->getVar('unassigned'),
@@ -59,4 +59,5 @@ class Reports extends BaseController
 		exit(0);
 		//$dompdf->stream('estimation_report' .time());
 	}
+
 }

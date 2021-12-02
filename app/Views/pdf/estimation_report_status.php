@@ -36,10 +36,10 @@
     hr.new3 {
       border-top: 1px dotted;
     }
-  </style>
+
+</style>
 
 </head>
-
 
 <?php
 
@@ -56,9 +56,26 @@
     <h3 style="margin-bottom: 2px;">Estimation Report (εκτίμηση της έκθεσης εργασίας) </h3>
     <hr class="new3">
 
-    <h4 style="margin-bottom: 2px;"><?php echo $estimation_report[0]['customer']; ?></h4>
-    <hr class="new3">
+    <?php
 
+    if(!empty($estimation_report[0]['from_date'])){
+    $originalfromDate = $estimation_report[0]['from_date'];
+    $newfromDate = date("d/m/Y h:i:sa", strtotime($originalfromDate));
+    }
+
+    if(!empty($estimation_report[0]['till_date'])){
+    $originaltillDate = $estimation_report[0]['till_date'];
+    $newtillDate = date("d/m/Y h:i:sa", strtotime($originaltillDate));
+    }
+
+    ?>
+
+    <h4 style="margin-bottom: 2px;"><?php echo $estimation_report[0]['customer']; ?></h4>
+     <?php if(!empty($estimation_report[0]['from_date']) && !empty($estimation_report[0]['till_date'])) { ?>
+    <p>( From <b><?php echo $newfromDate; ?></b> To  <b><?php echo $newtillDate; ?></b> )</p>
+    <?php } ?>
+
+    <hr class="new3">
     <table style="width: 100%;" cellspacing="0" cellpadding="6">
 
       <tr>

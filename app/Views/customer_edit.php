@@ -9,9 +9,9 @@
 <!-- <h1 class="h3 mb-0 text-gray-800">Add Customer</h1> -->
 </div>
 
-<?php 
+<?php
 
-$activeClass = ''; 
+$activeClass = '';
 $currentTab = isset($_SESSION['currentTab']) ? $_SESSION['currentTab'] : ' ';
 echo form_input(array('type' => 'hidden', 'id' => 'currentTab', 'name' => 'currentTab', 'value' => $currentTab));
 
@@ -38,9 +38,9 @@ unset($_SESSION['currentTab']);
     <li>
 
     <a data-id="customerNotificationTab" data-toggle="tab" href="#cusNotifications">Notifications</a>
-        
+
     </li>
-      
+
 
     <li>
 
@@ -51,21 +51,21 @@ unset($_SESSION['currentTab']);
   <!-- <li class="<?php // echo $activeClass; ?>"><a data-toggle="tab" href="#cusNotes">Notes</a></li> -->
 
   </ul>
-  
-      <?php 
-      
-      $lblAttributes = ['class' => 'fieldLabel mb-1']; 
+
+      <?php
+
+      $lblAttributes = ['class' => 'fieldLabel mb-1'];
       $frmattribute = [
               'id' => 'customer_create',
               'method' => 'post',
               ];
-      
+
       echo form_open('customer/updateCustomer',$frmattribute);
 
       ?>
 
       <div class="tab-content">
-        
+
         <div id="cusContact" class="tab-pane fade in active">
 
           <?php echo $this->include('customers/cusContactedit'); ?>
@@ -79,11 +79,11 @@ unset($_SESSION['currentTab']);
 
         </div>
 
-        
+
         <div id="cusSettings" class="tab-pane fade">
 
           <?php echo $this->include('customers/cusSettingsedit'); ?>
-    
+
         </div>
 
         <div id="cusNotes" class="tab-pane fade">

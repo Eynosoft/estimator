@@ -97,9 +97,7 @@
       <div class="card shadow mb-4">
 
         <div class="card-header py-3">
-
           <h6 class="m-0 font-weight-bold text-primary">About</h6>
-
         </div>
 
         <div class="card-body">
@@ -238,7 +236,6 @@
 
               </ul>
 
-
               <?php
 
               $frmattribute = [
@@ -252,7 +249,7 @@
 
               <?php
 
-              form_input(array('type' => 'hidden', 'id' => 'request_id', 'name' => 'request_id', 'value' => $requestor['id']));
+            form_input(array('type' => 'hidden', 'id' => 'request_id', 'name' => 'request_id', 'value' => $requestor['id']));
 
               ?>
 
@@ -285,9 +282,8 @@
 
     </div>
 
-    <!-- Assign Data Ends -->
-
-    <!-- Person data starts -->
+  <!-- Assign Data Ends -->
+  <!-- Person data starts -->
 
     <div class="col-lg-9 mb-4" style="display: none;" id="person">
 
@@ -330,21 +326,17 @@
                 foreach ($person_data as $persons) {  ?>
 
                   <tr>
-
                     <td><?php echo $i; ?></td>
-
                     <td><?php echo $persons['person_type']; ?></td>
-
                     <td><?php echo $persons['person_name']; ?></td>
-
                     <td><a class="btn btn-primary btn-sm" href="tel:<?php echo $persons['person_number']; ?>"><?php echo $persons['person_number']; ?></a></td>
-
                   </tr>
 
                 <?php $i++;
+
                 }
 
-                ?>
+              ?>
 
               </tbody>
 
@@ -354,42 +346,43 @@
 
         </div>
 
-      </div>
-
+    </div>
     </div>
 
     <!-- Person data ends -->
     <!-- document Data starts -->
 
     <div class="col-lg-9 mb-4" id="document" style="display: none;">
-
       <div class="card shadow mb-4">
-
         <div class="card-header py-3">
-
           <h6 class="m-0 font-weight-bold text-primary">Documents</h6>
-
         </div>
-
         <div class="card-body">
 
           <div class="row">
 
             <?php
+
             $j = 0;
+
             foreach ($person_doc as $docs) { ?>
 
               <div class="card">
 
                 <div class="card-body">
+
                   <div>
                     <img src="<?php echo base_url(); ?>/assets/uploads/<?php echo $docs['document_name']; ?>" height="145" width="154">
                   </div>
-                  <hr>
+
+                <hr>
 
                   <div>
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#editModal<?php echo $j; ?>" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal<?php echo $j; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#editModal<?php echo $j; ?>" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal<?php echo $j; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                  <a href="javascript:void(0);" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
                   </div>
                 </div>
 

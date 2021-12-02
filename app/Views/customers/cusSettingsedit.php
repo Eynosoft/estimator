@@ -1,7 +1,4 @@
-<br>
-
 <div class="row">
-
   <div class="col-lg-12 mb-4">
     <!-- Project Card Example -->
     <div class="card shadow">
@@ -111,4 +108,5 @@
   .kv-file-upload {
     display: none !important;
   }
+
 </style>

@@ -7,7 +7,7 @@ class UsersModel extends Model
 {
 	protected $table = 'user';
 	protected $primaryKey = 'id';
-	protected $allowedFields = ['user_name', 'locale', 'email', 'mobile', 'land_line', 'fax', 'contact_signature', 'contact_signature_type','account_username','account_locale','account_email','	account_mobile','account_landline','account_fax','account_signature','account_signature_type','notifications', 'permissions', 'created_at', 'updated_at'];
+	protected $allowedFields = ['user_name', 'locale', 'email', 'mobile', 'land_line', 'fax', 'contact_signature', 'contact_signature_type','account_username','account_locale','account_email','account_mobile','account_landline','account_fax','account_signature','account_signature_type','notifications', 'permissions', 'created_at', 'updated_at'];
 
 // Validation rules
 
@@ -64,9 +64,9 @@ class UsersModel extends Model
 	}
 
 
-	//---------------------------------------------------------------------------------------------// 
+	//---------------------------------------------------------------------------------------------//
 	// Get Users All Data starts
-	
+
 
 	public function getUsersAllData()
 	{
@@ -84,7 +84,7 @@ class UsersModel extends Model
 
 
 
-	//---------------------------------------------------------------------------------------------// 
+	//---------------------------------------------------------------------------------------------//
 	// Insert user Model Starts
 
 	public function insertUsersData($data = null, $id = null)
@@ -92,7 +92,7 @@ class UsersModel extends Model
 		// This is for the validation rules Starts
 		$this->setValidationRules($this->validationRules);
 		$this->setValidationMessages($this->validationMessages);
-		// This is for the validation rules Ends 
+		// This is for the validation rules Ends
 		try {
 
 			if (!empty($id)) {
@@ -132,7 +132,7 @@ class UsersModel extends Model
 		}
 	}
 	// Delete Garage By Id
-	// ----------------------------------------------------------------------------------------------// 
+	// ----------------------------------------------------------------------------------------------//
 
 	//---------------------------------------------------------------------------------------------//
 	//Get Users Data by id Starts
@@ -202,7 +202,7 @@ class UsersModel extends Model
 		// This is for the validation rules Starts
 		$this->setValidationRules($this->validationRules);
 		$this->setValidationMessages($this->validationMessages);
-		// This is for the validation rules Ends 
+		// This is for the validation rules Ends
 		try {
 
 			if (!empty($id)) {
@@ -230,7 +230,7 @@ class UsersModel extends Model
 
 
 	// --------------------------------------------------------------------------------//
-	// Get dropdown list 
+	// Get dropdown list
 
 	function getallusersData()
 	{
@@ -260,7 +260,7 @@ class UsersModel extends Model
 		}
 	}
 
-	// Get Users Nam by id ends 
+	// Get Users Nam by id ends
 	// ----------------------------------------------------------------------------------------------//
 
 

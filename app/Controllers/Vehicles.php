@@ -35,7 +35,7 @@ class Vehicles extends BaseController
 	}
 
 	// Home Page For The Vehicle Ends
-	// -------------------------------------------------------------------------// 
+	// -------------------------------------------------------------------------//
 
 
 	// -------------------------------------------------------------------------//
@@ -125,15 +125,26 @@ class Vehicles extends BaseController
 
 			if (!empty($id)) {
 				$result = $this->vehicle_model->insertVehicle($data, $id);
+				if($result){
+					$_SESSION['message'] = 'usuccess';
+				}
+				else{
+					$_SESSION['message'] = 'uerror';
+				}
 			} else {
 				$result = $this->vehicle_model->insertVehicle($data);
+				if($result){
+					$_SESSION['message'] = 'success';
+				}
+				else{
+					$_SESSION['message'] = 'error';
+				}
 			}
 		}
-
 		return $this->response->redirect(site_url('Vehicles'));
 	}
 
-	// Store and update controller for the vehicle Ends 
+	// Store and update controller for the vehicle Ends
 	// ---------------------------------------------------------------------------//
 
 
@@ -143,10 +154,16 @@ class Vehicles extends BaseController
 	public function delete($id = null)
 	{
 		$data['vehicle'] = $this->vehicle_model->deleteVehicleById($id);
+		if($data['vehicle']){
+			$_SESSION['message'] = 'dsuccess';
+		}
+		else {
+			$_SESSION['message'] = 'derror';
+		}
 		return $this->response->redirect(site_url('vehicles'));
 	}
 
-	// Delete Vehicle By id ends 
+	// Delete Vehicle By id ends
 	// -------------------------------------------------------------------------------//
 
 	public function ajaxSearch()

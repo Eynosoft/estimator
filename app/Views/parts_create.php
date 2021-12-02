@@ -38,6 +38,14 @@
 
               <div class="form-group col-md-12">
 
+                <?php
+
+                $part_list_url =  base_url('parts/partslist');
+
+                ?>
+
+                <?php echo form_input(array('type'=>'hidden','name'=>'part_list','id'=>'part_list_url','value'=>$part_list_url)); ?>
+
                 <?php echo form_label('Part name', 'Part name', $lblAttributes); ?>
                 <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'part_name', 'name' => 'part_name[]', 'placeholder' => 'Enter Part Name', 'value' => '')); ?>
                 <?php if (isset($validation)) { ?>
@@ -102,6 +110,5 @@
 </div>
 
 </div>
-
 
 <?php echo $this->endSection(); ?>

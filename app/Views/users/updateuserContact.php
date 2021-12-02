@@ -21,7 +21,7 @@ $lblAttributes = [
       </div>
 
       <div class="card-body">
-        
+
         <?php
 
         if (!empty($user)) {
@@ -56,7 +56,7 @@ $lblAttributes = [
               <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'locale', 'name' => 'locale', 'placeholder' => 'Enter Locale', 'value' => $user['locale'])); ?>
 
               <?php if (isset($validation)) { ?>
-                
+
                 <div style="color: red;">
                   <?= $validation->getError('locale'); ?>
                 </div>
@@ -97,10 +97,13 @@ $lblAttributes = [
           <div class="form-row">
 
             <div class="form-group col-md-6">
-              <?php echo form_label('Email', 'email', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email', 'value' => $user['emails'])); ?>
 
-              <span class="noteText">Seperate multiple emails with comma.</span>
+              <?php echo form_label('Email', 'email', $lblAttributes); ?>
+
+              <input name="email" id="update_user_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['emails']; ?> data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
+
+
               <?php if (isset($validation)) { ?>
                 <div style="color: red;">
                   <?= $validation->getError('email'); ?>
@@ -111,9 +114,12 @@ $lblAttributes = [
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile', 'value' => $user['mobile'])); ?>
-              <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+              <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?><br>
+
+              <input name="mobile" id="update_user_mobile_data" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['mobile']; ?> data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple Mobile Number with <b>Enter.</b> Key </span>
+
+
               <?php if (isset($validation)) { ?>
                 <div style="color: red;">
                   <?= $validation->getError('mobile'); ?>
@@ -140,11 +146,10 @@ $lblAttributes = [
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Fax', 'fax', $lblAttributes); ?>
+              <?php echo form_label('Fax', 'fax', $lblAttributes); ?><br>
 
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax', 'value' => $user['fax'])); ?>
-
-              <span class="noteText">Seperate multiple faxes numbers with comma.</span>
+              <input name="fax" id="update_user_fax_data" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['fax']; ?> data-role="tagsinput" type="text"><br>
+              <span class="text-danger">Seperate multiple Fax with <b>Enter.</b> Key </span>
 
               <?php if (isset($validation)) { ?>
                 <div style="color: red;">
@@ -178,11 +183,33 @@ $lblAttributes = [
           $('#preview').html('<img src="'+event.target.result+'" width="150" height="100"/>');
         };
         fileReader.readAsDataURL(fileInput.files[0]);
-    } 
+    }
   }
 
   $("#contact_signature").on('change',function () {
       imagePreview(this);
   });
+
+</script>
+
+<script>
+
+    $(function(){
+    $('#update_user_email_data').tagsinput({
+      maxTags : 5
+    });
+    });
+
+    $(function(){
+    $('#update_user_mobile_data').tagsinput({
+    maxTags : 5
+    });
+    });
+
+    $(function(){
+    $('#update_user_fax_data').tagsinput({
+     maxTags : 5
+    });
+    });
 
 </script>

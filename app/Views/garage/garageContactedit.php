@@ -77,21 +77,28 @@
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Emails', 'email', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email Address', 'value' => $email)); ?>
+              <?php echo form_label('Emails', 'email', $lblAttributes); ?><br>
+              <?php // echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email Address', 'value' => $email)); ?>
+
+              <input name="email" id="garage_email_data_edit" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="tags form-control" value=<?php echo $email; ?> data-role="tagsinput" type="text"><br>
+
 
               <span class="noteText">Seperate multiple emails with comma.</span>
 
             </div>
 
-            <div class="form-group col-md-6">
+          <div class="form-group col-md-6">
 
-              <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile No.', 'value' => $mobile)); ?>
+          <?php echo form_label('Mobile', 'mobile', $lblAttributes); ?><br>
 
-              <span class="noteText">Seperate multiple mobile numbers with comma.</span>
 
-            </div>
+          <?php //echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'mobile', 'name' => 'mobile', 'placeholder' => 'Enter Mobile No.', 'value' => $mobile)); ?>
+
+          <input name="mobile" id="garage_mobile_data_edit" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="tags form-control" value=<?php echo $mobile; ?> data-role="tagsinput" type="text"><br>
+
+          <span class="noteText">Seperate multiple mobile numbers with comma.</span>
+
+          </div>
 
           </div>
 
@@ -107,9 +114,13 @@
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Fax', 'fax', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax No.', 'value' => $fax)); ?>
-              <span class="noteText">Seperate multiple faxes numbers with comma.</span>
+              <?php echo form_label('Fax', 'fax', $lblAttributes); ?><br>
+
+              <?php // echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'fax', 'name' => 'fax', 'placeholder' => 'Enter Fax No.', 'value' => $fax)); ?>
+
+            <input name="fax" id="garage_fax_data_edit" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $fax; ?> data-role="tagsinput" type="text"><br>
+
+            <span class="noteText">Seperate multiple faxes numbers with comma.</span>
 
             </div>
 
@@ -119,16 +130,16 @@
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Locale', 'locale', $lblAttributes); ?>
-              <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'locale', 'name' => 'locale', 'placeholder' => 'Enter Locale', 'value' => $locale)); ?>
-            
+            <?php echo form_label('Locale', 'locale', $lblAttributes); ?>
+            <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'locale', 'name' => 'locale', 'placeholder' => 'Enter Locale', 'value' => $locale)); ?>
+
             </div>
 
             <div class="form-group col-md-6">
 
               <?php echo form_label('City', 'city', $lblAttributes); ?>
               <?php echo form_input(array('type' => 'text', 'class' => 'form-control', 'id' => 'city', 'name' => 'city', 'placeholder' => 'Enter City', 'value' => $city)); ?>
-            
+
             </div>
 
           </div>
@@ -138,7 +149,6 @@
             <div class="form-group col-md-12">
 
               <?php echo form_label('Address', 'address', $lblAttributes); ?>
-
               <?php echo form_textarea(array('type' => 'text', 'class' => 'form-control', 'id' => 'address', 'name' => 'address', 'placeholder' => 'Enter Address', 'value' => $address, 'rows' => '3', 'cols' => '2')); ?>
 
             </div>
@@ -147,12 +157,15 @@
 
 
           <div class="form-row">
+
               <div class="form-group col-md-12">
               <input type="checkbox" <?php echo $status; ?> data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" value="1" name="status">
               </div>
+
           </div>
 
           <!-- Material checked -->
+
         </div>
 
       <?php } ?>
@@ -162,3 +175,29 @@
   </div>
 
 </div>
+
+<script>
+$(function(){
+  $('#garage_email_data_edit').tagsinput({
+  maxTags : 5,
+  });
+});
+</script>
+
+<script>
+  $(function(){
+  $('#garage_mobile_data_edit').tagsinput({
+   maxTags : 5,
+  });
+  });
+</script>
+
+<script>
+
+  $(function(){
+    $('#garage_fax_data_edit').tagsinput({
+    maxTags : 5,
+    });
+  });
+
+</script>

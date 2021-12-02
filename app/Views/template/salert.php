@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $swmessage = '';
 $swtype = '';
@@ -6,6 +6,7 @@ $swsubmessage = '';
 
 if(isset($_SESSION['message']) && !empty($_SESSION['message']))
 {
+
   switch($_SESSION['message'])
   {
     case 'success':
@@ -57,11 +58,9 @@ if(isset($_SESSION['message']) && !empty($_SESSION['message']))
     break;
 
   }
-
 }
 
 unset($_SESSION['message']);
-
 if(!empty($swtype) && !empty($swmessage))
 {
 
