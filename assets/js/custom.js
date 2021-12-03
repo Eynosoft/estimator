@@ -873,3 +873,76 @@ $(document).ready(function(){
   });
 
 //   Damage Area
+
+// parts data starts from here
+
+$(document).ready(function() {
+    // Initialize
+    var count_delete = $('#count_parts').val();
+    var part_list = $('#part_list_values').val();
+
+    $("#parts_data").autocomplete( {
+      source: function(request, response) {
+        // Fetch data
+        $.ajax({
+          url: part_list,
+          type: 'post',
+          dataType: "json",
+          data: {
+            search: request.term
+          },
+          success: function(data) {
+            response(data);
+          }
+        });
+      },
+
+      select: function(event, ui) {
+        // Set selection
+        $('#parts_data').val(ui.item.label); // display the selected text
+        $('#userid').val(ui.item.value); // save selected id to input
+        var parts_label = ui.item.label;
+        if (parts_label == "Others") {
+          var parts_data = ui.item.value;
+        } else {
+          var parts_data = $('#parts_data').val();
+        }
+
+        if (parts_data) {
+
+          $('#part_labels').show();
+          $('#parts_labels').append(label_values);
+          $('#label_values').show();
+
+          var damageoptions = '<option value="">--Select--</option><option value="Bent">Bent</option><option value="Broken">Broken</option><option value="burnt">burnt</option><option value="Chipped">Chipped</option><option value="Crushed">Crushed</option><option value="Cut">Cut</option><option value="Dented">Dented</option><option value="Drill">Drill</option><option value="Flooded">Flooded</option><option value="Missing">Missing</option><option value="Old Repair">Old Repair</option><option value="Scratched">Scratched</option><option value="Shorted">Shorted</option><option value="Twisted">Twisted</option>';
+
+          var actionoptions = $("#part_action_data").val();
+          if (typeof actionoptions != 'undefined' || actionoptions != '') {
+
+            var options = $.parseJSON(actionoptions);
+            var optionsHtml = '<option value="">--Select--</option>';
+            for (var p in options) {
+              if (p != '') {
+                optionsHtml += '<option value="' + p + '">' + options[p] + '</option>';
+              }
+            }
+          }
+
+          var statusoptions = '<option value="">--Select--</option><option value="New">New</option><option value="Second Hand">Second Hand</option><option value="Imitation">Imitation</option>';
+
+          var html = "<div class='row parts-input' id='removeparts" + count_delete + "'><div class='col-md-12'><label><b>" + parts_data + ":</b></label></div><input type='hidden' name='part_name[]' value='" + parts_data + "'><div class='col-md-2 input-val'><select name='damage_type[]' class='form-control'>" + damageoptions + "</select></div><div class='col-md-2 input-val'><select name='action_type[]' class='form-control'>" + optionsHtml + "</select></div><div class='col-md-2 input-val'><select name='status[]' class='form-control'>" + statusoptions + "</select></div><div class='col-md-1 input-val'><input type='number' min='1' name='quantity[]' class='form-control part_qty' id='quantity" + count_delete + "' value='1' data-id='" + count_delete + "'></div><div id='part_cost_class" + count_delete + "' class='col-md-1 input-val'><input type='text' name='part_cost[]' class='form-control part_cost' data-id='" + count_delete + "' id='part_cost" + count_delete + "'></div><div id='part_cost_vat" + count_delete + "' class='col-md-1 input-val'><input type='text' class='form-control' name='part_cost_vat[]' id='part_cost_val" + count_delete + "'></div><div class='col-md-1 input-val'><input type='text' class='form-control discount' name='discount[]' id='part_discount" + count_delete + "' data-id='" + count_delete + "'></div><div class='col-md-1 input-val input-radio_val'><input type='checkbox' class='vat_parts' checked name='parts_vat[]' data-id='" + count_delete + "' value='' id='parts_vat" + count_delete + "'></div><div class='col-md-1'><button class='btn btn-danger' data-id='" + count_delete + "' id='removeparts'><i class='fa fa-trash'></i></button></div><br><br><div class='col-md-12'><input type='text' name='notes[]' value='' id='parts_note' class='form-control' placeholder='Notes'><input type='hidden' name='total_parts[]' value='' id='parts_agreegate_amount" + count_delete + "' class='form-control' placeholder='Notes'></div></div>";
+          $('#newParts').show();
+          $('#newParts').append(html);
+          count_delete++;
+        } else {
+          $("#newParts").hide();
+        }
+
+        return false;
+
+      }
+    });
+
+  });
+
+// Parts list Data Ends Here

@@ -98,7 +98,7 @@ $lblAttributes = [
 
             <div class="form-group col-md-6">
 
-              <?php echo form_label('Email', 'email', $lblAttributes); ?>
+              <?php echo form_label('Email', 'email', $lblAttributes); ?><br>
 
               <input name="email" id="update_user_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['emails']; ?> data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>

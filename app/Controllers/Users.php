@@ -151,17 +151,20 @@ class Users extends BaseController
 			if(!empty($id)) {
 				$result = $this->user_model->insertUsersData($data, $id);
 				if ($result) {
+					$_SESSION['message'] = 'usuccess';
 					unset($_SESSION['currentTab']);
 					$_SESSION['currentTab'] = '#userContact';
-					$url = base_url() . '/users' . '/#userContact';
-					return redirect()->to($url);
 				}
+				else {
+					$_SESSION['message'] = 'uerror';
+				}
+				$url = base_url() . '/users' . '/#userContact';
+				return redirect()->to($url);
 			}
 
 			else {
 				$result = $this->user_model->insertUsersData($data);
 				if ($result) {
-
 				$_SESSION['message'] = 'success';
 					unset($_SESSION['currentTab']);
 					$_SESSION['currentTab'] = '#userContact';

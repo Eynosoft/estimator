@@ -51,7 +51,7 @@
 
             <div class="form-group col-md-6">
 
-              <label class="fieldLabel mb-1">Emails</label>
+              <label class="fieldLabel mb-1">Emails</label><br>
 
               <input name="account_email" id="user_account_email_data_update" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['account_email']; ?> data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group col-md-6">
-              <label class="fieldLabel mb-1">Mobile</label>
+              <label class="fieldLabel mb-1">Mobile</label><br>
 
               <input name="account_mobile" id="user_account_mobile_data_update" placeholder="Enter Mobile Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" data-role="tagsinput" type="text" value=<?php echo $user['account_mobile']; ?>><br>
 
@@ -79,12 +79,13 @@
 
             <div class="form-group col-md-6">
 
-              <label class="fieldLabel mb-1">Faxes</label>
+              <label class="fieldLabel mb-1">Faxes</label><br>
 
               <input name="account_fax" id="user_account_fax_data_update" placeholder="Enter Fax Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value=<?php echo $user['account_fax']; ?> data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple Fax with <b>Enter.</b> Key </span>
 
             </div>
+
           </div>
 
         </div>

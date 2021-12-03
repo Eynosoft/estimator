@@ -55,17 +55,17 @@
           <div class="form-row">
 
             <div class="form-group col-md-6">
-              <label class="fieldLabel mb-1">Emails</label>
+              <label class="fieldLabel mb-1">Emails</label><br>
 
-              <input name="account_email" id="user_account_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <input name="account_email" id="user_account_email_data" placeholder="Enter Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple emails with <b>Enter.</b> Key </span>
 
             </div>
 
             <div class="form-group col-md-6">
-              <label class="fieldLabel mb-1">Mobile</label>
+              <label class="fieldLabel mb-1">Mobile</label><br>
 
-              <input name="account_mobile" id="user_account_mobile_data" placeholder="Enter Mobile Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <input name="account_mobile" id="user_account_mobile_data" placeholder="Enter Mobile Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple Mobile Numbers with <b>Enter.</b> Key </span>
 
             </div>
@@ -81,9 +81,9 @@
             </div>
 
             <div class="form-group col-md-6">
-              <label class="fieldLabel mb-1">Faxes</label>
+              <label class="fieldLabel mb-1">Faxes</label><br>
 
-              <input name="account_fax" id="user_account_fax_data" placeholder="Enter Fax Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
+              <input name="account_fax" id="user_account_fax_data" placeholder="Enter Fax Numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="form-control" value="" data-role="tagsinput" type="text"><br>
               <span class="text-danger">Seperate multiple Fax Numbers with <b>Enter.</b> Key </span>
 
             </div>

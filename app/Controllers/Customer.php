@@ -94,9 +94,13 @@ class Customer extends BaseController
 		if (!empty($id)) {
 			$result = $this->customer_model->insertcustomer($data, $id);
 			if ($result) {
-				$url = base_url() . '/customer';
-				return redirect()->to($url);
+				$_SESSION['message'] = 'usuccess';
 			}
+			else{
+				$_SESSION['message'] = 'uerror';
+			}
+			$url = base_url() . '/customer';
+				return redirect()->to($url);
 		}
 	}
 
