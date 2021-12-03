@@ -9,12 +9,13 @@
     <h1 class="h3 mb-0 text-gray-800">Estimation Request &nbsp<b>"<?php echo $requestor['request_no'] ?>"</b> </h1>
   </div>
 
+
   <div class="row">
 
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a id="edit_job_request" href="javascript:void(0);" class="btn btn-md btn-warning btn-block  mb-4">Edit</a>
+      <a data-id="job_request_form" href="javascript:void(0);" class="btn btn-md btn-warning btn-block  mb-4 view_job">Edit</a>
 
       <!-- Left Other HTML -->
 
@@ -35,47 +36,47 @@
             switch ($requestor['status']) {
 
               case '1':
-                echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-primary'>Pending</span></a>";
+                echo "<a class='view_job' data-id='about' href='javascript:void(0)'>About<span class='badge badge-primary'>Pending</span></a>";
                 break;
 
               case '2':
-                echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-success'>Progress</span></a>";
+                echo "<a class='view_job' data-id='about' href='javascript:void(0)'>About<span class='badge badge-success'>Progress</span></a>";
                 break;
 
               case '3':
-                echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-warning'>Completed</span></a>";
+                echo "<a class='view_job' data-id='about' href='javascript:void(0)'>About<span class='badge badge-warning'>Completed</span></a>";
                 break;
 
               default:
-                echo "<a id='about' href='javascript:void(0)'>About<span class='badge badge-danger'>Finish</span></a>";
+                echo "<a class='view_job' data-id='about' href='javascript:void(0)'>About<span class='badge badge-danger'>Finish</span></a>";
                 break;
             }
 
             ?>
 
-            <a id="vehicle" href="javascript:void(0)">Vehicle<span class="badge badge-danger"><?php echo $requestor['vehicle']; ?></span></a>
+            <a class="view_job" data-id="vehicle_section" href="javascript:void(0)">Vehicle<span class="badge badge-danger"><?php echo $requestor['vehicle']; ?></span></a>
 
-            <a id="garage" href="javascript:void(0)">Garage<span class="badge badge-success"><?php echo $requestor['garage']; ?></span></a>
+            <a class="view_job" data-id="garage_section" href="javascript:void(0)">Garage<span class="badge badge-success"><?php echo $requestor['garage']; ?></span></a>
 
-            <a href="#">Insurance Details<span class="badge badge-primary"></span></a>
+            <a class="view_job" data-id='insurance_section' href="#">Insurance Details<span class="badge badge-primary"></span></a>
 
-            <a id="persons" href="javascript:void(0)">Persons <span class="badge badge-primary" style="font-size: 15px;"></span></a>
+            <a class="view_job" data-id="persons_sections" href="javascript:void(0)">Persons <span class="badge badge-primary" style="font-size: 15px;"><?php echo !empty($person_data) ? count($person_data) : '0'; ?></span></a>
 
-            <a id="docs" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"></span></a>
+            <a class="view_job" data-id="docs_section" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"></span></a>
 
             <?php
 
             if (!empty($job_request_data)) {  ?>
 
-              <a id="assesment" href="javascript:void(0)">Assesments<span class="badge badge-primary" style="font-size: 15px;"></span></a>
+              <a class="view_job" data-id="assesment_sections" href="javascript:void(0)">Assesments<span class="badge badge-primary" style="font-size: 15px;"></span></a>
 
-              <a id="parts" href="javascript:void(0)">Parts <span class="badge badge-primary" style="font-size: 15px;"></span></a>
+              <a class="view_job" data-id="parts_sections" href="javascript:void(0)">Parts <span class="badge badge-primary" style="font-size: 15px;"><?php echo !empty($job_request_data['job_parts']) ? count($job_request_data['job_parts']) : '0'; ?></span></a>
 
-              <a id="labours" href="javascript:void(0)">Labours<span class="badge badge-primary" style="font-size: 15px;"></span></a>
+              <a class="view_job" data-id="labours_sections" href="javascript:void(0)">Labours<span class="badge badge-primary" style="font-size: 15px;"><?php echo !empty($job_request_data['labours']) ? count($job_request_data['labours']) : '0'; ?></span></a>
 
             <?php } ?>
 
-            <a href="#"><strong>Timeline <span class="badge badge-primary" style="font-size: 15px;">0</span></strong></a>
+            <a class="view_job" data-id='timeline_section' href="#"><strong>Timeline <span class="badge badge-primary" style="font-size: 15px;">0</span></strong></a>
 
           </div>
 
@@ -105,12 +106,12 @@
             switch ($requestor['status']) {
 
               case '1':
-                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-spinner' aria-hidden='true'></i>&nbspIn progress<span class='badge badge-primary fa fa-arrow-right'></span>
+                echo "<a class='view_job' data-id='job_request_form' href='javascript:void(0);' id='status_inprogress'><i class='fa fa-spinner' aria-hidden='true'></i>&nbspIn progress<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
                 break;
 
               case '2':
-                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspComplete<span class='badge badge-primary fa fa-arrow-right'></span>
+                echo "<a class='view_job' data-id='job_request_form' href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspComplete<span class='badge badge-primary fa fa-arrow-right'></span>
                   </a>";
                 break;
 
@@ -120,17 +121,16 @@
                 break;
 
               default:
-                echo "<a href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspN/A<span class='badge badge-primary fa fa-arrow-right'></span>
+                echo "<a class='view_job' data-id='job_request_form' href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspN/A<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
                 break;
             }  ?>
 
-
-            <a href="javascript:void(0);">
+            <!-- <a class="view_job" data-id='pictures_section' href="javascript:void(0);">
               <i class="fa fa-plus" aria-hidden="true"></i>&nbspPictures<span class="badge badge-primary fa fa-arrow-right"></span>
-            </a>
+            </a> -->
 
-            <a href="javascript:void(0);">
+            <a class="view_job" data-id='notification_section' href="javascript:void(0);">
               <i class="fa fa-plus" aria-hidden="true"></i>&nbspNotifications<span class="badge badge-primary"></span>
             </a>
 
@@ -155,7 +155,7 @@
     <!-- Right Column -->
     <!-- About tabs Starts -->
 
-    <div class="col-lg-9 mb-4" id="about_requests">
+    <div class="col-lg-9 mb-4 remove_job_sections" id="about">
 
       <div class="card shadow mb-4">
 
@@ -169,7 +169,7 @@
 
           <div class="table-responsive">
 
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
 
               <tbody>
 
@@ -292,9 +292,412 @@
 
     <!-- Assign Jobs fields  -->
 
+    <!-- labours_sections  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='labours_sections' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Labours Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <table class="table table-bordered table-striped table-hover" id="labours_data" width="100%" cellspacing="0">
+
+              <thead>
+
+                <tr>
+
+                  <th>S.no.</th>
+
+                  <th>Labour</th>
+
+                  <th>Cost</th>
+
+                  <th>Total Cost</th>
+
+                  <th>Vat Cost</th>
+
+                  <th>Description</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+
+                $i = 1;
+
+                if(!empty($job_request_data['labours'])) {
+
+                foreach ($job_request_data['labours'] as $labours) {  ?>
+
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $labours['labour']; ?></td>
+                    <td><?php echo $labours['cost']; ?></td>
+                    <td><?php echo $labours['cost_total']; ?></td>
+                    <td><?php echo $labours['vat_cost']; ?></td>
+                    <td><?php echo $labours['description_labour']; ?></td>
+                  </tr>
+
+                <?php $i++;
+                 } }
+
+                ?>
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- labours_sections  -->
+
+    <!-- assesment_sections  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='assesment_sections' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Assesments Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <p>This is the assesment_sections</p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- assesment_sections  -->
+
+
+    <!--docs_section  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='docs_section' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Documents</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <p>This is the docs_section</p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- docs_section  -->
+
+
+    <!--persons_sections  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='persons_sections' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Persons Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <div class="table-responsive">
+
+              <table class="table table-bordered table-striped table-hover" id="person_data" width="100%" cellspacing="0">
+
+                <thead>
+
+                  <tr>
+
+                    <th>S.no.</th>
+
+                    <th>Person Type </th>
+
+                    <th>Persson Name</th>
+
+                    <th>Person Number</th>
+
+                  </tr>
+
+                </thead>
+
+                <tbody>
+
+                  <?php
+
+                  $i = 1;
+
+                  if(!empty($person_data)) {
+
+                  foreach ($person_data as $persons) {  ?>
+
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $persons['person_type']; ?></td>
+                      <td><?php echo $persons['person_name']; ?></td>
+                      <td><a class="btn btn-primary btn-sm" href="tel:<?php echo $persons['person_number']; ?>"><?php echo $persons['person_number']; ?></a></td>
+                    </tr>
+
+                  <?php $i++;
+
+                   } }
+
+                  ?>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- persons_sections -->
+
+
+    <!--insurance_section  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='insurance_section' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Insurance Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <p>This is the insurance_section</p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- insurance_section -->
+
+    <!--garage_section  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='garage_section' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Garage Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <p>This is the garage_section</p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- garage_section -->
+
+
+    <!--vehicle_section  -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id='vehicle_section' style="display: none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Vehicle Information</h6>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="col-lg-12 mb-4">
+
+            <p>This is the vehicle_section</p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- vehicle_section -->
+
+
+    <!-- This is the notification section  Area Starts-->
+    <div class="col-lg-9 mb-4 remove_job_sections" id="notification_section" style="display: none;">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+          <h6 class="m-0 font-weight-bold text-primary">Notification</h6>
+
+        </div>
+        <div class="card-body">
+          <div class="col-lg-12 mb-4">
+            <p>This is the notification section Area...!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- This is the notification section area section ends -->
+
+
+    <!-- This is the parts Area Starts.. -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id="parts_sections" style="display:none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Parts Information</h6>
+        </div>
+
+        <div class="card-body">
+          <div class="col-lg-12 mb-4">
+            <table class="table table-responsive table-bordered table-striped table-hover" id="parts_data_values" width="100%" cellspacing="0">
+
+              <thead>
+
+                <tr>
+                  <th>S.no.</th>
+                  <th>Part Name</th>
+                  <th>Damage Type</th>
+                  <th>Part Action Name</th>
+                  <th>Part Status</th>
+                  <th>Quantity</th>
+                  <th>Part Cost</th>
+                  <th>Part Vat Cost</th>
+                  <th>Discount(%)</th>
+                  <th>Part Note</th>
+                  <th>Total Amount</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+
+                $i = 1;
+                if(!empty($job_request_data['job_parts'])) {
+                foreach ($job_request_data['job_parts'] as $job_parts_data) {  ?>
+
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $job_parts_data['part_name']; ?></td>
+                    <td><?php echo $job_parts_data['damage_type']; ?></td>
+                    <td><?php echo $job_parts_data['action_type_name']; ?></td>
+                    <td><?php echo $job_parts_data['part_status']; ?></td>
+                    <td><?php echo $job_parts_data['quantity']; ?></td>
+                    <td><?php echo $job_parts_data['part_cost']; ?></td>
+                    <td><?php echo $job_parts_data['part_cost_vat']; ?></td>
+                    <td><?php echo $job_parts_data['discount']; ?></td>
+                    <td><?php echo $job_parts_data['parts_note']; ?></td>
+                    <td><?php echo $job_parts_data['total_amount']; ?></td>
+
+                  </tr>
+
+                <?php $i++;
+                 } }
+
+                ?>
+
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- This is the parts Area Ends -->
+
+    <!-- This is timeline Section Area -->
+
+    <div class="col-lg-9 mb-4 remove_job_sections" id="timeline_section" style="display:none;">
+
+      <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Timeline</h6>
+        </div>
+
+        <div class="card-body">
+          <div class="col-lg-12 mb-4">
+            <p>This is the Timeline Area ..!</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- This is the timeline Section Area -->
+
     <!-- Assign Tab starts -->
 
-    <div class="col-lg-9 mb-4" id="assign_jobs" style="display: none;">
+    <div class="col-lg-9 mb-4 remove_job_sections" id="job_request_form" style="display: none;">
 
       <div class="card shadow mb-4">
 
@@ -312,7 +715,7 @@
 
                 <li><a data-toggle="tab" href="#job_damage">Damage</a></li>
 
-                <li><a data-toggle="tab" href="#job_parts">Part</a></li>
+                <li><a data-toggle="tab" href="#job_parts">Parts</a></li>
 
                 <li><a data-toggle="tab" href="#job_labours">Labour</a></li>
 
@@ -392,7 +795,8 @@
                 </div>
 
                 <!-- <div id='job_fees' class="tab-pane fade">
-                    <?php // echo $this->include('job_requests/assign_fees'); ?>
+                    <?php // echo $this->include('job_requests/assign_fees');
+                    ?>
                 </div> -->
 
               </div>

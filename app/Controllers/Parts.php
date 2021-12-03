@@ -109,10 +109,10 @@ class Parts extends BaseController
 		$result = $this->parts_model->insertpart($part_data, $id);
 
 		if ($result) {
-			$data['message'] = "Parts Added Successfully..!";
+			$_SESSION['message'] = 'usuccess';
 			return $this->response->redirect(site_url('parts'));
 		} else {
-			$data['message'] = "Something Went Wrong..!";
+			$_SESSION['message'] = 'uerror';
 			return $this->response->redirect(site_url('parts_create'));
 		}
 	}
@@ -187,10 +187,10 @@ class Parts extends BaseController
 		];
 		$result = $this->parts_action_model->insertpartaction($part_data, $id);
 		if ($result) {
-			$data['message'] = "Parts Added Successfully..!";
+		  $_SESSION['message'] = 'success';
 			return $this->response->redirect(site_url('parts/partsaction'));
 		} else {
-			$data['message'] = "Something Went Wrong..!";
+			$_SESSION['message'] = 'error';
 			return $this->response->redirect(site_url('parts/partsactioncreate'));
 		}
 	}

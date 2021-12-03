@@ -236,7 +236,7 @@ border-radius: 4px;
 
 .vertical-menu a.active { background-color: rgba(0,0,0,0.05); }
 
-.vertical-menu.iconNone a:before { content: none; padding-right: 0px; } 
+.vertical-menu.iconNone a:before { content: none; padding-right: 0px; }
 
 .vertical-menu a span.badge { float: right; position: relative; top: 4px; }
 
@@ -260,7 +260,7 @@ border-radius: 4px;
 
 .sidebar.toggled .nav-item .nav-link {
     padding: 0.5rem 1rem;
-  }   
+  }
 }
 
 .toggle.btn {

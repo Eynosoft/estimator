@@ -651,6 +651,7 @@ class RequestorModel extends Model
   public function getJobRequestDataById($id)
   {
     try {
+
       $customer = new CustomerModel();
       $users = new UsersModel();
       $labours = new JobRequestLabourModel();
@@ -661,9 +662,6 @@ class RequestorModel extends Model
       $this->join('job_requests', 'job_requests.request_id = requestor.id');
       $this->where('requestor.id', $id);
       $job_request =  $this->findAll();
-      // echo "<pre>";
-      // print_r($job_request);
-      // die('####');
 
       if (!empty($job_request)) {
         foreach ($job_request as $jobs) {

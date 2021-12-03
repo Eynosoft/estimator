@@ -88,13 +88,34 @@ class JobRequestPartsModel extends Model
   public function getPartsDataByJobId($id = null)
   {
     try {
+      $parts_action_name = new PartsActionModel();
       $part_data = $this->where('job_id', $id)->findAll();
-      return $part_data;
+      $i = 0;
+      foreach ($part_data as $partsvalue) {
+        $part[$i]['id'] = $partsvalue['id'];
+        $part[$i]['job_id'] = $partsvalue['job_id'];
+        $part[$i]['part_name'] = $partsvalue['part_name'];
+        $part[$i]['damage_type'] = $partsvalue['damage_type'];
+        $part[$i]['action_type'] = $partsvalue['action_type'];
+        $part[$i]['action_type_name'] = !empty($partsvalue['action_type']) ? $parts_action_name->getPartsactionNameById($partsvalue['action_type']) : 'N/A';
+        $part[$i]['part_status'] = $partsvalue['part_status'];
+        $part[$i]['quantity'] = $partsvalue['quantity'];
+        $part[$i]['part_cost'] = $partsvalue['part_cost'];
+        $part[$i]['part_cost_vat'] = $partsvalue['part_cost_vat'];
+        $part[$i]['discount'] = $partsvalue['discount'];
+        $part[$i]['parts_vat'] = $partsvalue['parts_vat'];
+        $part[$i]['parts_note'] = $partsvalue['parts_note'];
+        $part[$i]['total_amount'] = $partsvalue['total_amount'];
+        $i++;
+       }
+      return $part;
     } catch (\Exception $e) {
       die($e->getMessage());
     }
     return false;
   }
+
+
 
 // Get parts data by the job it data ends
 

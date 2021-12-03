@@ -78,6 +78,18 @@ class Alertclass {
                 $swsubmessage = 'Something Went Wrong';
             break;
 
+            case 'asuccess':
+                $swmessage = 'Job Assigned Successfully';
+                $swtype = 'success';
+                $swsubmessage = 'Success';
+            break;
+
+            case 'aerror':
+                $swmessage = 'Job can not Assigned!';
+                $swtype = 'error';
+                $swsubmessage = 'Something went wrong';
+            break;
+
             default:
             $swmessage = 'OOPs!';
             $swtype = 'error';

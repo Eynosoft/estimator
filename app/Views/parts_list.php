@@ -3,8 +3,8 @@
 
 <div class="container-fluid">
   <!-- Page Heading -->
-  
- 
+
+
 	<?php if (isset($message)) : ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <?php echo $message; ?>
@@ -66,7 +66,7 @@
 
                 <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2"
                   href="<?php echo base_url('parts/edit').'/'.$row['id']; ?>">
-                  
+
                   <i class="fa fa-pencil" aria-hidden="true"></i>
 
                 </a>
@@ -97,7 +97,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-  
+
 <script>
 
     $(document).ready(function() {

@@ -87,8 +87,8 @@
 
       <?php
 
-      echo form_input(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'saveform', 'value' => 'Save')) 
-      
+      echo form_input(array('type' => 'submit', 'class' => 'btn btn-md btn-primary', 'id' => 'saveform', 'value' => 'Save'))
+
       ?>
 
       </div>

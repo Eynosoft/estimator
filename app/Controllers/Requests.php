@@ -140,7 +140,7 @@ public function update($id = null)
 			} else {
 				$result = $this->request_model->insertrequestor($data);
 			}
-			if ($result) {
+			if($result) {
 				$this->session->set('message', 'success');
 			} else {
 				$this->session->set('error', 'error');
@@ -203,27 +203,34 @@ public function update($id = null)
 
 public function assignJob()
   {
+
 	  if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
+
 		$assign_id = $this->request->getVar('assign_id');
+
 		$data = [
 			'requestor_id' => $this->request->getVar('requestor_id'),
 			'assessor' => $this->request->getVar('assessor'),
 			'assign_note' => $this->request->getVar('notes'),
 			'visit_date' => $this->request->getVar('visit_date'),
 		];
+
 		$result = $this->assign_model->insertAssignJob($data, $assign_id);
+
 		if($result) {
-			$this->session->set('message', 'success');
+			$this->session->set('message', 'asuccess');
 		}else {
-			$this->session->set('error', 'error');
+			$this->session->set('message', 'aerror');
 		}
 		$url = base_url() . '/requests/viewjob' . '/' . $data['requestor_id'];
 		return redirect()->to($url);
+
   }
 
 //Assign a job to a requestor Ends
@@ -316,14 +323,17 @@ public function viewjob($request_id = null)
 	  if(!logged_in()) {
 			return redirect()->to(base_url(route_to('/')));
 		}
+
 		$context = [
 			'username' => user()->username,
 		];
+
 		$context['requestor'] = $this->request_model->requestGetDataById($request_id);
 		$context['part_action_options'] = $this->parts_action_model->setPartsactionDropdown();
 		$context['job_request_data'] = $this->request_model->getJobRequestDataById($request_id);
 		$context['assessors'] = $this->user_model->getallusersData();
 		$context['part'] = $this->parts_model->setPartsDropdown();
+		$context['person_data'] = $this->request_person_model->getPersonDataById($request_id);
 		return view('view_job', $context);
 }
 
