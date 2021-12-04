@@ -558,10 +558,19 @@ class RequestorModel extends Model
           $assessor_data = !empty($requestor_data['assessor']) ? $users->getusersNameById($requestor_data['assessor']) : 'N/A';
           $returndata['assessor'] = $assessor_data;
           $returndata['assessor_data'] = $requestor_data['assessor'];
+
           $vehicle_data = !empty($requestor_data['vehicle']) ? $vehicle->getVehicleNameById($requestor_data['vehicle']) : 'N/A';
           $returndata['vehicle'] = $vehicle_data;
+
+
           $garage_data = !empty($requestor_data['garage']) ? $garage->getGarageNameById($requestor_data['garage']) : 'N/A';
           $returndata['garage'] = $garage_data;
+
+          $returndata['vehicle_whole_data'] = !empty($requestor_data['vehicle']) ? $vehicle->getVehicleDataById($requestor_data['vehicle']) : 'N/A';
+
+          $garage_whole_data = !empty($requestor_data['garage']) ? $garage->getAllDataById($requestor_data['garage']) : 'N/A';
+           $returndata['garage_whole'] = $garage_whole_data;
+
           $returndata['insured_reference'] = $requestor_data['insured_reference'];
           $returndata['date_accident'] = $requestor_data['date_accident'];
           $returndata['policy_number'] = $requestor_data['policy_number'];
@@ -588,6 +597,12 @@ class RequestorModel extends Model
             $returndata['vehicle'] = $vehicle_data;
             $garage_data = !empty($requestor_data['garage']) ? $garage->getGarageNameById($requestor_data['garage']) : 'N/A';
             $returndata['garage'] = $garage_data;
+
+            $returndata['vehicle_whole_data'] = !empty($requestor_data['vehicle']) ? $vehicle->getVehicleDataById($requestor_data['vehicle']) : 'N/A';
+
+            $garage_whole_data = !empty($requestor_data['garage']) ? $garage->getAllDataById($requestor_data['garage']) : 'N/A';
+
+             $returndata['garage_whole'] = $garage_whole_data;
             $returndata['insured_reference'] = $requestor_data['insured_reference'];
             $returndata['date_accident'] = $requestor_data['date_accident'];
             $returndata['policy_number'] = $requestor_data['policy_number'];
@@ -657,6 +672,8 @@ class RequestorModel extends Model
       $labours = new JobRequestLabourModel();
       $parts_data = new JobRequestPartsModel();
       $damage_data = new JobRequestDamageModel();
+      $job_documents = new JobRequestDocumentModel();
+
       $this->table('requestor');
       $this->select('job_requests.*');
       $this->join('job_requests', 'job_requests.request_id = requestor.id');
@@ -677,6 +694,9 @@ class RequestorModel extends Model
           $returndata['labours'] = !empty($jobs['job_id']) ? $labours->getJobLaboursDataById($jobs['job_id']) : 'N/A';
           $returndata['job_parts'] = !empty($jobs['job_id']) ? $parts_data->getPartsDataByJobId($jobs['job_id']) : 'N/A';
           $returndata['damage_parts'] = !empty($jobs['job_id']) ? $damage_data->getDamageDataById($jobs['job_id']) : 'N/A';
+
+          $returndata['job_request_documents'] = !empty($jobs['job_id']) ? $job_documents->getdocumentsByJobId($jobs['job_id']) : 'N/A';
+
           $returndata['total_loss_type'] = $jobs['total_loss_type'];
           $returndata['estimated_market_value'] = $jobs['estimated_market_value'];
           $returndata['approximated_salvage_value'] = $jobs['approximated_salvage_value'];

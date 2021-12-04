@@ -25,7 +25,7 @@ class JobRequestDocumentModel extends Model
     parent::__construct();
     //$this->documentation_model = new DocumentationModel();
   }
-  // -----------------------------------------------------------------------------------------------// 
+  // -----------------------------------------------------------------------------------------------//
   // Get Requestor all data Starts
 
   function documentInsert($data = null) {
@@ -43,6 +43,15 @@ class JobRequestDocumentModel extends Model
   catch (\Exception $e) {
       die($e->getMessage());
   }
+}
+
+public function getdocumentsByJobId($job_id = null) {
+ try {
+   $document = $this->where('job_id',$job_id)->findAll();
+   return $document;
+ } catch (\Exception $e) {
+   die($e->getMessage());
+ }
 }
 
 

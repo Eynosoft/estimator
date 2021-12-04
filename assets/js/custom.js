@@ -219,6 +219,18 @@ $(document).ready(function(){
  $('#parts_data_values').DataTable();
 });
 
+$(document).ready(function(){
+$('#garage_data_values').DataTable();
+});
+
+$(document).ready(function(){
+  $('#insurance_data').DataTable();
+})
+
+$(document).ready(function() {
+$('#vehicle_data_values').DataTable();
+});
+
 // Show Notes Section into the toggel class into the assign notes section
 
 $(document).ready(function () {

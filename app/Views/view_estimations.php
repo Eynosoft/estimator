@@ -15,7 +15,9 @@
     <!-- Left Column -->
     <div class="col-lg-3 mb-4">
 
-      <a href="<?php echo base_url('requests/update') . '/' . $requestor['id']; ?>" class="btn btn-md btn-warning btn-block mb-4">Edit</a>
+      <?php $edit_url = base_url('requests/update') . '/' . $requestor['id']; ?>
+
+      <a href="#" class="btn btn-md btn-warning btn-block mb-4">Edit</a>
 
       <!-- Left Other HTML -->
 

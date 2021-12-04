@@ -10,6 +10,7 @@
   </div>
 
 
+
   <div class="row">
 
     <!-- Left Column -->
@@ -56,13 +57,19 @@
 
             <a class="view_job" data-id="vehicle_section" href="javascript:void(0)">Vehicle<span class="badge badge-danger"><?php echo $requestor['vehicle']; ?></span></a>
 
-            <a class="view_job" data-id="garage_section" href="javascript:void(0)">Garage<span class="badge badge-success"><?php echo $requestor['garage']; ?></span></a>
+            <?php if (!empty($requestor['garage_whole'][0])) { ?>
+              <a class="view_job" data-id="garage_section" href="javascript:void(0)">Garage<span class="badge badge-success"><?php echo $requestor['garage']; ?></span></a>
+            <?php } ?>
 
             <a class="view_job" data-id='insurance_section' href="#">Insurance Details<span class="badge badge-primary"></span></a>
 
             <a class="view_job" data-id="persons_sections" href="javascript:void(0)">Persons <span class="badge badge-primary" style="font-size: 15px;"><?php echo !empty($person_data) ? count($person_data) : '0'; ?></span></a>
 
-            <a class="view_job" data-id="docs_section" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"></span></a>
+            <?php if(!empty($job_request_data['job_request_documents'])) { ?>
+
+            <a class="view_job" data-id="docs_section" href="javascript:void(0)">Documents <span class="badge badge-primary" style="font-size: 15px;"><?php echo !empty($job_request_data['job_request_documents']) ? count($job_request_data['job_request_documents']) : '0'; ?></span></a>
+
+            <?php } ?>
 
             <?php
 
@@ -124,7 +131,9 @@
                 echo "<a class='view_job' data-id='job_request_form' href='javascript:void(0);' id='status_inprogress'><i class='fa fa-arrow-right' aria-hidden='true'></i>&nbspN/A<span class='badge badge-primary fa fa-arrow-right'></span>
                 </a>";
                 break;
-            }  ?>
+            }
+
+            ?>
 
             <!-- <a class="view_job" data-id='pictures_section' href="javascript:void(0);">
               <i class="fa fa-plus" aria-hidden="true"></i>&nbspPictures<span class="badge badge-primary fa fa-arrow-right"></span>
@@ -336,21 +345,22 @@
 
                 $i = 1;
 
-                if(!empty($job_request_data['labours'])) {
+                if (!empty($job_request_data['labours'])) {
 
-                foreach ($job_request_data['labours'] as $labours) {  ?>
+                  foreach ($job_request_data['labours'] as $labours) {  ?>
 
-                  <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $labours['labour']; ?></td>
-                    <td><?php echo $labours['cost']; ?></td>
-                    <td><?php echo $labours['cost_total']; ?></td>
-                    <td><?php echo $labours['vat_cost']; ?></td>
-                    <td><?php echo $labours['description_labour']; ?></td>
-                  </tr>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $labours['labour']; ?></td>
+                      <td><?php echo $labours['cost']; ?></td>
+                      <td><?php echo $labours['cost_total']; ?></td>
+                      <td><?php echo $labours['vat_cost']; ?></td>
+                      <td><?php echo $labours['description_labour']; ?></td>
+                    </tr>
 
                 <?php $i++;
-                 } }
+                  }
+                }
 
                 ?>
 
@@ -409,10 +419,44 @@
 
         <div class="card-body">
 
-          <div class="col-lg-12 mb-4">
+          <div class="row">
 
-            <p>This is the docs_section</p>
+            <?php
 
+            $j = 0;
+
+            if (!empty($job_request_data['job_request_documents'])) {
+
+              foreach ($job_request_data['job_request_documents'] as $docs) { ?>
+
+                <div class="card">
+
+                  <div class="card-body">
+
+                    <div>
+                      <img src="<?php echo base_url(); ?>/assets/uploads/<?php echo $docs['doc_name']; ?>" height="145" width="154">
+                    </div>
+
+                    <hr>
+
+                    <div>
+
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#editModal<?php echo $j; ?>" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal<?php echo $j; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                      <a href="javascript:void(0);" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
+                    </div>
+                  </div>
+
+                </div>
+
+            <?php
+
+                $j++;
+              }
+            }
+
+            ?>
           </div>
         </div>
 
@@ -465,20 +509,20 @@
 
                   $i = 1;
 
-                  if(!empty($person_data)) {
+                  if (!empty($person_data)) {
 
-                  foreach ($person_data as $persons) {  ?>
+                    foreach ($person_data as $persons) {  ?>
 
-                    <tr>
-                      <td><?php echo $i; ?></td>
-                      <td><?php echo $persons['person_type']; ?></td>
-                      <td><?php echo $persons['person_name']; ?></td>
-                      <td><a class="btn btn-primary btn-sm" href="tel:<?php echo $persons['person_number']; ?>"><?php echo $persons['person_number']; ?></a></td>
-                    </tr>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $persons['person_type']; ?></td>
+                        <td><?php echo $persons['person_name']; ?></td>
+                        <td><a class="btn btn-primary btn-sm" href="tel:<?php echo $persons['person_number']; ?>"><?php echo $persons['person_number']; ?></a></td>
+                      </tr>
 
                   <?php $i++;
-
-                   } }
+                    }
+                  }
 
                   ?>
 
@@ -514,7 +558,72 @@
 
           <div class="col-lg-12 mb-4">
 
-            <p>This is the insurance_section</p>
+            <table class="table table-bordered table-striped table-hover" id="insurance_data" width="100%" cellspacing="0">
+
+              <tbody>
+
+                <tr>
+                <th>Insured Reference</th>
+                <td><?php echo $requestor['insured_reference']; ?></td>
+
+                </tr>
+
+                <tr>
+                <th>Date Accident</th>
+                <td><?php echo $requestor['date_accident']; ?></td>
+
+                </tr>
+
+                <tr>
+                <th>Policy Number</th>
+                <td><?php echo $requestor['policy_number']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                <th>Claim Number</th>
+                <td><?php echo $requestor['claim_number']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                <th>Inspection</th>
+                <td><?php echo $requestor['inspection']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                <th>Insured Amount</th>
+                <td><?php echo $requestor['insured_amount']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                <th>Exemption Amount</th>
+                <td><?php echo $requestor['exemption_amount']; ?></td>
+
+                </tr>
+
+                <tr>
+                <th>Responsibility</th>
+                <td><?php echo $requestor['responsibility']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                <th>Liability</th>
+                <td><?php echo $requestor['liability']; ?></td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
 
           </div>
         </div>
@@ -541,7 +650,80 @@
 
           <div class="col-lg-12 mb-4">
 
-            <p>This is the garage_section</p>
+            <table class="table table-bordered table-striped table-hover" id="garage_data_values" width="100%" cellspacing="0">
+
+              <tbody>
+
+                <tr>
+                  <th>Garage Name</th>
+                  <td><?php echo $requestor['garage_whole'][0]['garage_name']; ?></td>
+
+                </tr>
+
+                <tr>
+                  <th>Owner</th>
+                  <td><?php echo $requestor['garage_whole'][0]['owner_name']; ?></td>
+
+                </tr>
+
+                <tr>
+                  <th>Landline</th>
+                  <td><?php echo $requestor['garage_whole'][0]['landline']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                  <th>Mobiles</th>
+                  <td><?php echo $requestor['garage_whole'][0]['mobile']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                  <th>Faxes</th>
+                  <td><?php echo $requestor['garage_whole'][0]['fax']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                  <th>Address</th>
+                  <td><?php echo $requestor['garage_whole'][0]['address']; ?></td>
+
+
+                </tr>
+
+                <tr>
+                  <th>City Name</th>
+                  <td><?php echo $requestor['garage_whole'][0]['city']; ?></td>
+
+                </tr>
+
+                <tr>
+                  <th>Repair Rate</th>
+                  <td><?php echo $requestor['garage_whole'][0]['repair_rate']; ?></td>
+
+                </tr>
+
+                <tr>
+                  <th>Garage Notes</th>
+                  <td><?php echo $requestor['garage_whole'][0]['notes']; ?></td>
+
+                </tr>
+
+                <tr>
+                  <th>Status</th>
+                  <td><?php if ($requestor['garage_whole'][0]['status'] == 1) {
+                        echo "Active";
+                      } else {
+                        "Inactive";
+                      } ?></td>
+                </tr>
+
+              </tbody>
+
+            </table>
 
           </div>
         </div>
@@ -569,7 +751,90 @@
 
           <div class="col-lg-12 mb-4">
 
-            <p>This is the vehicle_section</p>
+            <table class="table table-bordered table-striped table-hover" id="vehicle_data_values" width="100%" cellspacing="0">
+
+              <tr>
+
+                <th>Registration Plate</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['registration_plate']; ?></td>
+
+              </tr>
+
+              <tr>
+
+                <th>Manufacture Date</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['manufacturing_date']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Vin Number</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['vin_number']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Registration Date</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['registration_date']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Make</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['make']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Model</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['model']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Body Type</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['body_type']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Engine Capacity</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['engine_capacity']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Engine Power</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['engine_power']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Imported Condition</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['condition_when_imported']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Gearbox Type</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['gearbox_type']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>Main Color</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['main_color']; ?></td>
+
+              </tr>
+
+              <tr>
+                <th>P code</th>
+                <td><?php echo $requestor['vehicle_whole_data'][0]['pcode']; ?></td>
+              </tr>
+
+              </tbody>
+
+            </table>
 
           </div>
         </div>
@@ -580,14 +845,12 @@
 
     <!-- vehicle_section -->
 
-
     <!-- This is the notification section  Area Starts-->
+
     <div class="col-lg-9 mb-4 remove_job_sections" id="notification_section" style="display: none;">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-
           <h6 class="m-0 font-weight-bold text-primary">Notification</h6>
-
         </div>
         <div class="card-body">
           <div class="col-lg-12 mb-4">
@@ -617,6 +880,7 @@
               <thead>
 
                 <tr>
+
                   <th>S.no.</th>
                   <th>Part Name</th>
                   <th>Damage Type</th>
@@ -638,26 +902,27 @@
                 <?php
 
                 $i = 1;
-                if(!empty($job_request_data['job_parts'])) {
-                foreach ($job_request_data['job_parts'] as $job_parts_data) {  ?>
+                if (!empty($job_request_data['job_parts'])) {
+                  foreach ($job_request_data['job_parts'] as $job_parts_data) {  ?>
 
-                  <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $job_parts_data['part_name']; ?></td>
-                    <td><?php echo $job_parts_data['damage_type']; ?></td>
-                    <td><?php echo $job_parts_data['action_type_name']; ?></td>
-                    <td><?php echo $job_parts_data['part_status']; ?></td>
-                    <td><?php echo $job_parts_data['quantity']; ?></td>
-                    <td><?php echo $job_parts_data['part_cost']; ?></td>
-                    <td><?php echo $job_parts_data['part_cost_vat']; ?></td>
-                    <td><?php echo $job_parts_data['discount']; ?></td>
-                    <td><?php echo $job_parts_data['parts_note']; ?></td>
-                    <td><?php echo $job_parts_data['total_amount']; ?></td>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $job_parts_data['part_name']; ?></td>
+                      <td><?php echo $job_parts_data['damage_type']; ?></td>
+                      <td><?php echo $job_parts_data['action_type_name']; ?></td>
+                      <td><?php echo $job_parts_data['part_status']; ?></td>
+                      <td><?php echo $job_parts_data['quantity']; ?></td>
+                      <td><?php echo $job_parts_data['part_cost']; ?></td>
+                      <td><?php echo $job_parts_data['part_cost_vat']; ?></td>
+                      <td><?php echo $job_parts_data['discount']; ?></td>
+                      <td><?php echo $job_parts_data['parts_note']; ?></td>
+                      <td><?php echo $job_parts_data['total_amount']; ?></td>
 
-                  </tr>
+                    </tr>
 
                 <?php $i++;
-                 } }
+                  }
+                }
 
                 ?>
 
@@ -816,5 +1081,35 @@
     <!-- Assign Job fields -->
 
   </div>
+
+
+  <?php
+
+  $i = 0;
+
+  if (!empty($job_request_data['job_request_documents'])) {
+    foreach ($job_request_data['job_request_documents'] as $person_image) { ?>
+
+      <div class="modal fade" id="exampleModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Documents Image</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="<?php echo base_url(); ?>/assets/uploads/<?php echo $person_image['doc_name']; ?>" height="350" width="470">
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <?php $i++;
+    }
+  }
+
+  ?>
 
   <?php echo $this->endSection();  ?>

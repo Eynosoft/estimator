@@ -11,7 +11,7 @@
                       <ul class="list-unstyled">
                         <li>Hello <b><?php // echo $username; ?>...!</b><span class="badge badge-primary mr-2"><a href="<?php // echo base_url(route_to('logout')); ?>" class="btn btn-primary">Log Out</a></span></li>
                       </ul>
-                    </div>  
+                    </div>
                   </div>
             </div> -->
             <!-- Page Heading -->
@@ -19,7 +19,7 @@
 		    <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
-        
+
           <!-- Content Row -->
           <div class="row">
 
@@ -34,17 +34,17 @@
                   <div class="card-body">
                     <div class="dashboard_listing_items">
                       <ul class="list-unstyled">
-                        <li>External <span class="badge badge-primary mr-2" style="font-size:15px;">N/A</span></li>
+                        <li>External <span class="badge badge-primary mr-2" style="font-size:15px;">0</span></li>
                         <li>Unassigned <span class="badge badge-warning mr-2" style="font-size:15px;"><?php echo !empty($request_data['unassigned_total']) ? $request_data['unassigned_total'] : '0' ; ?></span></li>
                         <li>Assigned<span class="badge badge-success mr-2" style="font-size:15px;"><?php echo !empty($request_data['assign_total']) ? $request_data['assign_total'] : '0'; ?></span></li>
-                        <li>Withdrawn <span class="badge badge-danger mr-2" style="font-size:15px;">N/A</span></li>
+                        <li>Withdrawn <span class="badge badge-danger mr-2" style="font-size:15px;">0</span></li>
                         <li><strong>Total <span class="badge badge-info mr-2" style="font-size:17px;"><?php echo !empty($request_data['total_requests']) ? $request_data['total_requests'] : '0'; ?></span></strong></li>
                       </ul>
-                    </div>  
+                    </div>
                   </div>
 
               </div>
-            
+
               <div class="card card-header-actions border-bottom-info">
                   <div class="card-header">
                       My Account
@@ -59,10 +59,10 @@
                         <li>Finished <span class="badge badge-danger mr-2" style="font-size:15px;">0</span></li>
                         <li><strong>Total <span class="badge badge-info mr-2" style="font-size:17px;"><?php echo !empty($request_data['total_estimation']) ? $request_data['total_estimation'] : '0'; ?></span></strong></li>
                       </ul>
-                    </div>  
+                    </div>
                   </div>
               </div>
-  
+
           </div>
           </div>
 

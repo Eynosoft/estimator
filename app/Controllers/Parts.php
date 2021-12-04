@@ -109,10 +109,10 @@ class Parts extends BaseController
 		$result = $this->parts_model->insertpart($part_data, $id);
 
 		if ($result) {
-			$_SESSION['message'] = 'usuccess';
+			$_SESSION['message'] = 'success';
 			return $this->response->redirect(site_url('parts'));
 		} else {
-			$_SESSION['message'] = 'uerror';
+			$_SESSION['message'] = 'error';
 			return $this->response->redirect(site_url('parts_create'));
 		}
 	}

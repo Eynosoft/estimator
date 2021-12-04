@@ -58,7 +58,7 @@ class VehicleModel extends Model
 		return false;
 	}
 
-	// Get All Vehicle Data by id Ends 
+	// Get All Vehicle Data by id Ends
 	// ---------------------------------------------------------------------------- //
 
 
@@ -92,7 +92,7 @@ class VehicleModel extends Model
 
 
 	// --------------------------------------------------------------------------------//
-	// Delete Vehicle BY id Starts 
+	// Delete Vehicle BY id Starts
 
 	public function deleteVehicleById($id = null)
 	{
@@ -106,7 +106,7 @@ class VehicleModel extends Model
 	}
 
 	// Delete Vehcile By id Ends
-	// ---------------------------------------------------------------------------------// 
+	// ---------------------------------------------------------------------------------//
 
 	public function getVehicleByAjax($search_data = null)
 	{
@@ -125,7 +125,7 @@ class VehicleModel extends Model
 		return false;
 	}
 
-	//Get Vehicle name by the is id 
+	//Get Vehicle name by the is id
 
 	public function getVehicleNameById($id = null)
 	{
@@ -137,7 +137,7 @@ class VehicleModel extends Model
 		}
 		return false;
 	}
-  
+
 	// Get Vehicle name by its id details
 
 
